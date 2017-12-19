@@ -26,7 +26,8 @@ toroidal<sup>[1](#fn1)</sup> com dimensões _X_ e _Y_ e vizinhança de
 Moore<sup>[2](#fn2)</sup>. Em cada célula da grelha pode estar no máximo um
 agente, que pode ser um **zombie** ou um **humano**. No início da simulação
 existem _n<sub>z</sub>_ zombies e _n<sub>h</sub>_ humanos, num total de _n =
-n<sub>z</sub>_ + _n<sub>h</sub>_ agentes.
+n<sub>z</sub>_ + _n<sub>h</sub>_ agentes. Os agentes devem ser espalhados
+aleatoriamente pela grelha no início de cada jogo.
 
 O jogo é _turn-based_, e em cada _turn_ (iteração) cada agente pode realizar
 uma acção. Os humanos têm disponível apenas uma acção: movimento. Os zombies
@@ -44,7 +45,8 @@ que controla o agente pode decidir o destino do mesmo. Se o agente for um
 zombie, a acção de infecção equivale à indicação de movimento para o local onde
 está um humano. O zombie não se move, mas o humano converte-se em zombie. Se
 o humano era controlado por um jogador, deixa de o ser, e passa a ser
-controlado pela AI.
+controlado pela AI. O jogo termina quando não existirem mais agentes do tipo
+humano na grelha.
 
 Caso um agente seja controlado pela AI, as suas decisões dependem do tipo de
 agente:
@@ -55,23 +57,67 @@ agente:
 
 ## Modo de funcionamento
 
-Programa deve aceitar como único parâmetro ficheiro de configuração com o
-formato indicado em baixo. Senão for indicado um ficheiro, o programa deve
-terminar a execução com uma mensagem de erro para `stderr`, indicando o modo de
-uso do comando.
+### Invocação do programa
 
+O programa deve aceitar como único parâmetro um ficheiro de configuração em
+formato [INI]<sup>[4](#fn4)</sup>, de acordo com o seguinte exemplo:
+
+```INI
+; Dimensao da grelha de jogo
+xdim=20
+ydim=20
+; Numero inicial de zombies e humanos
+nzombies=20
+nhumans=20
+; Numero de zombies e humanos controlados por jogadores
+nzplayers=0
+nhplayers=1
+; Numero de turns maximo
+maxturns=1000
 ```
-in progress
-```
 
-Comandos para controlar jogador e visualização.
+Os campos indicados no exemplo anterior são obrigatórios e o programa deve
+saber interpreta-los correctamente. O programa deve ainda ignorar campos que
+não conheça. Os alunos podem acrescentar campos que considerem úteis para o
+desenvolvimento do projecto, mas estes devem ser opcionais. Por outras palavras,
+o programa deve assumir valores por omissão para campos opcionais extra. Um
+ficheiro INI usado para um projecto deve funcionar sem erros noutro projecto.
 
-## Visualização do jogo
+Senão for indicado o ficheiro de configuração, o programa deve terminar com uma
+mensagem de erro para `stderr`, indicando o modo de uso.
 
-Usar código fornecido para a 1ª parte, desenvolver código próprio para a 2ª
-parte.
+### Modos de jogo
 
-## Primeira parte
+#### Modo automático
+
+O programa entra em modo automático quando não existem agentes controlados
+por jogadores. Neste modo o jogo desenrola-se sem intervenção directa do
+utilizador. A visualização deve ser atualizada no fim de cada _turn_ (pelo
+menos). No entanto, de modo a ser possível observar a evolução da simulação,
+poderá ser boa ideia solicitar ao utilizador para pressionar uma tecla ou
+clicar num botão antes de se dar início à próxima _turn_.
+
+#### Modo interactivo
+
+Neste modo, cada vez que um agente controlado pelo jogador é chamado a agir,
+o programa fica a aguardar o _input_ do jogador sobre que acção tomar. A
+visualização do jogo deve ser atualizada imediatamente antes de ser solicitado
+o _input_ ao jogador (pelo menos).
+
+### Final do jogo
+
+O jogo termina quando não existirem mais agentes do tipo humano, ou quando
+for atingido o número máximo de _turns_.
+
+## Desenvolvimento do projecto
+
+### Primeira parte
+
+#### Objectivos a atingir
+
+* Jogo deve funcionar como especificado.
+
+#### Limitações aceitáveis
 
 * Tamanho do ambiente e número de agentes fixo após compilação: _X_=20, _Y_=20,
 _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
@@ -79,41 +125,48 @@ _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
     configuração.
 * Visualização do jogo pode ser feita com código disponibilizado no enunciado.
 
-### Critério de avaliação
+#### Critério de avaliação
 
 Work in progress
 
-### Data de entrega
+#### Data de entrega
 
 * 7 de janeiro de 2018
 
-## Segunda parte
+### Segunda parte
+
+#### Objectivos a atingir
 
 * Tamanho do ambiente e número de agentes variável após compilação.
 * Documentação com [Doxygen].
 * Organização do programa em vários ficheiros com uso de Makefile.
-* Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica.
-  Algumas sugestões:
+* Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica ou
+  de jogos. Algumas sugestões:
   * [g2] - Simples mas limitada.
   * [Ncurses] - ASCII art (texto), ver referência [\[2\]](#ref2).
   * [Allegro5] - Bom meio termo, com bons exemplos em C.
-  * [SDL2] - Muito versátil e poderosa, mas poucos exemplos em C.
+  * [SDL2] - Muito versátil e abrangente, mas poucos exemplos em C.
   * [Raylib] - Muito interessante, mas instalação no Ubuntu não é trivial (ver
     instruções no Wiki da [página no GitHub][Raylib-gh]).
 
-### Critério de avaliação
+#### Critério de avaliação
 
 Work in progress
 
-### Data de entrega
+#### Data de entrega
 
 * 21 de janeiro de 2018
 
-## Sugestões para o desenvolvimento do projecto
+### Visualização do jogo
+
+Usar código fornecido para a 1ª parte, desenvolver código próprio para a 2ª
+parte.
+
+### Sugestões para o desenvolvimento do projecto
 
 1. Começar com coisas simples
 
-## Extensões opcionais, trabalho futuro e Global Game Jam
+### Extensões opcionais, trabalho futuro e Global Game Jam
 
 * Melhor AI.
 * Melhor integração com biblioteca preferida: [Ncurses], [Allegro5], [SDL2] ou
@@ -127,6 +180,9 @@ Work in progress
 <sup><a name="fn2">2</a></sup> Nota de rodapé sobre Moore
 
 <sup><a name="fn3">3</a></sup> Nota de rodapé sobre _shuffling_
+
+<sup><a name="fn4">4</a></sup> Nota de rodapé sobre bibliotecas para leitura de
+ficheiros INI
 
 ## Referências
 
@@ -184,3 +240,4 @@ O enunciado e restante documentação são disponibilizados através da licença
 [SDL2]:https://www.libsdl.org/
 [raylib]:http://www.raylib.com/
 [raylib-gh]:https://github.com/raysan5/raylib
+[INI]:https://en.wikipedia.org/wiki/INI_file
