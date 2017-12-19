@@ -13,6 +13,11 @@ work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 > Este enunciado está em construção e não deve ser usado
 > como base para o projecto enquanto esta mensagem aqui estiver.
 
+O projecto deve ser realizado em grupos de 2 a 3 alunos. A constituição dos
+grupos deve ser comunicada ao docente via Moodle até 27 de dezembro, data a
+partir da qual se assume que os alunos não pretendem realizar o projecto na 1ª
+época.
+
 ## Descrição do problema
 
 Pretende-se que os alunos desenvolvam um jogo/simulador no qual zombies
@@ -48,9 +53,72 @@ agente:
 * Zombie - Caso exista um humano numa célula adjacente, infecta-o. Caso
   contrário, move-se na direção do humano mais próximo.
 
-## Exemplo de execução
+## Modo de funcionamento
+
+Programa deve aceitar como único parâmetro ficheiro de configuração com o
+formato indicado em baixo. Senão for indicado um ficheiro, o programa deve
+terminar a execução com uma mensagem de erro para `stderr`, indicando o modo de
+uso do comando.
+
+```
+in progress
+```
+
+Comandos para controlar jogador e visualização.
+
+## Visualização do jogo
+
+Usar código fornecido para a 1ª parte, desenvolver código próprio para a 2ª
+parte.
+
+## Primeira parte
+
+* Tamanho do ambiente e número de agentes fixo após compilação: _X_=20, _Y_=20,
+_n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
+  * Sugestão: usar constantes e ignorar valores lidos do ficheiro de
+    configuração.
+* Visualização do jogo pode ser feita com código disponibilizado no enunciado.
+
+### Critério de avaliação
 
 Work in progress
+
+### Data de entrega
+
+* 7 de janeiro de 2018
+
+## Segunda parte
+
+* Tamanho do ambiente e número de agentes variável após compilação.
+* Documentação com [Doxygen].
+* Organização do programa em vários ficheiros com uso de Makefile.
+* Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica.
+  Algumas sugestões:
+  * [g2] - Simples mas limitada.
+  * [Ncurses] - ASCII art (texto), ver referência [\[2\]](#ref2).
+  * [Allegro5] - Bom meio termo, com bons exemplos em C.
+  * [SDL2] - Muito versátil e poderosa, mas poucos exemplos em C.
+  * [Raylib] - Muito interessante, mas instalação no Ubuntu não é trivial (ver
+    instruções no Wiki da [página no GitHub][Raylib-gh]).
+
+### Critério de avaliação
+
+Work in progress
+
+### Data de entrega
+
+* 21 de janeiro de 2018
+
+## Sugestões para o desenvolvimento do projecto
+
+1. Começar com coisas simples
+
+## Extensões opcionais, trabalho futuro e Global Game Jam
+
+* Melhor AI.
+* Melhor integração com biblioteca preferida: [Ncurses], [Allegro5], [SDL2] ou
+  [Raylib]. Infelizmente [g2] não é apropriada para jogos "a sério".
+* Desenvolvimento do jogo na Global Game Jam.
 
 ## Notas
 
@@ -62,7 +130,11 @@ Work in progress
 
 ## Referências
 
-* <a name="ref1">(1)</a> Pereira, A. (2017). C e Algoritmos, 2ª edição. Sílabo.
+* <a name="ref1">\[1\]</a> Pereira, A. (2017). C e Algoritmos, 2ª edição. Sílabo.
+* <a name="ref2">\[2\]</a> Reagan, P. (2014). [Game Programming in C with the
+Ncurses Library](https://www.viget.com/articles/game-programming-in-c-with-the-ncurses-library),
+Viget Labs.
+
 
 ## Licenças
 
@@ -105,3 +177,10 @@ O enunciado e restante documentação são disponibilizados através da licença
 [NotABug]:https://notabug.org/
 [StackEdit]:https://stackedit.io/editor
 [(GitHub-Flavored) Markdown Editor]:https://jbt.github.io/markdown-editor/
+[Doxygen]:http://www.stack.nl/~dimitri/doxygen/
+[Ncurses]:https://www.gnu.org/software/ncurses/ncurses.html
+[g2]:http://www.ncbr.muni.cz/~martinp/g2/index.html
+[Allegro5]:http://liballeg.org/
+[SDL2]:https://www.libsdl.org/
+[raylib]:http://www.raylib.com/
+[raylib-gh]:https://github.com/raysan5/raylib
