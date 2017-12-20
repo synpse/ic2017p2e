@@ -11,17 +11,17 @@ work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 # 2º Projeto de Introdução à Computação 2017/2018
 
 > Este enunciado está em construção e não deve ser usado
-> como base para o projecto enquanto esta mensagem aqui estiver.
+> como base para o projeto enquanto esta mensagem aqui estiver.
 
-O projecto deve ser realizado em grupos de 2 a 3 alunos. A constituição dos
-grupos deve ser comunicada ao docente via Moodle até 27 de dezembro, data a
-partir da qual se assume que os alunos não pretendem realizar o projecto na 1ª
+O projeto deve ser realizado em grupos de 2 a 3 alunos. A constituição dos
+grupos deve ser comunicada ao docente via Moodle até 23 de dezembro, data a
+partir da qual se assume que os alunos não pretendem realizar o projeto na 1ª
 época.
 
 ## Descrição do problema
 
 Pretende-se que os alunos desenvolvam um jogo/simulador no qual zombies
-perseguem e infectam humanos. O jogo desenrola-se numa grelha 2D
+perseguem e infetam humanos. O jogo desenrola-se numa grelha 2D
 toroidal<sup>[1](#fn1)</sup> com dimensões _X_ e _Y_ e vizinhança de
 Moore<sup>[2](#fn2)</sup>. Em cada célula da grelha pode estar no máximo um
 agente, que pode ser um **zombie** ou um **humano**. No início da simulação
@@ -30,30 +30,36 @@ n<sub>z</sub>_ + _n<sub>h</sub>_ agentes. Os agentes devem ser espalhados
 aleatoriamente pela grelha no início de cada jogo.
 
 O jogo é _turn-based_, e em cada _turn_ (iteração) cada agente pode realizar
-uma acção. Os humanos têm disponível apenas uma acção: movimento. Os zombies
-podem realizar dois diferentes tipos de acção: 1) movimento; e, 2) infeção de
-humanos. O movimento dos agentes pode ser realizado para uma célula vazia numa
-vizinhança de Moore de raio 1. A infeção de humanos pode ser realizada por
-zombies quando o humano está numa célula adjacente na vizinhança de Moore. A
-ordem em que os agentes executam as suas acções em cada _turn_ é
+uma ação. Os humanos podem apenas realizar um tipo de ação: movimento. Os
+zombies podem realizar dois diferentes tipos de ação: 1) movimento; e, 2)
+infeção de humanos. O movimento dos agentes pode ser realizado para uma célula
+vazia numa vizinhança de Moore de raio 1. A infeção de humanos pode ser
+realizada por zombies quando o humano está numa célula adjacente na vizinhança
+de Moore. A ordem em que os agentes executam as suas ações em cada _turn_ é
 aleatória<sup>[3](#fn3)</sup>, de modo a que nenhum agente em específico
 obtenha a vantagem de agir cedo durante todo o jogo.
 
 Os agentes podem ser controlados pelo computador através de uma AI básica, ou
-podem ser controlados por um ou mais jogadores. Neste último caso, o jogador
-que controla o agente pode decidir o destino do mesmo. Se o agente for um
-zombie, a acção de infecção equivale à indicação de movimento para o local onde
-está um humano. O zombie não se move, mas o humano converte-se em zombie. Se
-o humano era controlado por um jogador, deixa de o ser, e passa a ser
-controlado pela AI. O jogo termina quando não existirem mais agentes do tipo
-humano na grelha.
+podem ser controlados por jogadores. Neste último caso, um jogador que controle
+determinado agente pode decidir o destino do mesmo. Se o agente for um zombie,
+a ação de infeção equivale à indicação de movimento para o local onde
+está um humano. Nesse caso o zombie não se move (pois o local já está ocupado
+pelo humano), mas o humano é convertido em zombie. Se o humano era controlado
+por um jogador, deixa de o ser, e passa a ser controlado pela AI. O jogo
+termina quando não existirem mais agentes do tipo humano na grelha.
 
 Caso um agente seja controlado pela AI, as suas decisões dependem do tipo de
 agente:
 
-* Humano - O humano move-se na direção oposta ao zombie mais próximo.
-* Zombie - Caso exista um humano numa célula adjacente, infecta-o. Caso
-  contrário, move-se na direção do humano mais próximo.
+* Humano - Tenta mover-se na direção oposta ao zombie mais próximo. Se a célula
+  para onde o humano deseja mover-se estiver ocupada, o humano fica no mesmo
+  local.
+* Zombie - Caso exista um humano numa célula adjacente, infeta-o. Caso
+  contrário, tenta mover-se na direção do humano mais próximo. Se a célula para
+  onde o zombie deseja mover-se estiver ocupada, o zombie fica no mesmo local.
+
+O jogo termina quando o número máximo de _turns_ for atingido, ou quando não
+existirem mais humanos na simulação.
 
 ## Modo de funcionamento
 
@@ -77,11 +83,11 @@ maxturns=1000
 ```
 
 Os campos indicados no exemplo anterior são obrigatórios e o programa deve
-saber interpreta-los correctamente. O programa deve ainda ignorar campos que
+saber interpreta-los corretamente. O programa deve ainda ignorar campos que
 não conheça. Os alunos podem acrescentar campos que considerem úteis para o
-desenvolvimento do projecto, mas estes devem ser opcionais. Por outras palavras,
+desenvolvimento do projeto, mas estes devem ser opcionais. Por outras palavras,
 o programa deve assumir valores por omissão para campos opcionais extra. Um
-ficheiro INI usado para um projecto deve funcionar sem erros noutro projecto.
+ficheiro INI usado para um projeto deve funcionar sem erros noutro projeto.
 
 Senão for indicado o ficheiro de configuração, o programa deve terminar com uma
 mensagem de erro para `stderr`, indicando o modo de uso.
@@ -91,29 +97,24 @@ mensagem de erro para `stderr`, indicando o modo de uso.
 #### Modo automático
 
 O programa entra em modo automático quando não existem agentes controlados
-por jogadores. Neste modo o jogo desenrola-se sem intervenção directa do
+por jogadores. Neste modo o jogo desenrola-se sem intervenção direta do
 utilizador. A visualização deve ser atualizada no fim de cada _turn_ (pelo
 menos). No entanto, de modo a ser possível observar a evolução da simulação,
 poderá ser boa ideia solicitar ao utilizador para pressionar uma tecla ou
 clicar num botão antes de se dar início à próxima _turn_.
 
-#### Modo interactivo
+#### Modo interativo
 
 Neste modo, cada vez que um agente controlado pelo jogador é chamado a agir,
-o programa fica a aguardar o _input_ do jogador sobre que acção tomar. A
+o programa fica a aguardar o _input_ do jogador sobre que ação tomar. A
 visualização do jogo deve ser atualizada imediatamente antes de ser solicitado
-o _input_ ao jogador (pelo menos).
+_input_ a um jogador (pelo menos).
 
-### Final do jogo
-
-O jogo termina quando não existirem mais agentes do tipo humano, ou quando
-for atingido o número máximo de _turns_.
-
-## Desenvolvimento do projecto
+## Desenvolvimento do projeto
 
 ### Primeira parte
 
-#### Objectivos a atingir
+#### Objetivos a atingir
 
 * Jogo deve funcionar como especificado.
 
@@ -135,7 +136,7 @@ Work in progress
 
 ### Segunda parte
 
-#### Objectivos a atingir
+#### Objetivos a atingir
 
 * Tamanho do ambiente e número de agentes variável após compilação.
 * Documentação com [Doxygen].
@@ -162,7 +163,7 @@ Work in progress
 Usar código fornecido para a 1ª parte, desenvolver código próprio para a 2ª
 parte.
 
-### Sugestões para o desenvolvimento do projecto
+### Sugestões para o desenvolvimento do projeto
 
 1. Começar com coisas simples
 
