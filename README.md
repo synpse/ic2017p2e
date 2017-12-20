@@ -170,11 +170,18 @@ ter os seguintes conteúdos:
 
 #### Critério de avaliação
 
-* Funcionamento
-* Código indentado
-* Código a compilar sem erros
-* Implementação de _features_ só pedidas para a 2ª parte
-* Uso de Git para desenvolvimento do projeto.
+A primeira parte do projeto, que tem um peso de 4 valores na nota final da
+disciplina, será avaliada segundo os seguintes critérios:
+
+| Critério                                               | Peso      |
+|--------------------------------------------------------|-----------|
+| Funcionamento segundo especificações                   | 1 val.    |
+| Qualidade do código e das soluções<sup>[6](#fn6)</sup> | 0,6 val.  |
+| Indentação  e comentários                              | 0,5 val.  |
+| Compilação sem erros e _warnings_                      | 0,4 val.  |
+| Relatório                                              | 1 val.    |
+| Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 0,5 val.  |
+| Antecipação de objetivos da 2ª parte do projeto        | Bónus!    |
 
 ### Segunda parte
 
@@ -244,6 +251,10 @@ parte.
 ficheiros INI
 
 <sup><a name="fn5">5</a></sup> Nota de rodapé sobre ASCII e UTF-8 em Windows
+
+<sup><a name="fn6">6</a></sup> Nota de rodapé sobre qualidade do código
+
+<sup><a name="fn7">7</a></sup> Nota de rodapé sobre Git local e remoto
 
 ## Referências
 
