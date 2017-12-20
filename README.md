@@ -121,7 +121,8 @@ _input_ a um jogador (pelo menos).
   `-std=c99 -Wall -Wextra -Wpedantic`.
 * Código deve estar devidamente comentado e indentado.
 
-As seguintes limitações são aceitáveis para a primeira entrega:
+As seguintes limitações são aceitáveis e não serão penalizadas na primeira
+entrega:
 
 * Tamanho do ambiente e número de agentes fixo após compilação: _X_=20, _Y_=20,
 _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
@@ -171,7 +172,9 @@ ter os seguintes conteúdos:
 #### Critério de avaliação
 
 A primeira parte do projeto, que tem um peso de 4 valores na nota final da
-disciplina, será avaliada segundo os seguintes critérios:
+disciplina, será avaliada segundo os critérios indicados na Tabela 1.
+
+**Tabela 1** - Critérios absolutos da 1ª parte do projeto.
 
 | Critério                                               | Peso      |
 |--------------------------------------------------------|-----------|
@@ -183,13 +186,17 @@ disciplina, será avaliada segundo os seguintes critérios:
 | Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 0,5 val.  |
 | Antecipação de objetivos da 2ª parte do projeto        | Bónus!    |
 
+A nota máxima da 1ª parte do projeto é de 4 valores, sendo que o bónus poderá
+servir apenas para compensar avaliações piores nos critérios principais.
+
 ### Segunda parte
 
 #### Objetivos a atingir
 
-* Tamanho do ambiente e número de agentes variável após compilação.
-* Documentação com [Doxygen].
-* Organização do programa em vários ficheiros com uso de Makefile.
+* Tamanho da grelha e número de agentes variável após compilação, tal como
+  especificado no ficheiro de configuração.
+* Documentação do projeto com [Doxygen].
+* Organização do programa em vários ficheiros `.c` e `.h` com uso de _Makefile_.
 * Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica ou
   de jogos. Algumas sugestões:
   * [g2] - Simples mas limitada.
@@ -205,18 +212,47 @@ A 2ª parte do projeto deve ser entregue via Moodle até às 23h de 21 de janeir
 de 2018. Deve ser submetido um ficheiro `zip` com a pasta do projeto que deve
 ter os seguintes conteúdos:
 
-* Ficheiros `.c` e `.h`, bem como a `Makefile`.
+* Ficheiros `.c` e `.h`, bem como a _Makefile_.
 * Ficheiro `README.md` em formato [Markdown] gravado em codificação ASCII ou
   UTF-8<sup>[5](#fn5)</sup>.
 * Pasta escondida `.git` contendo o repositório Git local do projeto.
 
 #### Critério de avaliação
 
-* Critério usado na 1ª entrega - 8 valores
-* Tamanho do ambiente e número de agentes variável após compilaçã - 4 valores
-* Visualização com recurso a biblioteca externa para o efeito - 4 valores
-* Documentação com Doxygen - 2 valores
-* Organização do projecto em vários ficheiros com uso de Makefile - 2 valores
+A segunda parte do projeto, que tem um peso de 4 valores na nota final da
+disciplina, será avaliada usando duas tabelas distintas. A tabela 2 indica os
+critérios absolutos, que totalizam 4 valores:
+
+**Tabela 2** - Critérios absolutos da 2ª parte do projeto.
+
+| Critério                                               | Peso      |
+|--------------------------------------------------------|-----------|
+| Tamanho da grelha/número de agentes variável           | 1 val.    |
+| Visualização com recurso a biblioteca externa          | 1 val.    |
+| Documentação com [Doxygen]                             | 1 val.    |
+| Organização do projecto e _Makefile_                   | 1 val.    |
+| [Extensões opcionais e Global Game Jam](#gamejam)      | Bónus!    |
+
+A nota máxima da 2ª parte do projeto é de 4 valores, sendo que o bónus poderá
+servir apenas para compensar avaliações piores nos critérios principais. No
+entanto, como os critérios absolutos não fazem sentido sem que os objetivos da
+1ª parte do projeto tenham sido atingidos, a nota final da 2ª parte também
+depende de uma percentagem baseada nesses objetivos, tal como indicado na
+Tabela 3.
+
+**Tabela 3** - Critérios relativos da 2ª parte do projeto.
+
+| Critério                                               | Peso      |
+|--------------------------------------------------------|-----------|
+| Funcionamento segundo especificações                   | 25,0%     |
+| Qualidade do código e das soluções<sup>[6](#fn6)</sup> | 15,0%     |
+| Indentação  e comentários                              | 12,5%     |
+| Compilação sem erros e _warnings_                      | 10,0%     |
+| Relatório                                              | 25,0%     |
+| Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 12,5%     |
+
+A nota final da 2ª parte do projeto é dada pelo total dos critérios absolutos
+multiplicado pela percentagem obtida nos critérios relativos.
 
 <a name="visualize">
 
@@ -231,6 +267,8 @@ parte.
 2. Usar Git para colaboração
 3. Usar [cppcheck] para verificação estática
 3. Usar [GDB] para _debugging_
+
+<a name="gamejam"></a>
 
 ### Extensões opcionais, trabalho futuro e Global Game Jam
 
