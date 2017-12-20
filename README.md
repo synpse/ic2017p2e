@@ -10,8 +10,8 @@ work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 
 # 2º Projeto de Introdução à Computação 2017/2018
 
-> Este enunciado está em construção e não deve ser usado
-> como base para o projeto enquanto esta mensagem aqui estiver.
+> Este enunciado está em construção mas os alunos podem começar a planear o
+> trabalho com base na informação já disponibilizada.
 
 O projeto deve ser realizado em grupos de 2 a 3 alunos. A constituição dos
 grupos deve ser comunicada ao docente via Moodle até 23 de dezembro, data a
@@ -323,8 +323,6 @@ ficheiros INI
 
 <sup><a name="fn8">8</a></sup> Texto adaptado da disciplina de [Algoritmos e
 Estruturas de Dados][aed] do [Instituto Superior Técnico][ist].
-
-
 
 ## Referências
 
