@@ -117,22 +117,46 @@ _input_ a um jogador (pelo menos).
 #### Objetivos a atingir
 
 * Jogo deve funcionar como especificado.
+* Código deve compilar sem erros no compilador [GCC] e/ou [Clang] com as opções
+  `-std=c99 -Wall -Wextra -Wpedantic`.
+* Código deve estar devidamente comentado e indentado.
 
-#### Limitações aceitáveis
+As seguintes limitações são aceitáveis para a primeira entrega:
 
 * Tamanho do ambiente e número de agentes fixo após compilação: _X_=20, _Y_=20,
 _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
   * Sugestão: usar constantes e ignorar valores lidos do ficheiro de
     configuração.
-* Visualização do jogo pode ser feita com código disponibilizado no enunciado.
+* Código pode ser entregue num único ficheiro `.c`.
+* Visualização do jogo pode ser feita com código exemplo disponibilizado na
+  secção [Visualização do jogo](#visualize).
+
+#### Entrega
+
+A 1ª parte do projeto deve ser entregue via Moodle até às 23h de 7 de janeiro
+de 2018. Deve ser submetido um ficheiro `zip` com a pasta do projeto que deve
+ter os seguintes conteúdos:
+
+* Ficheiro(s) `.c` (e possivelmente ficheiros `.h` se os alunos decidirem
+  organizar o código em vários ficheiros logo para a primeira entrega).
+* Ficheiro `README.md` em formato [Markdown] gravado em codificação ASCII ou
+  UTF-8<sup>[5](#fn5)</sup>, contendo as seguintes secções:
+  * Título do projeto
+  * Nomes dos autores (primeiro e último) e respetivos números de aluno.
+  * Descrição da solução (algoritmos, estruturas de dados, como compilar).
+  * Conclusões e matéria aprendida.
+  * Referências.
+    * Incluindo trocas de ideias com colegas, código aberto reutilizado e
+      bibliotecas utilizadas.
+* Pasta escondida `.git` contendo o repositório Git local do projeto.
 
 #### Critério de avaliação
 
-Work in progress
-
-#### Data de entrega
-
-* 7 de janeiro de 2018
+* Funcionamento
+* Código indentado
+* Código a compilar sem erros
+* Implementação de _features_ só pedidas para a 2ª parte
+* Uso de Git para desenvolvimento do projeto.
 
 ### Segunda parte
 
@@ -150,13 +174,26 @@ Work in progress
   * [Raylib] - Muito interessante, mas instalação no Ubuntu não é trivial (ver
     instruções no Wiki da [página no GitHub][Raylib-gh]).
 
+#### Entrega
+
+A 2ª parte do projeto deve ser entregue via Moodle até às 23h de 21 de janeiro
+de 2018. Deve ser submetido um ficheiro `zip` com a pasta do projeto que deve
+ter os seguintes conteúdos:
+
+* Ficheiros `.c` e `.h`, bem como a `Makefile`.
+* Ficheiro `README.md` em formato [Markdown] gravado em codificação ASCII ou
+  UTF-8<sup>[5](#fn5)</sup>.
+* Pasta escondida `.git` contendo o repositório Git local do projeto.
+
 #### Critério de avaliação
 
-Work in progress
+* Critério usado na 1ª entrega - 8 valores
+* Tamanho do ambiente e número de agentes variável após compilaçã - 4 valores
+* Visualização com recurso a biblioteca externa para o efeito - 4 valores
+* Documentação com Doxygen - 2 valores
+* Organização do projecto em vários ficheiros com uso de Makefile - 2 valores
 
-#### Data de entrega
-
-* 21 de janeiro de 2018
+<a name="visualize">
 
 ### Visualização do jogo
 
@@ -166,6 +203,9 @@ parte.
 ### Sugestões para o desenvolvimento do projeto
 
 1. Começar com coisas simples
+2. Usar Git para colaboração
+3. Usar [cppcheck] para verificação estática
+3. Usar [GDB] para _debugging_
 
 ### Extensões opcionais, trabalho futuro e Global Game Jam
 
@@ -184,6 +224,8 @@ parte.
 
 <sup><a name="fn4">4</a></sup> Nota de rodapé sobre bibliotecas para leitura de
 ficheiros INI
+
+<sup><a name="fn5">5</a></sup> Nota de rodapé sobre ASCII e UTF-8 em Windows
 
 ## Referências
 
@@ -204,8 +246,6 @@ O enunciado e restante documentação são disponibilizados através da licença
 * Autor: [Nuno Fachada]
 * Curso:  [Licenciatura em Aplicações Multimédia e Videojogos][lamv]
 * Instituição: [Universidade Lusófona de Humanidades e Tecnologias][ULHT]
-
-
 
 [GPLv3]:https://www.gnu.org/licenses/gpl-3.0.en.html
 [CC BY-NC-SA 4.0]:https://creativecommons.org/licenses/by-nc-sa/4.0/
@@ -242,3 +282,5 @@ O enunciado e restante documentação são disponibilizados através da licença
 [raylib]:http://www.raylib.com/
 [raylib-gh]:https://github.com/raysan5/raylib
 [INI]:https://en.wikipedia.org/wiki/INI_file
+[GDB]:https://www.gnu.org/software/gdb/
+[cppcheck]:http://cppcheck.sourceforge.net/
