@@ -139,16 +139,34 @@ ter os seguintes conteúdos:
 
 * Ficheiro(s) `.c` (e possivelmente ficheiros `.h` se os alunos decidirem
   organizar o código em vários ficheiros logo para a primeira entrega).
-* Ficheiro `README.md` em formato [Markdown] gravado em codificação ASCII ou
-  UTF-8<sup>[5](#fn5)</sup>, contendo as seguintes secções:
-  * Título do projeto
-  * Nomes dos autores (primeiro e último) e respetivos números de aluno.
-  * Descrição da solução (algoritmos, estruturas de dados, como compilar).
-  * Conclusões e matéria aprendida.
-  * Referências.
-    * Incluindo trocas de ideias com colegas, código aberto reutilizado e
-      bibliotecas utilizadas.
 * Pasta escondida `.git` contendo o repositório Git local do projeto.
+* Ficheiro `README.md` contendo o relatório do projeto em formato [Markdown]
+  gravado em codificação ASCII ou UTF-8<sup>[5](#fn5)</sup>, contendo as
+  seguintes secções:
+  * Título do projeto.
+  * Nomes dos autores (primeiro e último) e respetivos números de aluno.
+  * Descrição da solução:
+    * Arquitetura da solução, com breve explicação de como o programa foi
+      estruturado. Um fluxograma simples, que mostre o funcionamento de alto
+      nível do programa, pode ajudar bastante a explicar a arquitetura do
+      mesmo.
+    * Estruturas de dados: grelha de simulação, agentes, outras estruturas
+      auxiliares relevantes.
+    * Algoritmos: procura de agente mais próximo, cáculo de direção na grelha,
+      _shuffling_ (embaralhamento) dos agentes antes de cada _turn_, outros
+      algoritmos relevantes.
+  * Manual de utilizador:
+    * Como compilar (qual o comando completo para compilação).
+    * Como jogar: que teclas pressionar e/ou onde clicar para mover agentes
+      (modo interativo); tecla e/ou botão para passar para a próxima _turn_
+      (modo automático); outras funcionalidades importantes que o utilizador
+      possa controlar.
+  * Conclusões e matéria aprendida.
+  * Referências:
+    * Incluindo trocas de ideias com colegas, código aberto reutilizado e
+      bibliotecas de terceiros utilizadas. Devem ser o mais detalhados possível.
+  * **Nota:** o relatório deve ser simples e breve, com informação mínima e
+    suficiente para que seja possível ter uma boa ideia do que foi feito.
 
 #### Critério de avaliação
 
