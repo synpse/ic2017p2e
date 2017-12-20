@@ -277,6 +277,33 @@ parte.
   [Raylib]. Infelizmente [g2] não é apropriada para jogos "a sério".
 * Desenvolvimento do jogo na Global Game Jam.
 
+## Honestidade académica
+
+Nesta disciplina, espera-se que cada aluno siga os mais altos padrões de
+honestidade académica. Isto significa que cada ideia que não seja do
+aluno deve ser claramente indicada, com devida referência ao respectivo
+autor. O não cumprimento desta regra constitui plágio.
+
+O plágio inclui a utilização de ideias, código ou conjuntos de soluções
+de outros alunos ou indivíduos, ou quaisquer outras fontes para além
+dos textos de apoio à disciplina, sem dar o respectivo crédito a essas
+fontes. Os alunos são encorajados a discutir os problemas com outros
+alunos e devem mencionar essa discussão quando submetem os projetos.
+Essa menção **não** influenciará a nota. Os alunos não deverão, no
+entanto, copiar códigos, documentação e relatórios de outros alunos, ou dar os
+seus próprios códigos, documentação e relatórios a outros em qualquer
+circunstância. De facto, não devem sequer deixar códigos, documentação e
+relatórios em computadores de uso partilhado.
+
+Nesta disciplina, a desonestidade académica é considerada fraude, com
+todas as consequências legais que daí advêm. Qualquer fraude terá como
+consequência imediata a anulação dos projetos de todos os alunos envolvidos
+(incluindo os que possibilitaram a ocorrência). Qualquer suspeita de
+desonestidade académica será relatada aos órgãos superiores da escola
+para possível instauração de um processo disciplinar. Este poderá
+resultar em reprovação à disciplina, reprovação de ano ou mesmo
+suspensão temporária ou definitiva da ULHT<sup>[8](#fn8)</sup>.
+
 ## Notas
 
 <sup><a name="fn1">1</a></sup> Nota de rodapé sobre toros
@@ -293,6 +320,11 @@ ficheiros INI
 <sup><a name="fn6">6</a></sup> Nota de rodapé sobre qualidade do código
 
 <sup><a name="fn7">7</a></sup> Nota de rodapé sobre Git local e remoto
+
+<sup><a name="fn8">8</a></sup> Texto adaptado da disciplina de [Algoritmos e
+Estruturas de Dados][aed] do [Instituto Superior Técnico][ist].
+
+
 
 ## Referências
 
