@@ -268,7 +268,8 @@ parte.
 1. Começar com coisas simples
 2. Usar Git para colaboração
 3. Usar [cppcheck] para verificação estática
-3. Usar [GDB] para _debugging_
+4. Usar [Valgrind] para erros de acesso à memória
+5. Usar [GDB] para _debugging_
 
 <a name="gamejam"></a>
 
@@ -383,3 +384,4 @@ O enunciado e restante documentação são disponibilizados através da licença
 [INI]:https://en.wikipedia.org/wiki/INI_file
 [GDB]:https://www.gnu.org/software/gdb/
 [cppcheck]:http://cppcheck.sourceforge.net/
+[Valgrind]:http://valgrind.org/
