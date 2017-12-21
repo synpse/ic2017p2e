@@ -29,5 +29,10 @@
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
+#ifndef __SIMPLE_SHOWWORLD_H_
+#define __SIMPLE_SHOWWORLD_H_
+
 #include <stdio.h>
 #include "showworld.h"
+
+#endif

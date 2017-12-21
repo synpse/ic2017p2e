@@ -28,12 +28,15 @@
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
+#ifndef __SHOWWORLD_H_
+#define __SHOWWORLD_H_
+
 /**
  * Type of agent.
  * */
 typedef enum {
-    None = 0x0,   /**< No agent present.     */
-    Human = 0x1,  /**< Human agent present.  */
+    None   = 0x0, /**< No agent present.     */
+    Human  = 0x1, /**< Human agent present.  */
     Zombie = 0x2  /**< Zombie agent present. */
 } agent_type;
 
@@ -67,3 +70,5 @@ void show_world(
     unsigned int xdim,
     unsigned int ydim,
     get_agent_info_at ag_info);
+
+#endif
