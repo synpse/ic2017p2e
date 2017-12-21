@@ -42,7 +42,7 @@ typedef enum {
 } AGENT_TYPE;
 
 /**
- * A function pointer which returns information about an agent located in
+ * A pointer to a function which returns information about an agent located in
  * the simulation `world` at coordinates (_x_,_y_).
  *
  * @param world Generic pointer to object representing the simulation world.
@@ -55,20 +55,21 @@ typedef enum {
  * ID). Bits 19-31 are available for student-defined agent extensions.
  * */
 typedef unsigned int (*get_agent_info_at)(
-    void *world, unsigned int x, unsigned int y);
+    void *world,
+    unsigned int x,
+    unsigned int y);
 
 /**
- * Show/update the visualization the current state of the simulation world.
+ * A pointer to a function which shows/updates the visualization the current
+ * state of the simulation world.
  *
  * @param world Generic pointer to object representing the simulation world.
  * @param xdim Horizontal dimension of the simulation world (number of columns).
  * @param ydim Vertical dimension of the simulation world (number of rows).
- * @param ag_info Pointer to function which obtains information about an agent
- * in the simulation world at coordinates (_x_,_y_).
+ * @param ag_info Pointer to function of type ::get_agent_info().
  * */
-void show_world(
-    void *world,
-    unsigned int xdim,
+typedef void (*show_world)(
+    void *world, unsigned int xdim,
     unsigned int ydim,
     get_agent_info_at ag_info);
 

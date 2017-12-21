@@ -35,4 +35,13 @@
 #include <stdio.h>
 #include "showworld.h"
 
+/* Simple function which shows/updates an ASCII-based visualization of the
+ * current state of the simulation world. This function follows the type
+ * definition ::show_world() specified in showworld.h. */
+void simple_show_world(
+    void *world,
+    unsigned int xdim,
+    unsigned int ydim,
+    get_agent_info_at ag_info);
+
 #endif

@@ -33,7 +33,8 @@
 
 /**
  * Simple function which shows/updates an ASCII-based visualization of the
- * current state of the simulation world.
+ * current state of the simulation world. This function follows the type
+ * definition ::show_world() specified in showworld.h.
  *
  * @param world Generic pointer to object representing the simulation world.
  * @param xdim Horizontal dimension of the simulation world (number of columns).
@@ -41,7 +42,7 @@
  * @param ag_info Pointer to function which obtains the type of agent in the
  * simulation world at coordinates (_x_,_y_).
  * */
-void show_world(
+void simple_show_world(
     void *world,
     unsigned int xdim,
     unsigned int ydim,
