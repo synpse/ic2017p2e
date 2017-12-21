@@ -60,7 +60,7 @@ void show_world(
             unsigned int item = ag_info(world, x, y);
 
             /* Extract the agent type (2 bits). */
-            agent_type ag_type = item & 0x3;
+            AGENT_TYPE ag_type = item & 0x3;
             /* Extract whether the agent is playable (1 bit). */
             unsigned char playable = (item >> 2) & 0x1;
             /* Extract the agent ID (16 bits). */
