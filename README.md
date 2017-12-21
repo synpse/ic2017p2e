@@ -141,9 +141,8 @@ ter os seguintes conteúdos:
 * Ficheiro(s) `.c` (e possivelmente ficheiros `.h` se os alunos decidirem
   organizar o código em vários ficheiros logo para a primeira entrega).
 * Pasta escondida `.git` contendo o repositório Git local do projeto.
-* Ficheiro `README.md` contendo o relatório do projeto em formato [Markdown]
-  gravado em codificação ASCII ou UTF-8<sup>[5](#fn5)</sup>, contendo as
-  seguintes secções:
+* Ficheiro `README.md` contendo o relatório do projeto em formato [Markdown],
+  contendo as seguintes secções:
   * Título do projeto.
   * Nomes dos autores (primeiro e último) e respetivos números de aluno.
   * Descrição da solução:
@@ -168,6 +167,9 @@ ter os seguintes conteúdos:
       bibliotecas de terceiros utilizadas. Devem ser o mais detalhados possível.
   * **Nota:** o relatório deve ser simples e breve, com informação mínima e
     suficiente para que seja possível ter uma boa ideia do que foi feito.
+
+**Atenção**: Todos os ficheiros C e Markdown devem ser gravado em codificação
+UTF-8<sup>[5](#fn5)</sup>.
 
 #### Critério de avaliação
 
