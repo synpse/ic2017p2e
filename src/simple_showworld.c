@@ -29,8 +29,7 @@
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
-#include <stdio.h>
-#include "showworld.h"
+#include "simple_showworld.h"
 
 /**
  * Simple function which shows/updates an ASCII-based visualization of the
@@ -39,14 +38,14 @@
  * @param world Generic pointer to object representing the simulation world.
  * @param xdim Horizontal dimension of the simulation world (number of columns).
  * @param ydim Vertical dimension of the simulation world (number of rows).
- * @param get_item_at Function which obtains the type of agent in the
+ * @param ag_info Pointer to function which obtains the type of agent in the
  * simulation world at coordinates (_x_,_y_).
  * */
 void show_world(
     void *world,
     unsigned int xdim,
     unsigned int ydim,
-    unsigned short (*get_item_at)(void *world, int x, int y)) {
+    get_agent_info_at ag_info) {
 
     printf("\n");
 
@@ -58,14 +57,14 @@ void show_world(
 
             /* Get state of the world (in bit packed fashion) using the user
                supplied function. */
-            unsigned short item = get_item_at(world, x, y);
+            unsigned int item = ag_info(world, x, y);
 
-            /* Extract the agent type. */
-            enum agent_type ag_type = item & 0x3;
-            /* Extract whether the agent is playable. */
+            /* Extract the agent type (2 bits). */
+            agent_type ag_type = item & 0x3;
+            /* Extract whether the agent is playable (1 bit). */
             unsigned char playable = (item >> 2) & 0x1;
-            /* Extract the agent ID. */
-            unsigned short ag_id = item >> 3;
+            /* Extract the agent ID (16 bits). */
+            unsigned short ag_id = (item >> 3) & 0xFFFF;
 
             /* Determine the agent type. */
             switch (ag_type) {

@@ -31,11 +31,27 @@
 /**
  * Type of agent.
  * */
-enum agent_type {
+typedef enum {
     None = 0x0,   /**< No agent present.     */
     Human = 0x1,  /**< Human agent present.  */
     Zombie = 0x2  /**< Zombie agent present. */
-};
+} agent_type;
+
+
+/**
+ * A function pointer which returns information about an agent located in
+ * the simulation `world` at coordinates (_x_,_y_).
+ *
+ * @param world Generic pointer to object representing the simulation world.
+ * @param x Horizontal coordinate of the simulation world from where to fetch
+ * the agent information.
+ * @param y Vertical coordinate of the simulation world from where to fetch
+ * the agent information.
+ * @return An integer containing bit-packed information about an agent, as
+ * follows: bits 0-1 (agent type), bit 2 (is agent playable), bits 3-18 (agent
+ * ID). Bits 19-31 are available for student-defined agent extensions.
+ * */
+typedef unsigned int (*get_agent_info_at)(void *world, int x, int y);
 
 /**
  * Show/update the visualization the current state of the simulation world.
@@ -43,11 +59,11 @@ enum agent_type {
  * @param world Generic pointer to object representing the simulation world.
  * @param xdim Horizontal dimension of the simulation world (number of columns).
  * @param ydim Vertical dimension of the simulation world (number of rows).
- * @param get_item_at Function which obtains the type of agent in the
- * simulation world at coordinates (_x_,_y_).
+ * @param ag_info Pointer to function which obtains information about an agent
+ * in the simulation world at coordinates (_x_,_y_).
  * */
 void show_world(
     void *world,
     unsigned int xdim,
     unsigned int ydim,
-    unsigned short (*get_item_at)(void *world, int x, int y));
+    get_agent_info_at ag_info);
