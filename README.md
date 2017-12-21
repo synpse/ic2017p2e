@@ -134,7 +134,7 @@ _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
 
 #### Entrega
 
-A 1ª parte do projeto deve ser entregue via Moodle até às 23h de 7 de janeiro
+A 1ª parte do projeto deve ser entregue via Moodle até às 23h de 14 de janeiro
 de 2018. Deve ser submetido um ficheiro `zip` com a pasta do projeto que deve
 ter os seguintes conteúdos:
 
