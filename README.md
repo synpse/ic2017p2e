@@ -289,6 +289,37 @@ zombies controlado por um jogador, a função mostra algo parecido com a Figura
 **Figura 1** - Exemplo do mundo de jogo com dimensões 5x5, tal como mostrado
 pela função `simple_show_world()`.
 
+No entanto, a função `simple_show_world()` tem algumas particularidades. O seu
+protótipo é o seguinte:
+
+```c
+void simple_show_world(
+    void *world,
+    unsigned int xdim,
+    unsigned int ydim,
+    get_agent_info_at ag_info);
+```
+
+A função não devolve nada (`void`), mas aceita quatro argumentos. O primeiro
+argumento, `world`, é do tipo `void *` (apontador genérico), e aponta para a
+estrutura de dados que contém o mundo do jogo. O segundo e terceiro argumentos,
+`xdim` e `ydim`, são as dimensões horizontal e vertical do mundo,
+respetivamente. O quarto e último argumento, `ag_info`, é um apontador para uma
+função que obtém informação sobre um agente localizado numa dada posição no
+mundo do jogo. Como é possível observer no [código](https://github.com/VideojogosLusofona/ic2017p2/blob/bf444f7674735a64021fb4ef6fb346740efd5da0/code/simple_showworld.c#L45), a função `simple_show_world()` percorre todas
+as células da grelha de simulação, por linha e por coluna, obtém informação
+sobre o agente em cada posição (usando a função apontada por `ag_info`), e
+imprime a informação obtida no ecrã de forma formatada. A função
+`simple_show_world()` não precisa de saber nada sobre o mundo de simulação,
+apontado pela variável `world`, pois este é passado como argumento e
+interpretado pela função apontada por `ag_info`.
+
+No entanto, após esta descrição existe ainda uma questão crucial e não
+esclarecida. Onde está definida a estrutura de dados que contém o mundo de
+simulação, bem como a função que a sabe interpretar? A resposta é simples.
+Tanto a estrutura de dados como a função devem ser definidas no vosso código. O
+código contém um exemplo de como isto pode ser feito (ficheiros
+[example.c](code/example.c) e [example.h](example.h)).
 
 
 #### 2ª parte do projeto
