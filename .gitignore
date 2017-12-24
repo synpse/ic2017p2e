@@ -52,5 +52,4 @@ Mkfile.old
 dkms.conf
 
 *dropbox.attr
-bin/*
-obj/*
+code/example
