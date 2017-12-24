@@ -256,6 +256,10 @@ Tabela 3.
 A nota final da 2ª parte do projeto é dada pelo total dos critérios absolutos
 multiplicado pela percentagem obtida nos critérios relativos.
 
+### Divisão do código em vários Ficheiros
+
+Work in progress
+
 <a name="visualize">
 
 ### Visualização do jogo
@@ -306,20 +310,51 @@ estrutura de dados que contém o mundo do jogo. O segundo e terceiro argumentos,
 `xdim` e `ydim`, são as dimensões horizontal e vertical do mundo,
 respetivamente. O quarto e último argumento, `ag_info`, é um apontador para uma
 função que obtém informação sobre um agente localizado numa dada posição no
-mundo do jogo. Como é possível observer no [código](https://github.com/VideojogosLusofona/ic2017p2/blob/bf444f7674735a64021fb4ef6fb346740efd5da0/code/simple_showworld.c#L45), a função `simple_show_world()` percorre todas
-as células da grelha de simulação, por linha e por coluna, obtém informação
-sobre o agente em cada posição (usando a função apontada por `ag_info`), e
-imprime a informação obtida no ecrã de forma formatada. A função
-`simple_show_world()` não precisa de saber nada sobre o mundo de simulação,
-apontado pela variável `world`, pois este é passado como argumento e
-interpretado pela função apontada por `ag_info`.
+mundo do jogo. Como é possível observer no [código](code/simple_showworld.c#L45),
+a função `simple_show_world()` percorre todas as células da grelha de simulação,
+por linha e por coluna, obtém informação sobre o agente em cada posição (usando
+a função apontada por `ag_info`), e imprime a informação obtida no ecrã de
+forma formatada. A função `simple_show_world()` não precisa de saber nada sobre
+o mundo de simulação, apontado pela variável `world`, pois este é passado como
+argumento e interpretado pela função apontada por `ag_info`.
 
 No entanto, após esta descrição existe ainda uma questão crucial e não
 esclarecida. Onde está definida a estrutura de dados que contém o mundo de
 simulação, bem como a função que a sabe interpretar? A resposta é simples.
-Tanto a estrutura de dados como a função devem ser definidas no vosso código. O
-código contém um exemplo de como isto pode ser feito (ficheiros
-[example.c](code/example.c) e [example.h](example.h)).
+Tanto a estrutura de dados como a função devem ser definidas no código de cada
+grupo. Uma vez que a estrutura de dados que contém o mundo de simulação vai ser
+definida de forma específica por cada grupo, faz então sentido que a função que
+obtém informação sobre um agente em determinada localização no mundo seja
+também definida pelo grupo. Esta função deve obedecer ao tipo
+`get_agent_info_at`, definido no ficheiro [showworld.h])(code/showworld.h), da
+seguinte forma:
+
+```c
+typedef unsigned int (*get_agent_info_at)(
+    void *world,
+    unsigned int x,
+    unsigned int y);
+```
+
+Por outras palavras, funções do tipo `get_agent_info_at` devem devolver um
+`unsigned int` contendo informação sobre um agente, recebendo como argumentos
+a variável `world` (apontador genérico para o mundo do jogo), bem como as
+coordenadas `(x,y)` da posição sobre a qual se pretende obter informação. O
+`unsigned int` com informação sobre um agente está organizado internamente
+como indicado na Tabela 4.
+
+**Tabela 4** - Informação sobre um agente tal como devolvida por funções do
+tipo `get_agent_info_at`.
+
+
+| Bits            | _31...19_ | _18...3_       | _2_             | _1...0_        |
+|---------------------------------------------------------------------------------|
+| **Significado** | Livre     | ID do agente   | Agente jogável? | Tipo de agente |
+
+O código contém um exemplo desta abordagem (ficheiros
+[example.c](code/example.c) e [example.h](code/example.h)). Neste caso, o mundo
+do jogo é definido como um _array_ bidimensional de agentes, onde cada posição
+`[i][j]` do _array_ corresponde a uma coordenada `(x,y)` no mundo do jogo.
 
 
 #### 2ª parte do projeto
