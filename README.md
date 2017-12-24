@@ -260,8 +260,41 @@ multiplicado pela percentagem obtida nos critérios relativos.
 
 ### Visualização do jogo
 
-Usar código fornecido para a 1ª parte, desenvolver código próprio para a 2ª
-parte.
+#### 1ª parte do projeto
+
+A pasta [code](code) contém codigo auxiliar para a desenhar o mundo do jogo no
+ecrã. Para a primeira parte do projeto, os alunos podem simplesmente usar a
+função `simple_show_world()` cujo protótipo (cabeçalho) se encontra no ficheiro
+[simple_showworld.h](code/simple_showworld.h), e cujo corpo está definido no
+ficheiro [simple_showworld.c](code/simple_showworld.c). Esta função mostra o
+mundo do jogo no terminal, indicando se o agent é zombie (`z`) ou humano (`h`),
+o ID do agente em hexadecimal (por exemplo, `z0A`), e diferenciando com `Z` ou
+`H` maiúsculo caso o agente em questão seja controlado por um jogador (por
+exemplo, `H19`). Caso não exista um agente na célula em questão, a função
+imprime um ponto (`.`). Para um mundo 5x5 com 4 zombies e 1 humano, com um dos
+zombies controlado por um jogador, a função mostra algo parecido com a Figura
+1.
+
+```
+.   .  Z02  .   .
+
+.  z00  .   .   .
+
+.   .   .   .   .
+
+.   .  z03  .   .
+
+.  z01  .  h04  .
+```
+**Figura 1** - Exemplo do mundo de jogo com dimensões 5x5, tal como mostrado
+pela função `simple_show_world()`.
+
+
+
+#### 2ª parte do projeto
+
+O ficheiro [showworld.h](code/showworld.h) deve ser usado na 2ª parte do
+projecto.
 
 ### Sugestões para o desenvolvimento do projeto
 
