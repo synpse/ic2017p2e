@@ -326,7 +326,7 @@ grupo. Uma vez que a estrutura de dados que contém o mundo de simulação vai s
 definida de forma específica por cada grupo, faz então sentido que a função que
 obtém informação sobre um agente em determinada localização no mundo seja
 também definida pelo grupo. Esta função deve obedecer ao tipo
-`get_agent_info_at`, definido no ficheiro [showworld.h])(code/showworld.h), da
+`get_agent_info_at`, definido no ficheiro [showworld.h](code/showworld.h), da
 seguinte forma:
 
 ```c
@@ -346,17 +346,39 @@ como indicado na Tabela 4.
 **Tabela 4** - Informação sobre um agente tal como devolvida por funções do
 tipo `get_agent_info_at`.
 
-
 | Bits            | _31–19_   | _18–3_         | _2_             | _1–0_          |
 |-----------------|-----------|----------------|-----------------|----------------|
 | **Significado** | Livre     | ID do agente   | Agente jogável? | Tipo de agente |
 
 
-O código contém um exemplo desta abordagem (ficheiros
+Os dois bits menos significativos, nas posições 0 e 1, representam o tipo de
+agente. Os possíveis tipos de agente estão definidos numa enumeração no ficheiro
+[showworld.h](code/showworld.h#L37), e são os indicados na Tabela 5.
+
+**Tabela 5** - Tipos de agentes definidos em [showworld.h](code/showworld.h).
+
+| Tipo      | Significado            | Código (dec.)  | Código (bin.)  |
+|-----------|------------------------|----------------|----------------|
+| `None`    | Nenhum agente presente | 0              | 00             |
+| `Human`   | Agente humano          | 1              | 01             |
+| `Zombie`  | Agente zombie          | 2              | 10             |
+| `Unknown` | Agente desconhecido    | 3              | 11             |
+
+Em nenhuma altura deve aparecer um agente do tipo `Unknown`. Se tal acontecer,
+significa que o jogo tem um _bug_. O bit na posição 2 indica se o agente é
+controlado por um jogador (`1`) ou pela AI (`0`). Os bits entre as posições 3
+e 18 contêm o ID do agente. Finalmente, os bits mais significativos (posições
+19 a 31) estão livres para uso do aluno, caso assim o entenda.
+
+Um exemplo desta abordagem está disponível nos ficheiros
 [example.c](code/example.c) e [example.h](code/example.h)). Neste caso, o mundo
 do jogo é definido como um _array_ bidimensional de agentes, onde cada posição
-`[i][j]` do _array_ corresponde a uma coordenada `(x,y)` no mundo do jogo.
-
+`[i][j]` do _array_ corresponde a uma coordenada `(x,y)` no mundo do jogo. Por
+sua vez, a função [`example_get_ag_info()`](code/example.c#L133), que obedece ao
+tipo `get_agent_info_at`, sabe interpretar a variável `world` como um _array_ de
+agentes, sabendo também como obter informação sobre um agente em determinada
+posição do _array_. Convém referir que a estrutura de dados usada neste exemplo
+poderá não ser adequada para o desenvolvimento do projeto.
 
 #### 2ª parte do projeto
 
