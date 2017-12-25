@@ -310,7 +310,7 @@ estrutura de dados que contém o mundo do jogo. O segundo e terceiro argumentos,
 `xdim` e `ydim`, são as dimensões horizontal e vertical do mundo,
 respetivamente. O quarto e último argumento, `ag_info`, é um apontador para uma
 função que obtém informação sobre um agente localizado numa dada posição no
-mundo do jogo. Como é possível observer no [código](code/simple_showworld.c#L45),
+mundo do jogo. Como é possível observar no [código](code/simple_showworld.c#L45),
 a função `simple_show_world()` percorre todas as células da grelha de simulação,
 por linha e por coluna, obtém informação sobre o agente em cada posição (usando
 a função apontada por `ag_info`), e imprime a informação obtida no ecrã de
@@ -347,9 +347,10 @@ como indicado na Tabela 4.
 tipo `get_agent_info_at`.
 
 
-| Bits            | _31...19_ | _18...3_       | _2_             | _1...0_        |
-|---------------------------------------------------------------------------------|
+| Bits            | _31–19_   | _18–3_         | _2_             | _1–0_          |
+|-----------------|-----------|----------------|-----------------|----------------|
 | **Significado** | Livre     | ID do agente   | Agente jogável? | Tipo de agente |
+
 
 O código contém um exemplo desta abordagem (ficheiros
 [example.c](code/example.c) e [example.h](code/example.h)). Neste caso, o mundo
