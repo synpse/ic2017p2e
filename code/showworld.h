@@ -66,7 +66,7 @@ typedef unsigned int (*get_agent_info_at)(
  * @param world Generic pointer to object representing the simulation world.
  * @param xdim Horizontal dimension of the simulation world (number of columns).
  * @param ydim Vertical dimension of the simulation world (number of rows).
- * @param ag_info Pointer to function of type ::get_agent_info().
+ * @param ag_info Pointer to function of type ::get_agent_info_at().
  * */
 typedef void (*show_world)(
     void *world, unsigned int xdim,

@@ -14,8 +14,8 @@
  * Structure defining agent properties.
  *
  * @note This is an example which will probably not work in a fully functional
- * game. Students should develop their own implementation of ::get_agent_info()
- * and agent/world data structures.
+ * game. Students should develop their own implementation of
+ * ::get_agent_info_at() and agent/world data structures.
  * */
 typedef struct {
     AGENT_TYPE type;        /**< Agent type.        */
@@ -27,8 +27,8 @@ typedef struct {
  * Structure defining world properties.
  *
  * @note This is an example which will probably not work in a fully functional
- * game. Students should develop their own implementation of ::get_agent_info()
- * and agent/world data structures.
+ * game. Students should develop their own implementation of
+ * ::get_agent_info_at() and agent/world data structures.
  * */
 typedef struct {
     AGENT *grid;        /**< World is a grid composed of agents. */
@@ -37,6 +37,6 @@ typedef struct {
 } WORLD;
 
 /* This function is an implementation of the definition provided by the
- * get_agent_info() function pointer. It only works for AGENT and WORLD
+ * ::get_agent_info_at() function pointer. It only works for AGENT and WORLD
  * example structures defined in this file. */
 unsigned int example_get_ag_info(void *world, unsigned int x, unsigned int y);

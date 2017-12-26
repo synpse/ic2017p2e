@@ -109,17 +109,17 @@ int main() {
 }
 
 /**
- * This function is an implementation of the definition provided by the
- * ::get_agent_info() function pointer. It only works for ::AGENT and ::WORLD
- * structures defined in this example (in file example.h).
+ * This function is an implementation of the ::get_agent_info_at() function
+ * definition. It only works for ::AGENT and ::WORLD structures defined in this
+ * example (in file example.h).
  *
  * It basically receives a pointer to a ::WORLD structure, obtains the AGENT
  * structure in the given coordinates, and returns the agent information in a
  * bit-packed `unsigned int`.
  *
  * @note This is an example which will probably not work in a fully functional
- * game. Students should develop their own implementation of ::get_agent_info()
- * and agent/world data structures.
+ * game. Students should develop their own implementation of
+ * ::get_agent_info_at() and agent/world data structures.
  *
  * @param world Generic pointer to object representing the simulation world.
  * @param x Horizontal coordinate of the simulation world from where to fetch
