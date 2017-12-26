@@ -271,7 +271,7 @@ ecrã. Para a primeira parte do projeto, os alunos podem simplesmente usar a
 função `simple_show_world()` cujo protótipo (cabeçalho) se encontra no ficheiro
 [simple_showworld.h](code/simple_showworld.h), e cujo corpo está definido no
 ficheiro [simple_showworld.c](code/simple_showworld.c). Esta função mostra o
-mundo do jogo no terminal, indicando se o agent é zombie (`z`) ou humano (`h`),
+mundo do jogo no terminal, indicando se o agente é zombie (`z`) ou humano (`h`),
 o ID do agente em hexadecimal (por exemplo, `z0A`), e diferenciando com `Z` ou
 `H` maiúsculo caso o agente em questão seja controlado por um jogador (por
 exemplo, `H19`). Caso não exista um agente na célula em questão, a função
@@ -313,17 +313,17 @@ função que obtém informação sobre um agente localizado numa dada posição 
 mundo do jogo. Como é possível observar no [código](code/simple_showworld.c#L45),
 a função `simple_show_world()` percorre todas as células da grelha de simulação,
 por linha e por coluna, obtém informação sobre o agente em cada posição (usando
-a função apontada por `ag_info`), e imprime a informação obtida no ecrã de
-forma formatada. A função `simple_show_world()` não precisa de saber nada sobre
-o mundo de simulação, apontado pela variável `world`, pois este é passado como
-argumento e interpretado pela função apontada por `ag_info`.
+a função apontada por `ag_info`), e imprime no ecrã, de forma formatada, a
+informação obtida. A função `simple_show_world()` não precisa de saber nada
+sobre o mundo de simulação, apontado pela variável `world`, pois este é passado
+como argumento e interpretado pela função apontada por `ag_info`.
 
 No entanto, após esta descrição existe ainda uma questão crucial e não
 esclarecida. Onde está definida a estrutura de dados que contém o mundo de
-simulação, bem como a função que a sabe interpretar? A resposta é simples.
-Tanto a estrutura de dados como a função devem ser definidas no código de cada
-grupo. Uma vez que a estrutura de dados que contém o mundo de simulação vai ser
-definida de forma específica por cada grupo, faz então sentido que a função que
+simulação, bem como a função que a sabe interpretar? A reposta é a seguinte:
+tanto a estrutura de dados, bem como a função que a interpreta, devem ser
+desenvolvidas no código do projeto. Uma vez que o mundo de simulação vai ser
+definido de forma específica por cada grupo, faz então sentido que a função que
 obtém informação sobre um agente em determinada localização no mundo seja
 também definida pelo grupo. Esta função deve obedecer ao tipo
 `get_agent_info_at`, definido no ficheiro [showworld.h](code/showworld.h), da
@@ -346,16 +346,24 @@ como indicado na Tabela 4.
 **Tabela 4** - Informação sobre um agente tal como devolvida por funções do
 tipo `get_agent_info_at`.
 
-| Bits            | _31–19_   | _18–3_         | _2_             | _1–0_          |
-|-----------------|-----------|----------------|-----------------|----------------|
-| **Significado** | Livre     | ID do agente   | Agente jogável? | Tipo de agente |
+| Bits            | _31–19_ | _18–3_       | _2_             | _1–0_          |
+|-----------------|---------|--------------|-----------------|----------------|
+| **Significado** | Livre   | ID do agente | Agente jogável? | Tipo de agente |
 
 
 Os dois bits menos significativos, nas posições 0 e 1, representam o tipo de
-agente. Os possíveis tipos de agente estão definidos numa enumeração no ficheiro
-[showworld.h](code/showworld.h#L37), e são os indicados na Tabela 5.
+agente. O bit na posição 2 indica se o agente é controlado por um jogador (`1`)
+ou pela AI (`0`). Os bits entre as posições 3 e 18 contêm o ID do agente.
+Finalmente, os bits mais significativos (posições 19 a 31) estão livres para
+uso do aluno, caso assim o entenda.
 
-**Tabela 5** - Tipos de agentes definidos em [showworld.h](code/showworld.h).
+Os possíveis tipos de agente (posições 0 e 1) estão definidos numa enumeração
+de nome `AGENT_TYPE` no ficheiro [showworld.h](code/showworld.h#L34), tal como
+indicado na Tabela 5. O tipo `Unknown` nunca deve ocorrer. Se tal acontecer,
+significa que o jogo tem um _bug_.
+
+**Tabela 5** - Tipos de agentes definidos na enumeração
+[`AGENT_TYPE`](code/showworld.h).
 
 | Tipo      | Significado            | Código (dec.)  | Código (bin.)  |
 |-----------|------------------------|----------------|----------------|
@@ -364,21 +372,25 @@ agente. Os possíveis tipos de agente estão definidos numa enumeração no fich
 | `Zombie`  | Agente zombie          | 2              | 10             |
 | `Unknown` | Agente desconhecido    | 3              | 11             |
 
-Em nenhuma altura deve aparecer um agente do tipo `Unknown`. Se tal acontecer,
-significa que o jogo tem um _bug_. O bit na posição 2 indica se o agente é
-controlado por um jogador (`1`) ou pela AI (`0`). Os bits entre as posições 3
-e 18 contêm o ID do agente. Finalmente, os bits mais significativos (posições
-19 a 31) estão livres para uso do aluno, caso assim o entenda.
-
 Um exemplo desta abordagem está disponível nos ficheiros
-[example.c](code/example.c) e [example.h](code/example.h)). Neste caso, o mundo
-do jogo é definido como um _array_ bidimensional de agentes, onde cada posição
-`[i][j]` do _array_ corresponde a uma coordenada `(x,y)` no mundo do jogo. Por
-sua vez, a função [`example_get_ag_info()`](code/example.c#L133), que obedece ao
-tipo `get_agent_info_at`, sabe interpretar a variável `world` como um _array_ de
-agentes, sabendo também como obter informação sobre um agente em determinada
-posição do _array_. Convém referir que a estrutura de dados usada neste exemplo
-poderá não ser adequada para o desenvolvimento do projeto.
+[example.c](code/example.c) e [example.h](code/example.h). Este exemplo cria
+uma grelha de simulação de dimensões 20x20, na qual os agentes são colocados em
+cada célula com uma probabilidade de 10%, invocando depois a função
+`simple_show_world()` para mostrar o mundo aleatoriamente gerado. A grelha de
+simulação (mundo do jogo) é definida como um _array_ bidimensional de agentes,
+onde cada posição `[i][j]` do _array_, correspondente a uma coordenada `(x,y)`
+no mundo do jogo, contém um agente. Por sua vez, os agentes são definidos como
+uma [estrutura de nome `AGENT` com três campos](code/example.h#L14): tipo de
+agente (`AGENT_TYPE`), agente jogável (`unsigned char`, 0 ou 1), e ID do agente
+(`unsigned short`). A função [`example_get_ag_info()`](code/example.c#L133),
+que obedece ao tipo `get_agent_info_at`, sabe interpretar a variável `world`
+como _array_ de agentes, sabendo também como obter informação sobre um agente
+em determinada posição do _array_. Esta função é passada como último argumento
+da função `simple_show_world()` quando a mesma é
+[invocada no exemplo](code/example.c#L105).
+
+Convém referir que as estruturas de dados usadas neste exemplo poderão não ser
+adequadas ou suficientes para o desenvolvimento do projeto.
 
 #### 2ª parte do projeto
 
