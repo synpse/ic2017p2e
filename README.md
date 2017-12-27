@@ -262,6 +262,10 @@ multiplicado pela percentagem obtida nos critérios relativos.
 
 Work in progress
 
+### Documentação do código automática com Doxygen
+
+Work in progress
+
 <a name="visualize">
 
 ### Visualização do jogo
@@ -326,6 +330,7 @@ zombies controlado por um jogador, a função mostra algo parecido com a Figura
 
 .  z01  .  h04  .
 ```
+
 **Figura 2** - Exemplo do mundo de jogo com dimensões 5x5, tal como mostrado
 pela função `simple_show_world()`.
 
@@ -431,9 +436,23 @@ adequadas ou suficientes para o desenvolvimento do projeto.
 
 #### 2ª parte do projeto
 
-O ficheiro [showworld.h](code/showworld.h) deve ser usado na 2ª parte do
-projecto. As bibliotecas de visualização desenvolvidas pelos diferentes grupos
-devem funcionar quando usadas por um grupo diferente.
+Um dos [objetivos](#objetivos2parte) para a 2ª parte do projeto consiste em
+implementar a visualização do mundo do jogo usando uma biblioteca de terceiros.
+Os alunos devem implementar a visualização na forma de uma biblioteca local que
+substituirá a biblioteca simples fornecida nos ficheiros
+[simple_showworld.c](code/simple_showworld.c) e
+[simple_showworld.h](code/simple_showworld.h). Tal como esta última, a
+biblioteca desenvolvida pelos alunos deve obedecer aos tipos definidos em
+[showworld.h](code/showworld.h), de forma a que o código de visualização
+desenvolvido por um grupo funcione no projeto de qualquer outro grupo. A Figura
+3 mostra uma possível organização de um projeto com visualização baseada em
+[SDL2], omitindo possíveis ficheiros associados a funcionalidades não
+discutidas nesta secção.
+
+**Figura 3** - Possível organização de um projeto, omitindo possíveis
+componentes associadas com outras funcionalidades específicas.
+
+![orgproj](https://user-images.githubusercontent.com/3018963/34391685-44e7f88a-eb3f-11e7-9e26-636233178e16.png)
 
 ### Sugestões para o desenvolvimento do projeto
 
