@@ -193,6 +193,8 @@ servir apenas para compensar avaliações piores nos critérios principais.
 
 ### Segunda parte
 
+<a name="objetivos2parte"></a>
+
 #### Objetivos a atingir
 
 * Tamanho da grelha e número de agentes variável após compilação, tal como
@@ -264,11 +266,45 @@ Work in progress
 
 ### Visualização do jogo
 
+A pasta [code](code) contém codigo auxiliar para a desenhar o mundo do jogo no
+ecrã. A organização deste código está indicada na Figura 1.
+
+![arquitectura](https://user-images.githubusercontent.com/3018963/34379831-2fa5fb1a-eaf5-11e7-980d-17a785810028.png)
+
+**Figura 1** - Organização do código auxiliar para desenhar o mundo do jogo no
+ecrã.
+
+O ficheiro [showworld.h](code/showworld.h) define três tipos que devem ser
+usados para o desenvolvimento da parte de visualização do projeto, nomeadamente:
+
+* [`AGENT_TYPE`](code/showworld.h#L34) - Enumeração que define os diferentes
+  tipos de agente, tal como indicado na Tabela 5.
+* [`get_agent_info_at`](code/showworld.h#L44) - Tipo de função que retorna
+  informação sobre um agente em dado local do mundo de jogo.
+* [`show_world`](code/showworld.h#L62) - Tipo de função que mostra/atualiza a
+  visualização do mundo de jogo.
+
+A biblioteca definida nos ficheiros [simple_showworld.h](code/simple_showworld.h)
+e [simple_showworld.c](code/simple_showworld.c) fornece uma função de nome
+[`simple_show_world()`](code/simple_showworld.c#L34). Esta função obedece ao
+tipo [`show_world`](code/showworld.h#L62), e mostra o mundo de jogo de forma
+simples no terminal, podendo ser utilizada na 1ª parte do projeto. Na 2ª parte
+do projeto os alunos devem implementar a sua própria biblioteca de visualização
+do jogo, obedecendo aos tipos definidos em [showworld.h](code/showworld.h),
+mas fazendo uso de uma biblioteca de terceiros tal como indicado
+[anteriormente](#objetivos2parte).
+
+Os ficheiros [example.c](code/example.c) e [example.h](code/example.h) contêm
+um exemplo de como usar a função `simple_show_world()`, obedecendo aos tipos
+definidos em [showworld.h](code/showworld.h).
+
+As próximas sub-secções descrevem em detalhe como este código auxiliar pode ser
+usado nas duas partes do projeto.
+
 #### 1ª parte do projeto
 
-A pasta [code](code) contém codigo auxiliar para a desenhar o mundo do jogo no
-ecrã. Para a primeira parte do projeto, os alunos podem simplesmente usar a
-função `simple_show_world()` cujo protótipo (cabeçalho) se encontra no ficheiro
+Para a primeira parte do projeto, os alunos podem simplesmente usar a função
+`simple_show_world()` cujo protótipo (cabeçalho) se encontra no ficheiro
 [simple_showworld.h](code/simple_showworld.h), e cujo corpo está definido no
 ficheiro [simple_showworld.c](code/simple_showworld.c). Esta função mostra o
 mundo do jogo no terminal, indicando se o agente é zombie (`z`) ou humano (`h`),
@@ -277,7 +313,7 @@ o ID do agente em hexadecimal (por exemplo, `z0A`), e diferenciando com `Z` ou
 exemplo, `H19`). Caso não exista um agente na célula em questão, a função
 imprime um ponto (`.`). Para um mundo 5x5 com 4 zombies e 1 humano, com um dos
 zombies controlado por um jogador, a função mostra algo parecido com a Figura
-1.
+2.
 
 ```
 .   .  Z02  .   .
@@ -290,11 +326,11 @@ zombies controlado por um jogador, a função mostra algo parecido com a Figura
 
 .  z01  .  h04  .
 ```
-**Figura 1** - Exemplo do mundo de jogo com dimensões 5x5, tal como mostrado
+**Figura 2** - Exemplo do mundo de jogo com dimensões 5x5, tal como mostrado
 pela função `simple_show_world()`.
 
-No entanto, a função `simple_show_world()` tem algumas particularidades. O seu
-protótipo é o seguinte:
+A função `simple_show_world()` obedece ao tipo [`show_world`](code/showworld.h#L62)
+e tem o seguinte protótipo:
 
 ```c
 void simple_show_world(
@@ -310,10 +346,11 @@ estrutura de dados que contém o mundo do jogo. O segundo e terceiro argumentos,
 `xdim` e `ydim`, são as dimensões horizontal e vertical do mundo,
 respetivamente. O quarto e último argumento, `ag_info`, é um apontador para uma
 função que obtém informação sobre um agente localizado numa dada posição no
-mundo do jogo. Como é possível observar no [código](code/simple_showworld.c#L45),
-a função `simple_show_world()` percorre todas as células da grelha de simulação,
-por linha e por coluna, obtém informação sobre o agente em cada posição (usando
-a função apontada por `ag_info`), e imprime no ecrã, de forma formatada, a
+mundo do jogo, obedecendo ao tipo [`get_agent_info_at`](code/showworld.h#L44).
+Como é possível observar no [código](code/simple_showworld.c#L45), a função
+`simple_show_world()` percorre todas as células da grelha de simulação, por
+linha e por coluna, obtém informação sobre o agente em cada posição (usando a
+função apontada por `ag_info`), e imprime no ecrã, de forma formatada, a
 informação obtida. A função `simple_show_world()` não precisa de saber nada
 sobre o mundo de simulação, apontado pela variável `world`, pois este é passado
 como argumento e interpretado pela função apontada por `ag_info`.
@@ -395,7 +432,8 @@ adequadas ou suficientes para o desenvolvimento do projeto.
 #### 2ª parte do projeto
 
 O ficheiro [showworld.h](code/showworld.h) deve ser usado na 2ª parte do
-projecto.
+projecto. As bibliotecas de visualização desenvolvidas pelos diferentes grupos
+devem funcionar quando usadas por um grupo diferente.
 
 ### Sugestões para o desenvolvimento do projeto
 
