@@ -260,7 +260,23 @@ multiplicado pela percentagem obtida nos critérios relativos.
 
 ### Divisão do código em vários Ficheiros
 
-Work in progress
+Existem várias vantagens em dividir um programa por vários ficheiros, como por
+exemplo [\[3\]](#ref3):
+
+* Facilita cooperação entre vários programadores, uma vez que cada programador
+  pode trabalhar num ficheiro ou grupo de ficheiros diferente sem receio de
+  conflitos.
+* Permite uma abordagem orientada a objetos. Por outras palavras, cada par de
+  ficheiros `.c` e `.h` pode definir um tipo (ou vários tipos relacionados),
+  bem como, bem como operações (funções) sobre esse tipo ou tipo(s), e até
+  possíveis constantes associadas. Isto leva a que os programas fiquem muito
+  bem estruturados.
+* Na sequência do ponto anterior, o código fica organizado em forma de
+  biblioteca, sendo facilmente reutilizável noutros projetos e programas,
+  reduzindo o tempo de desenvolvimento.
+* Quando um ficheiro é modificado, apenas esse ficheiro precisa de ser
+  recompilado para o programa ser reconstruído. O programa [`make`] automatiza
+  este processo.
 
 ### Documentação do código automática com Doxygen
 
@@ -524,6 +540,9 @@ Estruturas de Dados][aed] do [Instituto Superior Técnico][ist].
 * <a name="ref2">\[2\]</a> Reagan, P. (2014). [Game Programming in C with the
 Ncurses Library](https://www.viget.com/articles/game-programming-in-c-with-the-ncurses-library),
 Viget Labs.
+* <a name="ref3">\[3\]</a> Marshall, D. (1999).
+[Writing Larger Programs](http://users.cs.cf.ac.uk/Dave.Marshall/C/node35.html),
+Cardiff School of Computer Science and Informatics
 
 
 ## Licenças
@@ -576,3 +595,4 @@ O enunciado e restante documentação são disponibilizados através da licença
 [GDB]:https://www.gnu.org/software/gdb/
 [cppcheck]:http://cppcheck.sourceforge.net/
 [Valgrind]:http://valgrind.org/
+[`make`]:https://www.gnu.org/software/make/manual/make.html
