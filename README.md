@@ -260,8 +260,12 @@ multiplicado pela percentagem obtida nos critérios relativos.
 
 ### Divisão do código em vários Ficheiros
 
+Esta secção é baseada na referência [\[3\]](#ref3).
+
+#### Vantagens
+
 Existem várias vantagens em dividir um programa por vários ficheiros, como por
-exemplo [\[3\]](#ref3):
+exemplo:
 
 * Facilita cooperação entre vários programadores, uma vez que cada programador
   pode trabalhar num ficheiro ou grupo de ficheiros diferente sem receio de
@@ -277,6 +281,40 @@ exemplo [\[3\]](#ref3):
 * Quando um ficheiro é modificado, apenas esse ficheiro precisa de ser
   recompilado para o programa ser reconstruído. O programa [`make`] automatiza
   este processo.
+
+#### Como dividir um programa em vários ficheiros
+
+Regra geral, existe um ficheiro `.c` principal que contém a função `main` e
+eventualmente outras funções, variáveis ou definições apenas relevantes no
+contexto do programa a ser desenvolvido. Os restantes ficheiros estão agrupados
+em pares `.c` e `.h` que disponibilizam funcionalidades num contexto
+específico, na prática sendo usados como bibliotecas locais de funções.
+
+Tipicamente, quando se define um tipo, por exemplo uma `struct`, todas as
+funções que acedem e/ou manipulam variáveis desse tipo são colocadas no mesmo
+par `.c` e `.h`. Numa linguagem de programação orientada a objectos, como o
+Java ou C#, os tipos são chamados de _classes_, as variáveis de dado tipo são
+chamadas de _objectos_, e as funções que operam sobre dado tipo são chamadas de
+_métodos_.
+
+De modo a que os tipos (_classes_) e funções que operam sobre esses tipos
+(_métodos_) possam ser utilizados por outros programas e funções, é necessário
+colocar as definições de tipos e os protótipos (cabeçalhos) das funções
+associadas no ficheiro `.h` (_header file_), e posteriormente incluir
+(`#include`) esse ficheiro no código no qual se pretende ter acesso à
+funcionalidade desenvolvida. Cada ficheiro `.h` tem um ficheiro `.c`
+correspondente, onde são colocados os corpos das funções, bem como tipos e
+variáveis que apenas tenham relevância no contexto desse ficheiro (ou seja,
+que não valha a pena exportar). O ficheiro `.h` pode ser considerado a parte
+pública da biblioteca (por exemplo, definição de tipos e protótipos de funções),
+que pode ser usada por outro código, enquanto o ficheiro `.c` tem a parte
+privada (por exemplo, o corpo das funções).
+
+#### Como compilar um programa dividido em vários ficheiros
+
+* Todos de uma vez
+* Um a um
+* Usando uma Makefile
 
 ### Documentação do código automática com Doxygen
 
