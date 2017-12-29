@@ -32,7 +32,6 @@
 #ifndef __SIMPLE_SHOWWORLD_H_
 #define __SIMPLE_SHOWWORLD_H_
 
-#include <stdio.h>
 #include "showworld.h"
 
 /* Simple function which shows/updates an ASCII-based visualization of the

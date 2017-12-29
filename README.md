@@ -260,12 +260,10 @@ multiplicado pela percentagem obtida nos critérios relativos.
 
 ### Divisão do código em vários Ficheiros
 
-Esta secção é baseada na referência [\[3\]](#ref3).
-
 #### Vantagens
 
 Existem várias vantagens em dividir um programa por vários ficheiros, como por
-exemplo:
+exemplo [\[3\]](#ref3):
 
 * Facilita cooperação entre vários programadores, uma vez que cada programador
   pode trabalhar num ficheiro ou grupo de ficheiros diferente sem receio de
@@ -327,7 +325,7 @@ Work in progress
 A pasta [code](code) contém codigo auxiliar para a desenhar o mundo do jogo no
 ecrã. A organização deste código está indicada na Figura 1.
 
-![arquitectura](https://user-images.githubusercontent.com/3018963/34379831-2fa5fb1a-eaf5-11e7-980d-17a785810028.png)
+![arquitectura](https://user-images.githubusercontent.com/3018963/34446014-d09091f8-eccf-11e7-8378-90221db5fc9a.png)
 
 **Figura 1** - Organização do código auxiliar para desenhar o mundo do jogo no
 ecrã.
@@ -344,7 +342,7 @@ usados para o desenvolvimento da parte de visualização do projeto, nomeadament
 
 A biblioteca definida nos ficheiros [simple_showworld.h](code/simple_showworld.h)
 e [simple_showworld.c](code/simple_showworld.c) fornece uma função de nome
-[`simple_show_world()`](code/simple_showworld.c#L34). Esta função obedece ao
+[`simple_show_world()`](code/simple_showworld.c#L35). Esta função obedece ao
 tipo [`show_world`](code/showworld.h#L62), e mostra o mundo de jogo de forma
 simples no terminal, podendo ser utilizada na 1ª parte do projeto. Na 2ª parte
 do projeto os alunos devem implementar a sua própria biblioteca de visualização
@@ -352,9 +350,9 @@ do jogo, obedecendo aos tipos definidos em [showworld.h](code/showworld.h),
 mas fazendo uso de uma biblioteca de terceiros tal como indicado
 [anteriormente](#objetivos2parte).
 
-Os ficheiros [example.c](code/example.c) e [example.h](code/example.h) contêm
-um exemplo de como usar a função `simple_show_world()`, obedecendo aos tipos
-definidos em [showworld.h](code/showworld.h).
+O ficheiro [example.c](code/example.c) contém um exemplo de como usar a função
+`simple_show_world()`, obedecendo aos tipos definidos em
+[showworld.h](code/showworld.h).
 
 As próximas sub-secções descrevem em detalhe como este código auxiliar pode ser
 usado nas duas partes do projeto.
@@ -406,7 +404,7 @@ estrutura de dados que contém o mundo do jogo. O segundo e terceiro argumentos,
 respetivamente. O quarto e último argumento, `ag_info`, é um apontador para uma
 função que obtém informação sobre um agente localizado numa dada posição no
 mundo do jogo, obedecendo ao tipo [`get_agent_info_at`](code/showworld.h#L44).
-Como é possível observar no [código](code/simple_showworld.c#L45), a função
+Como é possível observar no [código](code/simple_showworld.c#L35), a função
 `simple_show_world()` percorre todas as células da grelha de simulação, por
 linha e por coluna, obtém informação sobre o agente em cada posição (usando a
 função apontada por `ag_info`), e imprime no ecrã, de forma formatada, a
@@ -468,22 +466,22 @@ significa que o jogo tem um _bug_.
 | `Zombie`  | Agente zombie          | 2              | 10             |
 | `Unknown` | Agente desconhecido    | 3              | 11             |
 
-Um exemplo desta abordagem está disponível nos ficheiros
-[example.c](code/example.c) e [example.h](code/example.h). Este exemplo cria
-uma grelha de simulação de dimensões 20x20, na qual os agentes são colocados em
-cada célula com uma probabilidade de 10%, invocando depois a função
-`simple_show_world()` para mostrar o mundo aleatoriamente gerado. A grelha de
-simulação (mundo do jogo) é definida como um _array_ bidimensional de agentes,
-onde cada posição `[i][j]` do _array_, correspondente a uma coordenada `(x,y)`
-no mundo do jogo, contém um agente. Por sua vez, os agentes são definidos como
-uma [estrutura de nome `AGENT` com três campos](code/example.h#L14): tipo de
-agente (`AGENT_TYPE`), agente jogável (`unsigned char`, 0 ou 1), e ID do agente
-(`unsigned short`). A função [`example_get_ag_info()`](code/example.c#L133),
-que obedece ao tipo `get_agent_info_at`, sabe interpretar a variável `world`
-como _array_ de agentes, sabendo também como obter informação sobre um agente
-em determinada posição do _array_. Esta função é passada como último argumento
-da função `simple_show_world()` quando a mesma é
-[invocada no exemplo](code/example.c#L105).
+Um exemplo desta abordagem está disponível no ficheiro
+[example.c](code/example.c). Este programa cria uma grelha de simulação de
+dimensões 20x20, na qual os agentes são colocados em cada célula com uma
+probabilidade de 10%, invocando depois a função `simple_show_world()` para
+mostrar o mundo aleatoriamente gerado. A grelha de simulação (mundo do jogo) é
+definida como um _array_ bidimensional de agentes, onde cada posição `[i][j]`
+do _array_, correspondente a uma coordenada `(x,y)` no mundo do jogo, contém
+um agente. Por sua vez, os agentes são definidos como uma [estrutura de nome
+`AGENT` com três campos](code/example.c#L42): tipo de agente (`AGENT_TYPE`),
+agente jogável (`unsigned char`, 0 ou 1), e ID do agente (`unsigned short`). A
+função [`example_get_ag_info()`](code/example.c#L151), que obedece ao tipo
+`get_agent_info_at`, sabe interpretar a variável `world` como _array_ de
+agentes, sabendo também como obter informação sobre um agente em determinada
+posição do _array_. Esta função é passada como último argumento da função
+`simple_show_world()` quando a mesma é
+[invocada no exemplo](code/example.c#L141).
 
 Convém referir que as estruturas de dados usadas neste exemplo poderão não ser
 adequadas ou suficientes para o desenvolvimento do projeto.

@@ -33,7 +33,7 @@ $(PROGRAM): $(PROGRAM).o simple_showworld.o
 
 # Rule to generate program object. Again, because no explicit recipe is given,
 # "make" will use an implicit rule for properly compiling $(PROGRAM).o.
-$(PROGRAM).o: $(PROGRAM).c $(PROGRAM).h simple_showworld.h showworld.h
+$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
 
 # Rule to generate simple_showworld.o object. Again, because no explicit recipe
 # is given, "make" will use an implicit rule for properly compiling
@@ -45,6 +45,6 @@ simple_showworld.o: simple_showworld.c simple_showworld.h
 # good practice to specify it as a "phony" target (avoiding conflict with a
 # file of the same name and improving performance). In this case, an explicit
 # recipe is given, so make will not try to determine an implicit one.
-.PHONY clean
+.PHONY: clean
 clean:
 	rm -f $(PROGRAM) *.o
