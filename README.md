@@ -258,23 +258,23 @@ Tabela 3.
 A nota final da 2ª parte do projeto é dada pelo total dos critérios absolutos
 multiplicado pela percentagem obtida nos critérios relativos.
 
-### Divisão do código em vários Ficheiros
+### Divisão do código em vários ficheiros
 
 #### Vantagens
 
 Existem várias vantagens em dividir um programa por vários ficheiros, como por
-exemplo [\[3\]](#ref3):
+exemplo [\[3\]](#ref3),[\[4\]](#ref4):
 
 * Facilita cooperação entre vários programadores, uma vez que cada programador
   pode trabalhar num ficheiro ou grupo de ficheiros diferente sem receio de
   conflitos.
-* Permite uma abordagem orientada a objetos. Por outras palavras, cada par de
-  ficheiros `.c` e `.h` pode definir um tipo (ou vários tipos relacionados),
-  bem como, bem como operações (funções) sobre esse tipo ou tipo(s), e até
-  possíveis constantes associadas. Isto leva a que os programas fiquem muito
-  bem estruturados.
-* Na sequência do ponto anterior, o código fica organizado em forma de
-  biblioteca, sendo facilmente reutilizável noutros projetos e programas,
+* Permite uma abordagem orientada a objetos. Por outras palavras, cada módulo
+  (par de ficheiros `.c` e `.h`) pode definir um tipo (ou vários tipos
+  relacionados), bem como, bem como operações (funções) sobre esse tipo ou
+  tipo(s), e até possíveis constantes associadas. Isto leva a que os programas
+  fiquem muito bem estruturados.
+* Na sequência do ponto anterior, o código fica organizado em forma de módulos
+  ou bibliotecas, sendo facilmente reutilizável noutros projetos e programas,
   reduzindo o tempo de desenvolvimento.
 * Quando um ficheiro é modificado, apenas esse ficheiro precisa de ser
   recompilado para o programa ser reconstruído. O programa [`make`] automatiza
@@ -285,28 +285,33 @@ exemplo [\[3\]](#ref3):
 Regra geral, existe um ficheiro `.c` principal que contém a função `main` e
 eventualmente outras funções, variáveis ou definições apenas relevantes no
 contexto do programa a ser desenvolvido. Os restantes ficheiros estão agrupados
-em pares `.c` e `.h` que disponibilizam funcionalidades num contexto
+em pares `.c` e `.h` (módulos) que disponibilizam funcionalidades num contexto
 específico, na prática sendo usados como bibliotecas locais de funções.
 
 Tipicamente, quando se define um tipo, por exemplo uma `struct`, todas as
 funções que acedem e/ou manipulam variáveis desse tipo são colocadas no mesmo
-par `.c` e `.h`. Numa linguagem de programação orientada a objectos, como o
-Java ou C#, os tipos são chamados de _classes_, as variáveis de dado tipo são
-chamadas de _objectos_, e as funções que operam sobre dado tipo são chamadas de
-_métodos_.
+par `.c` e `.h` (módulo). Numa linguagem de programação orientada a objectos,
+como o Java ou C#, os tipos são chamados de _classes_, as variáveis de dado
+tipo são chamadas de _objectos_, e as funções que operam sobre dado tipo são
+chamadas de _métodos_.
 
 De modo a que os tipos (_classes_) e funções que operam sobre esses tipos
 (_métodos_) possam ser utilizados por outros programas e funções, é necessário
-colocar as definições de tipos e os protótipos (cabeçalhos) das funções
+colocar as declarações de tipos e os protótipos (cabeçalhos) das funções
 associadas no ficheiro `.h` (_header file_), e posteriormente incluir
 (`#include`) esse ficheiro no código no qual se pretende ter acesso à
 funcionalidade desenvolvida. Cada ficheiro `.h` tem um ficheiro `.c`
-correspondente, onde são colocados os corpos das funções, bem como tipos e
-variáveis que apenas tenham relevância no contexto desse ficheiro (ou seja,
-que não valha a pena exportar). O ficheiro `.h` pode ser considerado a parte
-pública da biblioteca (por exemplo, definição de tipos e protótipos de funções),
-que pode ser usada por outro código, enquanto o ficheiro `.c` tem a parte
-privada (por exemplo, o corpo das funções).
+correspondente, onde são colocados os corpos (definições) das funções, bem como
+tipos e variáveis que apenas tenham relevância no contexto desse ficheiro (ou
+seja, que não valha a pena tornar públicos). O ficheiro `.h` pode ser
+considerado a parte pública do módulo (que pode ser usada por outro código),
+enquanto o ficheiro `.c` contém a parte privada. A parte pública é também
+denominada de interface ou API<sup>[8](#fn8)</sup> do módulo/biblioteca.
+
+O exemplo dado na secção [Visualização do jogo](#visualize) segue esta
+abordagem. As seguintes referências oferecem informação mais detalhada sobre
+este tópico: [\[4\]](#ref4), [\[5\]](#ref5), [\[6\]](#ref6), [\[7\]](#ref7),
+[\[8\]](#ref8), [\[9\]](#ref9) e [\[10\]](#ref10).
 
 #### Como compilar um programa dividido em vários ficheiros
 
@@ -548,7 +553,7 @@ consequência imediata a anulação dos projetos de todos os alunos envolvidos
 desonestidade académica será relatada aos órgãos superiores da escola
 para possível instauração de um processo disciplinar. Este poderá
 resultar em reprovação à disciplina, reprovação de ano ou mesmo
-suspensão temporária ou definitiva da ULHT<sup>[8](#fn8)</sup>.
+suspensão temporária ou definitiva da ULHT<sup>[9](#fn9)</sup>.
 
 ## Notas
 
@@ -567,7 +572,9 @@ ficheiros INI
 
 <sup><a name="fn7">7</a></sup> Nota de rodapé sobre Git local e remoto
 
-<sup><a name="fn8">8</a></sup> Texto adaptado da disciplina de [Algoritmos e
+<sup><a name="fn8">8</a></sup> [Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface)
+
+<sup><a name="fn9">9</a></sup> Texto adaptado da disciplina de [Algoritmos e
 Estruturas de Dados][aed] do [Instituto Superior Técnico][ist].
 
 ## Referências
@@ -578,8 +585,20 @@ Ncurses Library](https://www.viget.com/articles/game-programming-in-c-with-the-n
 Viget Labs.
 * <a name="ref3">\[3\]</a> Marshall, D. (1999).
 [Writing Larger Programs](http://users.cs.cf.ac.uk/Dave.Marshall/C/node35.html),
-Cardiff School of Computer Science and Informatics
-
+Cardiff School of Computer Science and Informatics.
+* <a name="ref4">\[4\]</a> Sizer, B. (2013). [Organizing Code Files in C and C++](https://www.gamedev.net/articles/programming/general-and-gameplay-programming/organizing-code-files-in-c-and-c-r3173), GameDev.net.
+* <a name="ref5">\[5\]</a> Kieras, D. (2012). [C Header File Guidelines](http://umich.edu/~eecs381/handouts/CHeaderFileGuidelines.pdf),
+EECS Department, University of Michigan.
+* <a name="ref6">\[6\]</a> Ekstrand, J. (2013). [Header file best practices](http://www.jlekstrand.net/math/teaching/programming-course/unit-2/header-file-best-practice/),
+Math Department, Iowa State University.
+* <a name="ref7">\[7\]</a> Magnes, M. et al. (2012) [What should and what shouldn't be in a header file?](https://softwareengineering.stackexchange.com/questions/167723/what-should-and-what-shouldnt-be-in-a-header-file),
+Software Engineering, StackExchange.com
+* <a name="ref8">\[8\]</a> Backus, J. et al. (2009) [Code organization style for C?](https://stackoverflow.com/questions/1479574/code-organization-style-for-c),
+StackOverflow.com
+* <a name="ref9">\[9\]</a> Cronin, K. et al. [Organization of C files](https://stackoverflow.com/questions/47919/organization-of-c-files),
+StackOverflow.com
+* <a name="ref10">\[10\]</a> "horseyguy" et al. [Good way to organize C source files?](https://stackoverflow.com/questions/1263480/good-way-to-organize-c-source-files),
+StackOverflow.com
 
 ## Licenças
 
