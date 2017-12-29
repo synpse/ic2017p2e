@@ -28,8 +28,8 @@
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
-#ifndef __SHOWWORLD_H_
-#define __SHOWWORLD_H_
+#ifndef SHOWWORLD_H
+#define SHOWWORLD_H
 
 /**
  * Type of agent.
