@@ -368,10 +368,27 @@ $ gcc example.o simple_showworld.o -o example
 É de realçar que as opções típicas de compilação, `-Wall -Wextra -Wpedantic
 -std=c99`, só são relevantes para a fase de compilação, não sendo necessárias
 na fase de ligação. No entanto, se o programa a construir usar bibliotecas de
-terceiros, as opções para especificar tais bibliotecas (como por exemplo `-l` e
-`-L`) são passadas na fase de ligação.
+terceiros, as opções para especificar tais bibliotecas (`-l` e `-L`) são
+passadas na fase de ligação.
 
-* Falta escrever: Usar uma Makefile
+No entanto esta abordagem manual para construção de um executável, com
+compilação individual de módulos e posterior ligação dos mesmos, está ainda
+longe de ser perfeita. Em primeiro lugar, seria necessário tomar nota dos
+módulos que precisam de ser recompilados, pois se a fase de ligação incluir um
+ficheiro objecto desatualizado, o executável construído não terá a
+funcionalidade desejada. Além disso, é sempre necessário executar vários
+comandos (um ou mais para compilação e um para fazer a ligação). A forma
+clássica de automatizar o _build_ (construção) de projetos C/C++ é através da
+ferramenta [`make`]<sup>[9](#fn9)</sup>, discutida na próxima secção.
+
+#### _Builds_ automáticas com a ferramenta Make
+
+A ferramenta [`make`] automatiza todo o processo de construção (_building_),
+nomeadamente as fases de compilação (_compiling_) e ligação (_linking_), de
+projetos C/C++. Basta executar o comando `make` e o projeto é automaticamente
+construido de forma eficiente, sendo recompilados apenas os módulos que foram
+modificados. Experimenta fazê-lo com o código disponibilizado na pasta
+[code](code) (`cd code` seguido de `make`).
 
 ### Documentação do código automática com Doxygen
 
@@ -607,28 +624,35 @@ consequência imediata a anulação dos projetos de todos os alunos envolvidos
 desonestidade académica será relatada aos órgãos superiores da escola
 para possível instauração de um processo disciplinar. Este poderá
 resultar em reprovação à disciplina, reprovação de ano ou mesmo
-suspensão temporária ou definitiva da ULHT<sup>[9](#fn9)</sup>.
+suspensão temporária ou definitiva da ULHT<sup>[10](#fn10)</sup>.
 
 ## Notas
 
-<sup><a name="fn1">1</a></sup> Nota de rodapé sobre toros
+<sup><a name="fn1">1</a></sup> Nota de rodapé sobre toros (a fazer).
 
-<sup><a name="fn2">2</a></sup> Nota de rodapé sobre Moore
+<sup><a name="fn2">2</a></sup> Nota de rodapé sobre Moore (a fazer).
 
-<sup><a name="fn3">3</a></sup> Nota de rodapé sobre _shuffling_
+<sup><a name="fn3">3</a></sup> Nota de rodapé sobre _shuffling_ (a fazer).
 
 <sup><a name="fn4">4</a></sup> Nota de rodapé sobre bibliotecas para leitura de
-ficheiros INI
+ficheiros INI (a fazer).
 
-<sup><a name="fn5">5</a></sup> Nota de rodapé sobre ASCII e UTF-8 em Windows
+<sup><a name="fn5">5</a></sup> Nota de rodapé sobre ASCII e UTF-8 em Windows (a fazer).
 
-<sup><a name="fn6">6</a></sup> Nota de rodapé sobre qualidade do código
+<sup><a name="fn6">6</a></sup> Nota de rodapé sobre qualidade do código (a fazer).
 
-<sup><a name="fn7">7</a></sup> Nota de rodapé sobre Git local e remoto
+<sup><a name="fn7">7</a></sup> Nota de rodapé sobre Git local e remoto (a fazer).
 
-<sup><a name="fn8">8</a></sup> [Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface)
+<sup><a name="fn8">8</a></sup> [Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface).
 
-<sup><a name="fn9">9</a></sup> Texto adaptado da disciplina de [Algoritmos e
+<sup><a name="fn9">9</a></sup> Mais especificamente a ferramenta
+[GNU Make][`make`], uma vez que existem várias variantes desta [abordagem de
+automatização][Make] de _builds_, nomeadamente o programa [NMake] incluido com
+o Microsoft Visual Studio. Apesar de ser orientada ao C e C++, a ferramenta
+[Make] pode ser usada em projetos desenvolvidos em qualquer linguagem de
+programação.
+
+<sup><a name="fn10">10</a></sup> Texto adaptado da disciplina de [Algoritmos e
 Estruturas de Dados][aed] do [Instituto Superior Técnico][ist].
 
 ## Referências
@@ -707,3 +731,5 @@ O enunciado e restante documentação são disponibilizados através da licença
 [cppcheck]:http://cppcheck.sourceforge.net/
 [Valgrind]:http://valgrind.org/
 [`make`]:https://www.gnu.org/software/make/manual/make.html
+[Make]:https://en.wikipedia.org/wiki/Make_(software)
+[NMake]:https://docs.microsoft.com/pt-pt/cpp/build/nmake-reference
