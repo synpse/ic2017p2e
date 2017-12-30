@@ -313,11 +313,65 @@ abordagem. As seguintes referências oferecem informação mais detalhada sobre
 este tópico: [\[4\]](#ref4), [\[5\]](#ref5), [\[6\]](#ref6), [\[7\]](#ref7),
 [\[8\]](#ref8), [\[9\]](#ref9) e [\[10\]](#ref10).
 
-#### Como compilar um programa dividido em vários ficheiros
+#### Como compilar e ligar (construir) um programa dividido em vários ficheiros
 
-* Todos de uma vez
-* Um a um
-* Usando uma Makefile
+Embora seja normal usar o termo _compilação_ para nos referirmos à criação de
+um ficheiro executável a partir de código C, o termo mais correto seria
+_construção_. Na realidade, a construção (do inglês _build_) de um ficheiro
+executável passa por duas fases:  compilação e ligação (do inglês _compile_ e
+_link_, respetivamente). A primeira fase, compilação, consiste em processar e
+converter um ficheiro `.c` num ficheiro _objecto_ com extensão `.o` contendo
+código máquina (zeros e uns). No entanto estes ficheiros não podem ser
+executados. Para tal, é necessário ligar (_link_) um ou mais ficheiros objecto
+num ficheiro executável [\[11\]](#ref11). O processo de compilação e ligação é
+chamado de construção, e é realizado implicitamente pelo compilador se o
+usarmos como temos feito até agora, como por exemplo:
+
+```
+$ gcc -Wall -Wextra -Wpedantic -std=c99 -o meuprograma meuprograma.c
+```
+
+É possível compilar e ligar (construir) um programa dividido em vários
+ficheiros numa só invocação do compilador, bastando para isso indicar todos os
+ficheiros `.c` a serem incluídos. Nesse caso, a função `main` terá de existir
+num e apenas num dos ficheiros `.c`. No caso do exemplo disponibilizado na
+pasta [code](code), que contém dois ficheiros `.c`, o comando de construção
+(compilação e ligação) será o seguinte:
+
+```
+$ gcc -Wall -Wextra -Wpedantic -std=c99 -o example example.c simple_showworld.c
+```
+
+Neste caso são apenas dois ficheiros, mas regra geral os projetos podem conter
+muitos ficheiros. É possível na mesma compilar e ligar tudo com apenas uma
+invocação do compilador, mas além de tornar o comando bastante longo e dado a
+erros, esta abordagem obriga a recompilar todos os ficheiros `.c`, mesmo
+aqueles que não tenham sido alterados, tornando o processo de compilação muito
+lento. Desta forma, é comum realizar as fases de compilação e ligação de forma
+separada. A opção `-c` indica ao compilador para apenas compilar o ficheiro
+`.c` especificado. No caso do exemplo disponibilizado, os seguintes comandos
+vão compilar separadamente os ficheiros `example.c` e `simple_showworld.c`,
+dando origem aos ficheiros `example.o` e `simple_showworld.o`:
+
+```
+$ gcc -Wall -Wextra -Wpedantic -std=c99 -c example.c
+$ gcc -Wall -Wextra -Wpedantic -std=c99 -c simple_showworld.c
+```
+
+Agora podemos ligar os dois ficheiros objeto, de modo a criar o ficheiro
+executável:
+
+```
+$ gcc example.o simple_showworld.o -o example
+```
+
+É de realçar que as opções típicas de compilação, `-Wall -Wextra -Wpedantic
+-std=c99`, só são relevantes para a fase de compilação, não sendo necessárias
+na fase de ligação. No entanto, se o programa a construir usar bibliotecas de
+terceiros, as opções para especificar tais bibliotecas (como por exemplo `-l` e
+`-L`) são passadas na fase de ligação.
+
+* Falta escrever: Usar uma Makefile
 
 ### Documentação do código automática com Doxygen
 
@@ -592,13 +646,15 @@ EECS Department, University of Michigan.
 * <a name="ref6">\[6\]</a> Ekstrand, J. (2013). [Header file best practices](http://www.jlekstrand.net/math/teaching/programming-course/unit-2/header-file-best-practice/),
 Math Department, Iowa State University.
 * <a name="ref7">\[7\]</a> Magnes, M. et al. (2012) [What should and what shouldn't be in a header file?](https://softwareengineering.stackexchange.com/questions/167723/what-should-and-what-shouldnt-be-in-a-header-file),
-Software Engineering, StackExchange.com
+Software Engineering, StackExchange.com.
 * <a name="ref8">\[8\]</a> Backus, J. et al. (2009) [Code organization style for C?](https://stackoverflow.com/questions/1479574/code-organization-style-for-c),
-StackOverflow.com
+StackOverflow.com.
 * <a name="ref9">\[9\]</a> Cronin, K. et al. [Organization of C files](https://stackoverflow.com/questions/47919/organization-of-c-files),
-StackOverflow.com
+StackOverflow.com.
 * <a name="ref10">\[10\]</a> "horseyguy" et al. [Good way to organize C source files?](https://stackoverflow.com/questions/1263480/good-way-to-organize-c-source-files),
-StackOverflow.com
+StackOverflow.com.
+* <a name="ref11">\[11\]</a> Allain, A. (2017) [Compiling and Linking](https://www.cprogramming.com/compilingandlinking.html),
+CProgramming.com.
 
 ## Licenças
 
