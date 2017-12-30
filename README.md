@@ -386,13 +386,44 @@ ferramenta [`make`]<sup>[9](#fn9)</sup>, discutida na próxima secção.
 A ferramenta [`make`] automatiza todo o processo de construção (_building_),
 nomeadamente as fases de compilação (_compiling_) e ligação (_linking_), de
 projetos C/C++. Basta executar o comando `make` e o projeto é automaticamente
-construido de forma eficiente, sendo recompilados apenas os módulos que foram
+construído de forma eficiente, sendo recompilados apenas os módulos que foram
 modificados. Experimenta fazê-lo com o código disponibilizado na pasta
 [code](code) (`cd code` seguido de `make`).
 
-### Documentação do código automática com Doxygen
+A configuração de um projeto para ser construído com a ferramenta [`make`] é
+realizada com recurso a um ficheiro de nome `Makefile`.
 
-Work in progress
+* Falta fazer: explicação simples sobre Makefiles.
+
+### Documentação automática do código com Doxygen
+
+O código de um projeto deve estar devidamente documentado, sendo boa prática
+escrever documentação específica sobre:
+
+* Ficheiros e módulos: descrição e objetivos.
+* Funções: descrição, entradas (argumentos) e saídas (valor retornado).
+* Tipos: descrição geral e descrição específica para cada campo no caso de
+`struct`s e `enum`s.
+* Variáveis globais: descrição.
+* Constantes: descrição.
+
+Esta documentação é especialmente importante para a parte pública (interface)
+de um projeto, uma vez que a mesma pode vir a ser utilizada por outros
+programadores ou incorporada noutros projetos. No entanto não é nada prático
+escrever esta documentação em ficheiros ou documentos separados. A ferramenta
+[Doxygen] permite converter comentários especialmente formatados no código em
+documentação do projeto. A ferramenta permite exportar documentação em formato
+HTML, PDF, RTF (compativel com DOC), _man pages_ e por ai fora. Uma que
+comentários bem escritos são essenciais em qualquer programa, é possível juntar
+dois em um (comentários e documentação) bastando para isso seguir algumas
+regras de formatação de escrita de comentários.
+
+* Doxygen suporta Markdown
+* Codigo exemplo em Doxygen e respetiva documentação
+  * Como gerar a documentação do código exemplo
+* Projetos em Doxygen e respetiva documentação
+* Manual do Doxygen
+  * Doxygen suporta C++, Java, C#, Python, etc.
 
 <a name="visualize">
 
