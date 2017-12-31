@@ -217,7 +217,7 @@ de 2018. Deve ser submetido um ficheiro `zip` com a pasta do projeto que deve
 ter os seguintes conteúdos:
 
 * Ficheiros `.c` e `.h`, bem como a _Makefile_.
-* Ficheiro `README.md` em formato [Markdown] gravado em codificação ASCII ou
+* Ficheiro `README.md` em formato [Markdown] gravado com codificação
   UTF-8<sup>[5](#fn5)</sup>.
 * Pasta escondida `.git` contendo o repositório Git local do projeto.
 
@@ -701,11 +701,28 @@ prontas a utilizar, como por exemplo [iniparser](https://github.com/ndevilla/ini
 [minIni](https://github.com/compuphase/minIni) ou
 [ini](https://github.com/rxi/ini).
 
-<sup><a name="fn5">5</a></sup> Nota de rodapé sobre ASCII e UTF-8 em Windows (a fazer).
+<sup><a name="fn5">5</a></sup> Este pormenor é especialmente importante em
+Windows pois regra geral a codificação UTF-8 não é usada por omissão. Em todo o
+caso, e dependendo do editor usado, a codificação UTF-8 pode ser selecionada na
+janela de "Save as"/"Guardar como", ou então nas preferências do editor.
 
-<sup><a name="fn6">6</a></sup> Nota de rodapé sobre qualidade do código (a fazer).
+<sup><a name="fn6">6</a></sup> A qualidade do código e das soluções inclui
+vários aspetos, como por exemplo: 1) evitar código "morto", que não faz nada,
+tal como variáveis ou funções nunca usadas; 2) as soluções desenvolvidas são
+[simples](https://en.wikipedia.org/wiki/KISS_principle) e/ou eficientes; 3) o
+código está devidamente organizado e dividido em funções e ficheiros de forma
+lógicas e bem estruturada; 4) o código não acede a zonas não alocadas da
+memória, como por exemplo indíces fora dos limites de um _array_; ou, 5) toda a
+memória alocada com as funções `malloc` e `calloc` é devidamente libertada com
+a função `free`.
 
-<sup><a name="fn7">7</a></sup> Nota de rodapé sobre Git local e remoto (a fazer).
+<sup><a name="fn7">7</a></sup> Neste projeto não é necessário fazer _fork_
+deste repositório. Caso usem Git, os alunos podem inicializar um repositório
+local vazio ou com os conteúdos da pasta [code](code) e desenvolver o projeto a
+partir desse ponto. Dito isto, para um projeto desta dimensão e com grupos de 2
+a 3 alunos, o uso de Git não é apenas recomendado para uma colaboração
+eficiente. É absolutamente essencial. Caso usem um ou mais repositórios remotos
+para colaboração devem indicar esse facto no relatório.
 
 <sup><a name="fn8">8</a></sup> [Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface).
 
