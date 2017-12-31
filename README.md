@@ -402,8 +402,8 @@ escrever documentação específica sobre:
 
 * Ficheiros e módulos: descrição e objetivos.
 * Funções: descrição, entradas (argumentos) e saídas (valor retornado).
-* Tipos: descrição geral e descrição específica para cada campo no caso de
-`struct`s e `enum`s.
+* Tipos: descrição geral e descrição específica para cada campo ou valor no
+  caso de estruturas e enumerações, respetivamente.
 * Variáveis globais: descrição.
 * Constantes: descrição.
 
@@ -411,19 +411,39 @@ Esta documentação é especialmente importante para a parte pública (interface
 de um projeto, uma vez que a mesma pode vir a ser utilizada por outros
 programadores ou incorporada noutros projetos. No entanto não é nada prático
 escrever esta documentação em ficheiros ou documentos separados. A ferramenta
-[Doxygen] permite converter comentários especialmente formatados no código em
-documentação do projeto. A ferramenta permite exportar documentação em formato
-HTML, PDF, RTF (compativel com DOC), _man pages_ e por ai fora. Uma que
-comentários bem escritos são essenciais em qualquer programa, é possível juntar
-dois em um (comentários e documentação) bastando para isso seguir algumas
-regras de formatação de escrita de comentários.
+[Doxygen]<sup>[10](#fn10)</sup> permite converter comentários especialmente
+formatados no código em documentação do projeto. A ferramenta permite exportar
+documentação em formato HTML, PDF, RTF (compativel com DOC), _man pages_ e por
+ai fora. Uma que comentários bem escritos são essenciais em qualquer programa,
+é possível juntar dois em um (comentários e documentação) bastando para isso
+seguir algumas regras de formatação de escrita de comentários.
 
-* Doxygen suporta Markdown
-* Codigo exemplo em Doxygen e respetiva documentação
-  * Como gerar a documentação do código exemplo
-* Projetos em Doxygen e respetiva documentação
-* Manual do Doxygen
-  * Doxygen suporta C++, Java, C#, Python, etc.
+O [código exemplo](code) foi comentado com as regras de documentação do
+[Doxygen]. Para gerar a documentação basta entrar na pasta `code` e executar o
+comando `doxygen`. A documentação é gerada em formato HTML e é colocada na
+pasta `doc` dentro da pasta `code` (podem ver a documentação online em
+https://videojogoslusofona.github.io/ic2017p2/). As definições do Doxygen para
+cada projeto são especificadas num ficheiro chamado `Doxyfile`, como é o caso
+do [ficheiro `Doxyfile` incluido no exemplo](code/Doxyfile).
+
+O Doxygen suporta formatação Markdown dentro dos comentários, bem com a
+inclusão de ficheiros Markdown na documentação (como é caso no exemplo
+disponibilizado). Além das linguagens C e C++, o Doxygen suporta outras
+linguagens comuns tais como Java, C#, Python ou PHP. Um
+[grande número de projetos](https://www.stack.nl/~dimitri/doxygen/projects.html)
+usa Doxygen para gerar a respetiva documentação, como por exemplo a biblioteca
+[g2](http://www.ncbr.muni.cz/~martinp/g2/index.html) para gráficos, a
+biblioteca de funções C [Apache Portable Runtime](http://apr.apache.org/docs/apr/1.6/index.html),
+ou a biblioteca [cf4ocl](http://www.fakenmc.com/cf4ocl/docs/latest/index.html)
+para execução de programas em GPU.
+
+O manual do Doxygen está disponível
+[aqui](http://www.stack.nl/~dimitri/doxygen/manual/index.html). De especial
+interesse poderão ser a
+[lista de comandos especiais](http://www.stack.nl/~dimitri/doxygen/manual/commands.html)
+reconhecidos nos comentários no código, bem como o sumário de todas as
+[etiquetas de configuração](http://www.stack.nl/~dimitri/doxygen/manual/config.html)
+aceitáveis no ficheiro Doxyfile.
 
 <a name="visualize">
 
@@ -655,7 +675,7 @@ consequência imediata a anulação dos projetos de todos os alunos envolvidos
 desonestidade académica será relatada aos órgãos superiores da escola
 para possível instauração de um processo disciplinar. Este poderá
 resultar em reprovação à disciplina, reprovação de ano ou mesmo
-suspensão temporária ou definitiva da ULHT<sup>[10](#fn10)</sup>.
+suspensão temporária ou definitiva da ULHT<sup>[11](#fn11)</sup>.
 
 ## Notas
 
@@ -683,7 +703,13 @@ o Microsoft Visual Studio. Apesar de ser orientada ao C e C++, a ferramenta
 [Make] pode ser usada em projetos desenvolvidos em qualquer linguagem de
 programação.
 
-<sup><a name="fn10">10</a></sup> Texto adaptado da disciplina de [Algoritmos e
+<sup><a name="fn10">10</a></sup> O Doxygen está disponível para _download_
+[aqui](https://www.stack.nl/~dimitri/doxygen/download.html) (Linux/Windows/Mac).
+Pode também ser instalado em Ubuntu com o comando `sudo apt install doxygen`,
+ou através dos gestores de pacotes [Homebrew](https://brew.sh/) (macOS) e
+[Chocolatey](https://chocolatey.org/) (Windows).
+
+<sup><a name="fn11">11</a></sup> Texto adaptado da disciplina de [Algoritmos e
 Estruturas de Dados][aed] do [Instituto Superior Técnico][ist].
 
 ## Referências
