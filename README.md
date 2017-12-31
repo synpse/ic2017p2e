@@ -390,10 +390,80 @@ construído de forma eficiente, sendo recompilados apenas os módulos que foram
 modificados. Experimenta fazê-lo com o código disponibilizado na pasta
 [code](code) (`cd code` seguido de `make`).
 
-A configuração de um projeto para ser construído com a ferramenta [`make`] é
-realizada com recurso a um ficheiro de nome `Makefile`.
+A configuração de um projeto a ser construído com a ferramenta `make` é
+realizada com recurso a um ficheiro de nome `Makefile`, que indica ao `make`
+como compilar e ligar um programa. Uma `Makefile` simples consiste num conjunto
+de "regras", cada uma com a seguinte forma:
 
-* Falta fazer: explicação simples sobre Makefiles.
+```
+target ... : prerequisites ...
+	recipe
+  ...
+  ...
+```
+
+O _target_ (alvo) é geralmente o nome de um ficheiro a ser gerado, como por
+exemplo ficheiros executáveis ou ficheiros objeto. Um _target_ também pode ser
+o nome de uma ação a realizar, como por exemplo `clean`. Neste último caso
+diz-se que o _target_ é "Phony" (falso). Um _prerequisite_ (pré-requisito) é um
+ficheiro usado como _input_ para geração do _target_. Geralmente um _target_
+depende de vários ficheiros. Uma _recipe_ (receita) é uma ação a ser executada
+pelo `make`, e pode ser composta por um ou mais comandos. É necessário colocar
+um TAB no início de cada linha da receita, caso contrário o `make` não funciona
+como pretendido. Tipicamente uma _recipe_ está numa regra com pré-requisitos e
+serve para gerar o _target_ caso algum dos pré-requisitos tiver sido modificado
+desde a última geração desse _target_. Nem todas as regras precisam de
+pré-requisitos. Por exemplo, a regra para apagar todos os ficheiros gerados
+(cujo _target_ é normalmente chamado `clean`) não tem pré-requisitos. Uma
+possível `Makefile` para o exemplo disponibilizado na pasta [code](code) terá o
+seguinte conteúdo:
+
+```
+example: example.o simple_showworld.o
+	gcc example.o simple_showworld.o -o example
+
+example.o: example.c simple_showworld.h showworld.h
+	gcc -Wall -Wextra -Wpedantic -std=c99 -g -c -o example.o example.c
+
+simple_showworld.o: simple_showworld.c simple_showworld.h
+	gcc -Wall -Wextra -Wpedantic -std=c99 -g -c -o simple_showworld.o simple_showworld.c
+
+clean:
+	rm -f example *.o
+```
+
+A primeira regra é invocada por omissão quando o `make` é executado sem
+argumentos. O _target_ desta regra é o ficheiro executável `example`, que
+depende dos ficheiros `example.o` e `simple_showworld.o` para ser gerado (neste
+caso através de ligação/_linking_). Uma vez que inicialmente nenhum dos
+ficheiros objeto existe, a receita dessa regra não pode ser imediatamente
+executada. O `make` vai então procurar outras regras cujo _target_ tem o nome
+de cada um desses pré-requisitos. Uma vez que a segunda e terceira regras têm
+_targets_ com esses nomes, o `make` vai tentar executar as respetivas receitas.
+Dado que os pré-requisitos destas regras já existem (ficheiros `.c` e `.h`), as
+respetivas receitas podem ser executadas, gerando dessa forma os dois ficheiros
+objeto através de compilação dos respetivos ficheiros `.c`. Após esta fase, o
+`make` já pode então executadar a receita da primeira regra, que vai criar o
+ficheiro executável `example` ligando (_linking_) os ficheiros objeto
+entretanto gerados.
+
+Posteriormente, se modificarmos apenas o ficheiro `example.c` e voltarmos a
+executar o `make`, apenas a segunda regra (compilação de `example.c`) e a
+primeira regra (ligação de `example`) serão executadas. O `make` sabe que não é
+necessário voltar a gerar, através de compilação, o ficheiro
+`simple_showworld.o`, uma vez que nenhum dos seus pré-requisitos foi
+modificado.
+
+O comando `make` pode aceitar como argumentos o nome dos _targets_. Ou seja, se
+executarmos o comando `make clean`, a receita cujo _target_ tem esse nome vai
+ser executada. Neste caso, esta receita corre o comando `rm -f example *.o`,
+que elimina o ficheiro executável e os ficheiros objeto gerados.
+
+É de realçar que, ao contrário de linguagens imperativas como o C ou scripts de
+linha de comandos (Shell/Bash), a linguagem das `Makefiles` é declarativa. Ou
+seja, ao contrário dessas linguagens, uma `Makefile` não especifica passo por
+passo as ações a realizar. Uma `Makefile` descreve o resultado desejado, mas
+não necessariamente como o obter.
 
 ### Documentação automática do código com Doxygen
 
