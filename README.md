@@ -679,14 +679,27 @@ suspensão temporária ou definitiva da ULHT<sup>[11](#fn11)</sup>.
 
 ## Notas
 
-<sup><a name="fn1">1</a></sup> Nota de rodapé sobre toros (a fazer).
+<sup><a name="fn1">1</a></sup> Num mapa toroidal 2D, a grelha "dá a volta" na
+vertical e na horizontal. Por exemplo, num mapa 20x20, se um agente localizado
+na coordenada (0,10), margem esquerda da grelha, decidir mover-se para a
+esquerda, vai na realidade mover-se para a coordenada (19,10).
 
-<sup><a name="fn2">2</a></sup> Nota de rodapé sobre Moore (a fazer).
+<sup><a name="fn2">2</a></sup> Numa grelha 2D, a
+[vizinhança de Moore](https://en.wikipedia.org/wiki/Moore_neighborhood) é
+composta pela célula central e pelas oito células que a rodeiam.
 
-<sup><a name="fn3">3</a></sup> Nota de rodapé sobre _shuffling_ (a fazer).
+<sup><a name="fn3">3</a></sup> Por outras palavras, a lista de agentes deve ser
+embaralhada (_shuffled_) no início de cada _turn_. O algortitmo de
+[Fisher–Yates](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+é um método de embaralhamento (_shuffling_) tipicamente utilizado para este
+fim.
 
-<sup><a name="fn4">4</a></sup> Nota de rodapé sobre bibliotecas para leitura de
-ficheiros INI (a fazer).
+<sup><a name="fn4">4</a></sup> Embora seja relativamente simples criar uma
+função ou biblioteca para leitura básica de ficheiros INI, existem algumas
+prontas a utilizar, como por exemplo [iniparser](https://github.com/ndevilla/iniparser),
+[inih](https://github.com/benhoyt/inih),
+[minIni](https://github.com/compuphase/minIni) ou
+[ini](https://github.com/rxi/ini).
 
 <sup><a name="fn5">5</a></sup> Nota de rodapé sobre ASCII e UTF-8 em Windows (a fazer).
 
