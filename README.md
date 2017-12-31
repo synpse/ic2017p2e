@@ -459,11 +459,131 @@ executarmos o comando `make clean`, a receita cujo _target_ tem esse nome vai
 ser executada. Neste caso, esta receita corre o comando `rm -f example *.o`,
 que elimina o ficheiro executável e os ficheiros objeto gerados.
 
-É de realçar que, ao contrário de linguagens imperativas como o C ou scripts de
-linha de comandos (Shell/Bash), a linguagem das `Makefiles` é declarativa. Ou
-seja, ao contrário dessas linguagens, uma `Makefile` não especifica passo por
-passo as ações a realizar. Uma `Makefile` descreve o resultado desejado, mas
-não necessariamente como o obter.
+Esta versão da `Makefile` funciona perfeitamente, mas pode ser melhorada. Em
+primeiro lugar, estamos a repetir os argumentos de compilação em dois locais.
+Além disso, o nome do executável aparece em vários locais. Felizmente as
+`Makefiles` suportam variáveis nas quais podemos guardar estes tipo de dados
+que são utilizados várias vezes. A segunda versão da nossa `Makefile` poderia
+ter então a seguinte forma:
+
+```
+CC=gcc
+CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
+PROGRAM=example
+
+$(PROGRAM): $(PROGRAM).o simple_showworld.o
+	$(CC) $(PROGRAM).o simple_showworld.o -o example
+
+$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
+	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
+
+simple_showworld.o: simple_showworld.c simple_showworld.h
+	$(CC) $(CFLAGS) -c -o simple_showworld.o simple_showworld.c
+
+clean:
+	rm -f $(PROGRAM) *.o
+```
+
+É conveniente usar comentários para um melhor entendimento do conteúdo das
+`Makefiles`. Os comentários começam com o caráter `#` (cardinal), tal como nos
+_shell scripts_. Além disso, como o _target_ `clean` não corresponde a um
+ficheiro, é boa prática indicar este facto na `Makefile` do modo a que o `make`
+não se confunda caso venha a existir um ficheiro com esse nome. Esta indicação
+é feita com o _target_ especial `.PHONY`, colocado imediatamente antes do
+_target_ em questão. Com esta informação chegamos a uma terceira versão da
+nossa `Makefile`:
+
+
+```
+# Compilador C
+CC=gcc
+# Argumentos (flags) de compilacao
+CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
+
+# Nome do programa
+PROGRAM=example
+
+# Regra para geral executavel
+$(PROGRAM): $(PROGRAM).o simple_showworld.o
+	$(CC) $(PROGRAM).o simple_showworld.o -o example
+
+# Regra para gerar o ficheiro objeto com o mesmo nome do executavel
+$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
+	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
+
+# Regra para gerar o ficheiro objeto simple_showworld.o
+simple_showworld.o: simple_showworld.c simple_showworld.h
+	$(CC) $(CFLAGS) -c -o simple_showworld.o simple_showworld.c
+
+# Regra para limpar todos os ficheiros gerados (executavel e objetos)
+.PHONY: clean
+clean:
+	rm -f $(PROGRAM) *.o
+```
+
+A ferramenta `make` é bastante "inteligente", sobretudo quando se trata da
+construção (_build_) de projetos C/C++. Nomeadamente, o `make` pode determinar
+automaticamente as receitas para compilação e ligação (_compiling_ and
+_linking_) dos diferentes _targets_. Para o efeito é necessário definir algumas
+[variáveis especiais](https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html).
+Na `Makefile` anterior já usamos duas destas variáveis: `CC` e `CFLAGS`. A
+primeira especifica o programa a ser usado como compilador C, enquanto a
+segunda define as opções (_flags_) a usar na fase de compilação. Existem outras
+variáveis especiais importantes para compilação de projetos C, das quais duas
+serão importantes para este projeto:
+
+* `LDFLAGS` - Opções de ligação (_linking_) para localização de bibliotecas no
+sistema de ficheiros, como por exemplo a _flag_ `-L`.
+* `LDLIBS` - Opções de ligação (_linking_) para especificação de bibliotecas a
+usar, como por exemplo a _flag_ `-l`.
+
+No caso do exemplo apresentado não são usadas bibliotecas extra, pelo que estas
+duas variáveis podem não ter conteúdos. No entanto é útil especifica-las
+explicitamente na `Makefile`, pois podemos vir a querer adicionar bibliotecas
+no futuro. Usando esta abordagem podemos omitir as receitas, pois o `make` vai
+fazê-las corretamente. Desta forma, os conteúdos da próxima versão da
+nossa `Makefile` são os seguintes:
+
+```
+# Compilador C
+CC=gcc
+# Argumentos (flags) de compilacao
+CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
+# Opções de ligação para localização de bibliotecas (e.g. -L)
+LDFLAGS=
+# Opções de ligação, como por exemplo especificação de bibliotecas (e.g. -l)
+LDLIBS=
+
+# Nome do programa
+PROGRAM=example
+
+# Regra para geral executavel (deixar make fazer a receita)
+$(PROGRAM): $(PROGRAM).o simple_showworld.o
+
+# Regra para gerar o ficheiro objeto com o mesmo nome do executavel (deixar
+# make fazer a receita)
+$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
+
+# Regra para gerar o ficheiro objeto simple_showworld.o (deixar make fazer a
+# receita)
+simple_showworld.o: simple_showworld.c simple_showworld.h
+
+# Regra para limpar todos os ficheiros gerados (executavel e objetos)
+.PHONY: clean
+clean:
+	rm -f $(PROGRAM) *.o
+```
+
+A linguagem das `Makefiles` oferece bastante possibilidades, como é possível
+concluir olhando para o respetivo [manual][`make`]. Na prática, e nomeadamente
+para o projeto em questão, as possibilidades aqui descritas são mais do que
+suficientes para uma boa automatização da _build_ do jogo.
+
+É de realçar que, ao contrário de linguagens imperativas como o C ou _scripts_
+de linha de comandos (_Shell_/Bash), a linguagem das `Makefiles` é declarativa.
+Ou seja, ao contrário dessas linguagens, uma `Makefile` não especifica passo
+por passo as ações a realizar. Uma `Makefile` descreve o resultado desejado,
+mas não necessariamente como o obter.
 
 ### Documentação automática do código com Doxygen
 
@@ -779,12 +899,11 @@ janela de "Save as"/"Guardar como", ou então nas preferências do editor.
 <sup><a name="fn6">6</a></sup> A qualidade do código e das soluções inclui
 vários aspetos, como por exemplo: 1) evitar código "morto", que não faz nada,
 tal como variáveis ou funções nunca usadas; 2) as soluções desenvolvidas são
-[simples](https://en.wikipedia.org/wiki/KISS_principle) e/ou eficientes; 3) o
-código está devidamente organizado e dividido em funções e ficheiros de forma
-lógicas e bem estruturada; 4) o código não acede a zonas não alocadas da
-memória, como por exemplo indíces fora dos limites de um _array_; ou, 5) toda a
-memória alocada com as funções `malloc` e `calloc` é devidamente libertada com
-a função `free`.
+[simples][KISS] e/ou eficientes; 3) o código está devidamente organizado e
+dividido em funções e ficheiros de forma lógicas e bem estruturada; 4) o código
+não acede a zonas não alocadas da memória, como por exemplo indíces fora dos
+limites de um _array_; ou, 5) toda a memória alocada com as funções `malloc` e
+`calloc` é devidamente libertada com a função `free`.
 
 <sup><a name="fn7">7</a></sup> Neste projeto não é necessário fazer _fork_
 deste repositório. Caso usem Git, os alunos podem inicializar um repositório
@@ -890,3 +1009,4 @@ O enunciado e restante documentação são disponibilizados através da licença
 [`make`]:https://www.gnu.org/software/make/manual/make.html
 [Make]:https://en.wikipedia.org/wiki/Make_(software)
 [NMake]:https://docs.microsoft.com/pt-pt/cpp/build/nmake-reference
+[KISS]:https://en.wikipedia.org/wiki/KISS_principle

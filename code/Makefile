@@ -40,7 +40,7 @@ $(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
 # simple_showworld.o.
 simple_showworld.o: simple_showworld.c simple_showworld.h
 
-# The followin rule cleans all compiled (objects) and linked (executable
+# The following rule cleans all compiled (objects) and linked (executable
 # program) files. Because "clean" is not actually the name of a file, it is
 # good practice to specify it as a "phony" target (avoiding conflict with a
 # file of the same name and improving performance). In this case, an explicit
