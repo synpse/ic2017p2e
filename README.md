@@ -39,16 +39,17 @@ de Moore. A ordem em que os agentes executam as suas ações em cada _turn_ é
 aleatória<sup>[3](#fn3)</sup>, de modo a que nenhum agente em específico
 obtenha a vantagem de agir cedo durante todo o jogo.
 
-Os agentes podem ser controlados pelo computador através de uma AI básica, ou
-podem ser controlados por jogadores. Neste último caso, um jogador que controle
-determinado agente pode decidir o destino do mesmo. Se o agente for um zombie,
-a ação de infeção equivale à indicação de movimento para o local onde
-está um humano. Nesse caso o zombie não se move (pois o local já está ocupado
-pelo humano), mas o humano é convertido em zombie. Se o humano era controlado
-por um jogador, deixa de o ser, e passa a ser controlado pela AI. O jogo
-termina quando não existirem mais agentes do tipo humano na grelha.
+Os agentes podem ser controlados pelo computador através de uma Inteligência
+Artificial (IA) básica, ou podem ser controlados por jogadores. Neste último
+caso, um jogador que controle determinado agente pode decidir o destino do
+mesmo. Se o agente for um zombie, a ação de infeção equivale à indicação de
+movimento para o local onde está um humano. Nesse caso o zombie não se move
+(pois o local já está ocupado pelo humano), mas o humano é convertido em
+zombie. Se o humano era controlado por um jogador, deixa de o ser, e passa a
+ser controlado pela IA. O jogo termina quando não existirem mais agentes do
+tipo humano na grelha.
 
-Caso um agente seja controlado pela AI, as suas decisões dependem do tipo de
+Caso um agente seja controlado pela IA, as suas decisões dependem do tipo de
 agente:
 
 * Humano - Tenta mover-se na direção oposta ao zombie mais próximo. Se a célula
@@ -764,7 +765,7 @@ tipo `get_agent_info_at`.
 
 Os dois bits menos significativos, nas posições 0 e 1, representam o tipo de
 agente. O bit na posição 2 indica se o agente é controlado por um jogador (`1`)
-ou pela AI (`0`). Os bits entre as posições 3 e 18 contêm o ID do agente.
+ou pela IA (`0`). Os bits entre as posições 3 e 18 contêm o ID do agente.
 Finalmente, os bits mais significativos (posições 19 a 31) estão livres para
 uso do aluno, caso assim o entenda.
 
@@ -825,17 +826,44 @@ componentes associadas com outras funcionalidades específicas.
 
 ### Sugestões para o desenvolvimento do projeto
 
+#### Sugestão de passos
+
 1. Começar com coisas simples
-2. Usar Git para colaboração
-3. Usar [cppcheck] para verificação estática
-4. Usar [Valgrind] para erros de acesso à memória
-5. Usar [GDB] para _debugging_
+2. Work in progress
+
+#### Ferramentas úteis
+
+* [Git] para desenvolvimento do projeto.
+  * Tendo em conta a complexidade do projeto, que requer a experimentação de
+    diferentes abordagens e uma colaboração de facto entre todos os membros do
+    grupo, o uso de [Git] é altamente recomendado. O [Git] não é simplesmente
+    mais uma matéria para aprender, mas sim uma ferramenta que pode facilitar
+    bastante o desenvolvimento do projeto.
+* [cppcheck] para verificação estática do código fonte.
+  * O [cppcheck] (e outras ferramentas similares) fazem uma verificação mais
+    aprofundada do código, detetando possíveis problemas como operações entre
+    tipos diferentes, ficheiros não devidamente fechados ou acesso potencial a
+    zonas inválidas da memória. Para o código deste projeto, o [cppcheck] pode
+    ser invocado na pasta do projeto da seguinte forma: `cppcheck --enable=all
+    --language=c --platform=unix64 --std=c99 projecto.c`.
+* [Valgrind] para verificação dinâmica do programa.
+  * Ao contrário do [cppcheck], o [Valgrind] tenta detetar _bugs_ no programa
+    enquanto o mesmo está a ser executado. É especialmente útil para descobrir
+    erros de acesso à memória e verificar se toda a memória alocada foi
+    devidamente libertada. Caso o excutável do projeto se chame `zombies`, o
+    [Valgrind] pode ser usado para verificar o programa da seguinte forma:
+    `valgrind --leak-check=full ./zombies`.
+* [GDB] para execução passo a passo e _debugging_ do programa.
+  * Tal como discutido na aula 4, o [GDB] permite executar programas passo a
+    passo (desde que tenham sido compilados com a opção `-g`). Muitas vezes é a
+    única forma de se perceber o que o código está realmente a fazer e corrigir
+    _bugs_ complicados.
 
 <a name="gamejam"></a>
 
 ### Extensões opcionais, trabalho futuro e Global Game Jam
 
-* Melhor AI.
+* Melhor IA.
 * Melhor integração com biblioteca preferida: [Ncurses], [Allegro5], [SDL2] ou
   [Raylib]. Infelizmente [g2] não é apropriada para jogos "a sério".
 * Desenvolvimento do jogo na Global Game Jam.
