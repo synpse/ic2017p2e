@@ -828,17 +828,26 @@ componentes associadas com outras funcionalidades específicas.
 
 #### Sugestão de passos
 
-1. Começar com coisas simples
-2. Work in progress
+_Work in progress_
+
+<!--
+1. Devem começar o projeto a partir do código disponibilizado na pasta
+   [code](code). Se usarem [Git], o primeiro _commit_ do projeto pode conter
+   exatamente os ficheiros que compõem este exemplo<sup>[11](#fn11)</sup>.
+2. Tentar perceber o exemplo antes de começar o projeto.
+3. Planear bem
+4. Funções pequenas e bem definidas
+5. Tentar orientar as funções em volta de um conceito: coordenada, agente,
+   grelha, e organizar o programa em vários ficheiros baseado nisso.
+-->
 
 #### Ferramentas úteis
 
 * [Git] para desenvolvimento do projeto.
   * Tendo em conta a complexidade do projeto, que requer a experimentação de
     diferentes abordagens e uma colaboração de facto entre todos os membros do
-    grupo, o uso de [Git] é altamente recomendado. O [Git] não é simplesmente
-    mais uma matéria para aprender, mas sim uma ferramenta que pode facilitar
-    bastante o desenvolvimento do projeto.
+    grupo, o uso de [Git] pode facilitar bastante o desenvolvimento do
+    projeto<sup>[7](#fn7),[11](#fn11)</sup>.
 * [cppcheck] para verificação estática do código fonte.
   * O [cppcheck] (e outras ferramentas similares) fazem uma verificação mais
     aprofundada do código, detetando possíveis problemas como operações entre
@@ -857,16 +866,21 @@ componentes associadas com outras funcionalidades específicas.
   * Tal como discutido na aula 4, o [GDB] permite executar programas passo a
     passo (desde que tenham sido compilados com a opção `-g`). Muitas vezes é a
     única forma de se perceber o que o código está realmente a fazer e corrigir
-    _bugs_ complicados.
+    _bugs_ complicados. Caso o excutável do projeto se chame `zombies`, o [GDB]
+    pode ser usado para executar o programa da seguinte forma: `gdb ./zombies`.
 
 <a name="gamejam"></a>
 
 ### Extensões opcionais, trabalho futuro e Global Game Jam
 
+_Work in progress_
+
+<!--
 * Melhor IA.
 * Melhor integração com biblioteca preferida: [Ncurses], [Allegro5], [SDL2] ou
   [Raylib]. Infelizmente [g2] não é apropriada para jogos "a sério".
 * Desenvolvimento do jogo na Global Game Jam.
+-->
 
 ## Honestidade académica
 
@@ -893,7 +907,7 @@ consequência imediata a anulação dos projetos de todos os alunos envolvidos
 desonestidade académica será relatada aos órgãos superiores da escola
 para possível instauração de um processo disciplinar. Este poderá
 resultar em reprovação à disciplina, reprovação de ano ou mesmo
-suspensão temporária ou definitiva da ULHT<sup>[11](#fn11)</sup>.
+suspensão temporária ou definitiva da ULHT<sup>[12](#fn12)</sup>.
 
 ## Notas
 
@@ -956,7 +970,14 @@ Pode também ser instalado em Ubuntu com o comando `sudo apt install doxygen`,
 ou através dos gestores de pacotes [Homebrew](https://brew.sh/) (macOS) e
 [Chocolatey](https://chocolatey.org/) (Windows).
 
-<sup><a name="fn11">11</a></sup> Texto adaptado da disciplina de [Algoritmos e
+<sup><a name="fn11">11</a></sup> É também boa ideia criarem um ficheiro
+[`.gitignore`](https://stackoverflow.com/questions/27850222/what-is-gitignore-exactly/27850270)
+para evitar a inclusão de ficheiros binários no repositório (como por exemplo
+ficheiros objeto ou o executável do projeto). O ficheiro `.gitignore` [incluido
+neste repositório](https://github.com/VideojogosLusofona/ic2017p2/blob/master/.gitignore)
+é um bom ponto de partida.
+
+<sup><a name="fn12">12</a></sup> Texto adaptado da disciplina de [Algoritmos e
 Estruturas de Dados][aed] do [Instituto Superior Técnico][ist].
 
 ## Referências
