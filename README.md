@@ -826,48 +826,47 @@ componentes associadas com outras funcionalidades específicas.
 
 ### Sugestões para o desenvolvimento do projeto
 
-#### Sugestão de passos
-
-_Work in progress_
-
-<!--
 1. Devem começar o projeto a partir do código disponibilizado na pasta
    [code](code). Se usarem [Git], o primeiro _commit_ do projeto pode conter
    exatamente os ficheiros que compõem este exemplo<sup>[11](#fn11)</sup>.
-2. Tentar perceber o exemplo antes de começar o projeto.
-3. Planear bem
-4. Funções pequenas e bem definidas
-5. Tentar orientar as funções em volta de um conceito: coordenada, agente,
-   grelha, e organizar o programa em vários ficheiros baseado nisso.
--->
-
-#### Ferramentas úteis
-
-* [Git] para desenvolvimento do projeto.
-  * Tendo em conta a complexidade do projeto, que requer a experimentação de
-    diferentes abordagens e uma colaboração de facto entre todos os membros do
-    grupo, o uso de [Git] pode facilitar bastante o desenvolvimento do
-    projeto<sup>[7](#fn7),[11](#fn11)</sup>.
-* [cppcheck] para verificação estática do código fonte.
-  * O [cppcheck] (e outras ferramentas similares) fazem uma verificação mais
-    aprofundada do código, detetando possíveis problemas como operações entre
-    tipos diferentes, ficheiros não devidamente fechados ou acesso potencial a
-    zonas inválidas da memória. Para o código deste projeto, o [cppcheck] pode
-    ser invocado na pasta do projeto da seguinte forma: `cppcheck --enable=all
-    --language=c --platform=unix64 --std=c99 projecto.c`.
-* [Valgrind] para verificação dinâmica do programa.
-  * Ao contrário do [cppcheck], o [Valgrind] tenta detetar _bugs_ no programa
-    enquanto o mesmo está a ser executado. É especialmente útil para descobrir
-    erros de acesso à memória e verificar se toda a memória alocada foi
-    devidamente libertada. Caso o excutável do projeto se chame `zombies`, o
-    [Valgrind] pode ser usado para verificar o programa da seguinte forma:
-    `valgrind --leak-check=full ./zombies`.
-* [GDB] para execução passo a passo e _debugging_ do programa.
-  * Tal como discutido na aula 4, o [GDB] permite executar programas passo a
-    passo (desde que tenham sido compilados com a opção `-g`). Muitas vezes é a
-    única forma de se perceber o que o código está realmente a fazer e corrigir
-    _bugs_ complicados. Caso o excutável do projeto se chame `zombies`, o [GDB]
-    pode ser usado para executar o programa da seguinte forma: `gdb ./zombies`.
+2. Ler e reler o enunciado até deixarem de existir dúvidas sobre o mesmo. Se as
+   mesmas persistirem, entrem em contato com o docente.
+3. Fazer um plano de desenvolvimento do projeto e dividir bem o trabalho entre
+   os diferentes elementos do grupo.
+4. Organizar as estruturas e funções em ficheiros separados em volta de um
+   conceito comum: coordenada, agente, grelha, etc.  Por exemplo
+5. As funções devem ser pequenas e com responsabilidades bem definidas. Se uma
+   função começar a ficar muito grande, devem considerar dividir a função em
+   várias funções.
+6. Existem uma série de ferramentas úteis que podem facilitar bastante o
+   desenvolvimento do projeto, como por exemplo:
+    * [Git] para colaboração e controlo de versões do código fonte.
+      * Tendo em conta a complexidade do projeto, que requer a experimentação
+        de diferentes abordagens e uma colaboração de facto entre todos os
+        membros do grupo, o uso de [Git] pode facilitar bastante o
+        desenvolvimento do projeto<sup>[7](#fn7),[11](#fn11)</sup>.
+    * [cppcheck] para verificação estática do código fonte.
+      * O [cppcheck] (e outras ferramentas similares) fazem uma verificação
+        mais aprofundada do código, detetando possíveis problemas como
+        operações entre tipos diferentes, ficheiros não devidamente fechados ou
+        acesso potencial a zonas inválidas da memória. Para o código deste
+        projeto, o [cppcheck] pode ser invocado na pasta do projeto da seguinte
+        forma: `cppcheck --enable=all --language=c --platform=unix64
+        --std=c99 projecto.c`.
+    * [Valgrind] para verificação dinâmica do programa.
+      * Ao contrário do [cppcheck], o [Valgrind] tenta detetar _bugs_ no
+        programa enquanto o mesmo está a ser executado. É especialmente útil
+        para descobrir erros de acesso à memória e verificar se toda a memória
+        alocada foi devidamente libertada. Caso o excutável do projeto se chame
+        `zombies`, o [Valgrind] pode ser usado para verificar o programa da
+        seguinte forma: `valgrind --leak-check=full ./zombies`.
+    * [GDB] para execução passo a passo e _debugging_ do programa.
+      * Tal como discutido na aula 4, o [GDB] permite executar programas passo
+        a passo (desde que tenham sido compilados com a opção `-g`). Muitas
+        vezes é a única forma de se perceber o que o código está realmente a
+        fazer e corrigir _bugs_ complicados. Caso o excutável do projeto se
+        chame `zombies`, o [GDB] pode ser usado para executar o programa da
+        seguinte forma: `gdb ./zombies`.
 
 <a name="gamejam"></a>
 
