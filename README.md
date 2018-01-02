@@ -10,13 +10,9 @@ work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 
 # 2º Projeto de Introdução à Computação 2017/2018
 
-> Este enunciado está em construção mas os alunos podem começar a planear o
-> trabalho com base na informação já disponibilizada.
-
 O projeto deve ser realizado em grupos de 2 a 3 alunos. A constituição dos
-grupos deve ser comunicada ao docente via Moodle até 23 de dezembro, data a
-partir da qual se assume que os alunos não pretendem realizar o projeto na 1ª
-época.
+grupos deve ser comunicada ao docente até 4 de janeiro, data a partir da qual
+se assume que os alunos não pretendem realizar o projeto na 1ª época.
 
 ## Descrição do problema
 
@@ -84,7 +80,7 @@ maxturns=1000
 ```
 
 Os campos indicados no exemplo anterior são obrigatórios e o programa deve
-saber interpreta-los corretamente. O programa deve ainda ignorar campos que
+saber interpretá-los corretamente. O programa deve ainda ignorar campos que
 não conheça. Os alunos podem acrescentar campos que considerem úteis para o
 desenvolvimento do projeto, mas estes devem ser opcionais. Por outras palavras,
 o programa deve assumir valores por omissão para campos opcionais extra. Um
@@ -136,24 +132,23 @@ _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
 #### Entrega
 
 A 1ª parte do projeto deve ser entregue via Moodle até às 23h de 14 de janeiro
-de 2018. Deve ser submetido um ficheiro `zip` com a pasta do projeto que deve
-ter os seguintes conteúdos:
+de 2018. Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
 
 * Ficheiro(s) `.c` (e possivelmente ficheiros `.h` se os alunos decidirem
-  organizar o código em vários ficheiros logo para a primeira entrega).
+  organizar o código em vários ficheiros logo na primeira entrega).
 * Pasta escondida `.git` contendo o repositório Git local do projeto.
-* Ficheiro `README.md` contendo o relatório do projeto em formato [Markdown],
-  contendo as seguintes secções:
+* Ficheiro `README.md` contendo o relatório do projeto em formato [Markdown]
+  organizado da seguinte forma:
   * Título do projeto.
-  * Nomes dos autores (primeiro e último) e respetivos números de aluno.
+  * Nome dos autores (primeiro e último) e respetivos números de aluno.
   * Descrição da solução:
     * Arquitetura da solução, com breve explicação de como o programa foi
-      estruturado. Um fluxograma simples, que mostre o funcionamento de alto
-      nível do programa, pode ajudar bastante a explicar a arquitetura do
-      mesmo.
+      estruturado.
+      * Um fluxograma simples ou gráficos semelhantes às Figuras [1](#figura1)
+        e [3](#figura3) são bem vindos.
     * Estruturas de dados: grelha de simulação, agentes, outras estruturas
       auxiliares relevantes.
-    * Algoritmos: procura de agente mais próximo, cáculo de direção na grelha,
+    * Algoritmos: procura de agente mais próximo, cálculo de direção na grelha,
       _shuffling_ (embaralhamento) dos agentes antes de cada _turn_, outros
       algoritmos relevantes.
   * Manual de utilizador:
@@ -175,7 +170,10 @@ UTF-8<sup>[5](#fn5)</sup>.
 #### Critério de avaliação
 
 A primeira parte do projeto, que tem um peso de 4 valores na nota final da
-disciplina, será avaliada segundo os critérios indicados na Tabela 1.
+disciplina, será avaliada segundo os critérios indicados na
+[Tabela 1](#tabela1).
+
+<a name="tabela1"></a>
 
 **Tabela 1** - Critérios absolutos da 1ª parte do projeto.
 
@@ -225,8 +223,10 @@ ter os seguintes conteúdos:
 #### Critério de avaliação
 
 A segunda parte do projeto, que tem um peso de 4 valores na nota final da
-disciplina, será avaliada usando duas tabelas distintas. A tabela 2 indica os
-critérios absolutos, que totalizam 4 valores:
+disciplina, será avaliada usando duas tabelas distintas. A [Tabela 2](#tabela2)
+indica os critérios absolutos, que totalizam 4 valores:
+
+<a name="tabela2"></a>
 
 **Tabela 2** - Critérios absolutos da 2ª parte do projeto.
 
@@ -243,7 +243,9 @@ servir apenas para compensar avaliações piores nos critérios principais. No
 entanto, como os critérios absolutos não fazem sentido sem que os objetivos da
 1ª parte do projeto tenham sido atingidos, a nota final da 2ª parte também
 depende de uma percentagem baseada nesses objetivos, tal como indicado na
-Tabela 3.
+[Tabela 3](#tabela3).
+
+<a name="tabela3"></a>
 
 **Tabela 3** - Critérios relativos da 2ª parte do projeto.
 
@@ -636,12 +638,14 @@ reconhecidos nos comentários no código, bem como o sumário de todas as
 [etiquetas de configuração](http://www.stack.nl/~dimitri/doxygen/manual/config.html)
 aceitáveis no ficheiro Doxyfile.
 
-<a name="visualize">
+<a name="visualize"></a>
 
 ### Visualização do jogo
 
 A pasta [code](code) contém codigo auxiliar para a desenhar o mundo do jogo no
-ecrã. A organização deste código está indicada na Figura 1.
+ecrã. A organização deste código está indicada na [Figura 1](#figura1).
+
+<a name="figura1"></a>
 
 ![arquitectura](https://user-images.githubusercontent.com/3018963/34446014-d09091f8-eccf-11e7-8378-90221db5fc9a.png)
 
@@ -652,7 +656,7 @@ O ficheiro [showworld.h](code/showworld.h) define três tipos que devem ser
 usados para o desenvolvimento da parte de visualização do projeto, nomeadamente:
 
 * [`AGENT_TYPE`](code/showworld.h#L34) - Enumeração que define os diferentes
-  tipos de agente, tal como indicado na Tabela 5.
+  tipos de agente, tal como indicado na [Tabela 5](#tabela5).
 * [`get_agent_info_at`](code/showworld.h#L44) - Tipo de função que retorna
   informação sobre um agente em dado local do mundo de jogo.
 * [`show_world`](code/showworld.h#L62) - Tipo de função que mostra/atualiza a
@@ -686,8 +690,10 @@ o ID do agente em hexadecimal (por exemplo, `z0A`), e diferenciando com `Z` ou
 `H` maiúsculo caso o agente em questão seja controlado por um jogador (por
 exemplo, `H19`). Caso não exista um agente na célula em questão, a função
 imprime um ponto (`.`). Para um mundo 5x5 com 4 zombies e 1 humano, com um dos
-zombies controlado por um jogador, a função mostra algo parecido com a Figura
-2.
+zombies controlado por um jogador, a função mostra algo parecido com a
+[Figura 2](#figura2).
+
+<a name="figura2"></a>
 
 ```
 .   .  Z02  .   .
@@ -753,7 +759,9 @@ Por outras palavras, funções do tipo `get_agent_info_at` devem devolver um
 a variável `world` (apontador genérico para o mundo do jogo), bem como as
 coordenadas `(x,y)` da posição sobre a qual se pretende obter informação. O
 `unsigned int` com informação sobre um agente está organizado internamente
-como indicado na Tabela 4.
+como indicado na [Tabela 4](#tabela4).
+
+<a name="tabela4"></a>
 
 **Tabela 4** - Informação sobre um agente tal como devolvida por funções do
 tipo `get_agent_info_at`.
@@ -771,8 +779,10 @@ uso do aluno, caso assim o entenda.
 
 Os possíveis tipos de agente (posições 0 e 1) estão definidos numa enumeração
 de nome `AGENT_TYPE` no ficheiro [showworld.h](code/showworld.h#L34), tal como
-indicado na Tabela 5. O tipo `Unknown` nunca deve ocorrer. Se tal acontecer,
-significa que o jogo tem um _bug_.
+indicado na [Tabela 5](#tabela5). O tipo `Unknown` nunca deve ocorrer. Se tal
+acontecer, significa que o jogo tem um _bug_.
+
+<a name="tabela5"></a>
 
 **Tabela 5** - Tipos de agentes definidos na enumeração
 [`AGENT_TYPE`](code/showworld.h).
@@ -814,15 +824,17 @@ substituirá a biblioteca simples fornecida nos ficheiros
 [simple_showworld.h](code/simple_showworld.h). Tal como esta última, a
 biblioteca desenvolvida pelos alunos deve obedecer aos tipos definidos em
 [showworld.h](code/showworld.h), de forma a que o código de visualização
-desenvolvido por um grupo funcione no projeto de qualquer outro grupo. A Figura
-3 mostra uma possível organização de um projeto com visualização baseada em
-[SDL2], omitindo possíveis ficheiros associados a funcionalidades não
-discutidas nesta secção.
+desenvolvido por um grupo funcione no projeto de qualquer outro grupo. A
+[Figura 3](#figura3) mostra uma possível organização de um projeto com
+visualização baseada em [SDL2], omitindo possíveis ficheiros associados a
+funcionalidades não discutidas nesta secção.
+
+<a name="figura3"></a>
+
+![orgproj](https://user-images.githubusercontent.com/3018963/34391685-44e7f88a-eb3f-11e7-9e26-636233178e16.png)
 
 **Figura 3** - Possível organização de um projeto, omitindo possíveis
 componentes associadas com outras funcionalidades específicas.
-
-![orgproj](https://user-images.githubusercontent.com/3018963/34391685-44e7f88a-eb3f-11e7-9e26-636233178e16.png)
 
 ### Sugestões para o desenvolvimento do projeto
 
