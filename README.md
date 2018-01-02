@@ -872,14 +872,31 @@ componentes associadas com outras funcionalidades específicas.
 
 ### Extensões opcionais, trabalho futuro e Global Game Jam
 
-_Work in progress_
+Caso os alunos atinjam todos os objetivos pretendidos, é possível estender e
+melhorar o jogo de várias formas. A melhor forma de o fazer é durante a
+[Global Game Jam]. Não existem restrições sobre melhorias a fazer, desde que o
+jogo mantenha a suas premissas básicas:
 
-<!--
-* Melhor IA.
-* Melhor integração com biblioteca preferida: [Ncurses], [Allegro5], [SDL2] ou
-  [Raylib]. Infelizmente [g2] não é apropriada para jogos "a sério".
-* Desenvolvimento do jogo na Global Game Jam.
--->
+* Zombies vs. Humanos numa grelha 2D toroidal.
+* Implementado em C99 com bibliotecas C auxiliares. O ponto de partida deve ser
+  a entrega realizada a 21 de janeiro.
+
+Algumas sugestões:
+
+* Melhor IA, sobretudo da parte dos humanos.
+* Dar aos humanos alguma forma de se defenderem.
+* Agentes terem propriedades individuais como energia, capacidade de movimento,
+  etc.
+* _Power-ups_.
+* Melhor integração com biblioteca preferida ([Ncurses], [Allegro5], [SDL2] ou
+  [Raylib], infelizmente [g2] não é apropriada para jogos "a sério"):
+  * Possibilitar controlo com o rato.
+  * Adicionar som.
+  * ...
+
+Caso optem por melhorar o jogo, podem fazer nova entrega até 29 de janeiro (ou
+seja, logo após a [Global Game Jam]) para as melhorias e extensões serem tidas
+em conta na nota final do projeto.
 
 ## Honestidade académica
 
@@ -993,15 +1010,15 @@ Cardiff School of Computer Science and Informatics.
 EECS Department, University of Michigan.
 * <a name="ref6">\[6\]</a> Ekstrand, J. (2013). [Header file best practices](http://www.jlekstrand.net/math/teaching/programming-course/unit-2/header-file-best-practice/),
 Math Department, Iowa State University.
-* <a name="ref7">\[7\]</a> Magnes, M. et al. (2012) [What should and what shouldn't be in a header file?](https://softwareengineering.stackexchange.com/questions/167723/what-should-and-what-shouldnt-be-in-a-header-file),
+* <a name="ref7">\[7\]</a> Magnes, M. et al. (2012). [What should and what shouldn't be in a header file?](https://softwareengineering.stackexchange.com/questions/167723/what-should-and-what-shouldnt-be-in-a-header-file),
 Software Engineering, StackExchange.com.
-* <a name="ref8">\[8\]</a> Backus, J. et al. (2009) [Code organization style for C?](https://stackoverflow.com/questions/1479574/code-organization-style-for-c),
+* <a name="ref8">\[8\]</a> Backus, J. et al. (2009). [Code organization style for C?](https://stackoverflow.com/questions/1479574/code-organization-style-for-c),
 StackOverflow.com.
 * <a name="ref9">\[9\]</a> Cronin, K. et al. [Organization of C files](https://stackoverflow.com/questions/47919/organization-of-c-files),
 StackOverflow.com.
 * <a name="ref10">\[10\]</a> "horseyguy" et al. [Good way to organize C source files?](https://stackoverflow.com/questions/1263480/good-way-to-organize-c-source-files),
 StackOverflow.com.
-* <a name="ref11">\[11\]</a> Allain, A. (2017) [Compiling and Linking](https://www.cprogramming.com/compilingandlinking.html),
+* <a name="ref11">\[11\]</a> Allain, A. (2017). [Compiling and Linking](https://www.cprogramming.com/compilingandlinking.html),
 CProgramming.com.
 
 ## Licenças
@@ -1058,3 +1075,4 @@ O enunciado e restante documentação são disponibilizados através da licença
 [Make]:https://en.wikipedia.org/wiki/Make_(software)
 [NMake]:https://docs.microsoft.com/pt-pt/cpp/build/nmake-reference
 [KISS]:https://en.wikipedia.org/wiki/KISS_principle
+[Global Game Jam]:https://globalgamejam.org/2018/jam-sites/misplay
