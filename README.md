@@ -152,7 +152,8 @@ de 2018. Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
       _shuffling_ (embaralhamento) dos agentes antes de cada _turn_, outros
       algoritmos relevantes.
   * Manual de utilizador:
-    * Como compilar (qual o comando completo para compilação).
+    * Como compilar: qual o comando ou comandos gerar uma _build_ do jogo (ver
+      secção [Divisão do código em vários ficheiros](#orgproj)).
     * Como jogar: que teclas pressionar e/ou onde clicar para mover agentes
       (modo interativo); tecla e/ou botão para passar para a próxima _turn_
       (modo automático); outras funcionalidades importantes que o utilizador
@@ -198,8 +199,10 @@ servir apenas para compensar avaliações piores nos critérios principais.
 
 * Tamanho da grelha e número de agentes variável após compilação, tal como
   especificado no ficheiro de configuração.
-* Documentação do projeto com [Doxygen].
-* Organização do programa em vários ficheiros `.c` e `.h` com uso de _Makefile_.
+* Documentação do projeto com [Doxygen] (ver secção
+  [Documentação automática do código com Doxygen](#doxygen)).
+* Organização do programa em vários ficheiros `.c` e `.h` com uso de
+  _Makefile_ (ver secção [Divisão do código em vários ficheiros](#orgproj)).
 * Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica ou
   de jogos. Algumas sugestões:
   * [g2] - Simples mas limitada.
@@ -212,8 +215,7 @@ servir apenas para compensar avaliações piores nos critérios principais.
 #### Entrega
 
 A 2ª parte do projeto deve ser entregue via Moodle até às 23h de 21 de janeiro
-de 2018. Deve ser submetido um ficheiro `zip` com a pasta do projeto que deve
-ter os seguintes conteúdos:
+de 2018. Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
 
 * Ficheiros `.c` e `.h`, bem como a _Makefile_.
 * Ficheiro `README.md` em formato [Markdown] gravado com codificação
@@ -261,6 +263,8 @@ depende de uma percentagem baseada nesses objetivos, tal como indicado na
 A nota final da 2ª parte do projeto é dada pelo total dos critérios absolutos
 multiplicado pela percentagem obtida nos critérios relativos.
 
+<a name="orgproj"></a>
+
 ### Divisão do código em vários ficheiros
 
 #### Vantagens
@@ -286,10 +290,10 @@ exemplo [\[3\]](#ref3),[\[4\]](#ref4):
 #### Como dividir um programa em vários ficheiros
 
 Regra geral, existe um ficheiro `.c` principal que contém a função `main` e
-eventualmente outras funções, variáveis ou definições apenas relevantes no
-contexto do programa a ser desenvolvido. Os restantes ficheiros estão agrupados
-em pares `.c` e `.h` (módulos) que disponibilizam funcionalidades num contexto
-específico, na prática sendo usados como bibliotecas locais de funções.
+eventualmente outras funções, variáveis ou definições diretamente relevantes
+para o programa a ser desenvolvido. Os restantes ficheiros devem ser agrupados
+em pares `.c` e `.h` (módulos) e disponibilizam funcionalidades específicas, na
+prática sendo usados como bibliotecas locais de funções.
 
 Tipicamente, quando se define um tipo, por exemplo uma `struct`, todas as
 funções que acedem e/ou manipulam variáveis desse tipo são colocadas no mesmo
@@ -327,14 +331,14 @@ converter um ficheiro `.c` num ficheiro _objecto_ com extensão `.o` contendo
 código máquina (zeros e uns). No entanto estes ficheiros não podem ser
 executados. Para tal, é necessário ligar (_link_) um ou mais ficheiros objecto
 num ficheiro executável [\[11\]](#ref11). O processo de compilação e ligação é
-chamado de construção, e é realizado implicitamente pelo compilador se o
-usarmos como temos feito até agora, como por exemplo:
+chamado de construção (_build_), e é realizado implicitamente pelo compilador
+quando invocado da forma que temos feito até agora. Por exemplo:
 
 ```
 $ gcc -Wall -Wextra -Wpedantic -std=c99 -o meuprograma meuprograma.c
 ```
 
-É possível compilar e ligar (construir) um programa dividido em vários
+É possível construir (compilar e ligar) um programa dividido em vários
 ficheiros numa só invocação do compilador, bastando para isso indicar todos os
 ficheiros `.c` a serem incluídos. Nesse caso, a função `main` terá de existir
 num e apenas num dos ficheiros `.c`. No caso do exemplo disponibilizado na
@@ -346,9 +350,8 @@ $ gcc -Wall -Wextra -Wpedantic -std=c99 -o example example.c simple_showworld.c
 ```
 
 Neste caso são apenas dois ficheiros, mas regra geral os projetos podem conter
-muitos ficheiros. É possível na mesma compilar e ligar tudo com apenas uma
-invocação do compilador, mas além de tornar o comando bastante longo e dado a
-erros, esta abordagem obriga a recompilar todos os ficheiros `.c`, mesmo
+muitos ficheiros, caso no qual o comando anterior fica bastante comprido. Além
+disso, esta abordagem obriga a recompilar todos os ficheiros `.c`, mesmo
 aqueles que não tenham sido alterados, tornando o processo de compilação muito
 lento. Desta forma, é comum realizar as fases de compilação e ligação de forma
 separada. A opção `-c` indica ao compilador para apenas compilar o ficheiro
@@ -377,12 +380,12 @@ passadas na fase de ligação.
 No entanto esta abordagem manual para construção de um executável, com
 compilação individual de módulos e posterior ligação dos mesmos, está ainda
 longe de ser perfeita. Em primeiro lugar, seria necessário tomar nota dos
-módulos que precisam de ser recompilados, pois se a fase de ligação incluir um
-ficheiro objecto desatualizado, o executável construído não terá a
-funcionalidade desejada. Além disso, é sempre necessário executar vários
-comandos (um ou mais para compilação e um para fazer a ligação). A forma
-clássica de automatizar o _build_ (construção) de projetos C/C++ é através da
-ferramenta [`make`]<sup>[9](#fn9)</sup>, discutida na próxima secção.
+módulos que precisam de ser recompilados (ou poderiamos recompilar todos e
+voltar à estaca zero em termos de eficiência). Além disso, é sempre necessário
+executar vários comandos (um ou mais para compilação e um para fazer a
+ligação). A forma clássica de automatizar o _build_ (construção) de projetos
+C/C++ é através da ferramenta [`make`]<sup>[9](#fn9)</sup>, discutida na
+próxima secção.
 
 #### _Builds_ automáticas com a ferramenta Make
 
@@ -401,8 +404,8 @@ de "regras", cada uma com a seguinte forma:
 ```
 target ... : prerequisites ...
 	recipe
-  ...
-  ...
+	...
+	...
 ```
 
 O _target_ (alvo) é geralmente o nome de um ficheiro a ser gerado, como por
@@ -414,7 +417,7 @@ depende de vários ficheiros. Uma _recipe_ (receita) é uma ação a ser executa
 pelo `make`, e pode ser composta por um ou mais comandos. É necessário colocar
 um TAB no início de cada linha da receita, caso contrário o `make` não funciona
 como pretendido. Tipicamente uma _recipe_ está numa regra com pré-requisitos e
-serve para gerar o _target_ caso algum dos pré-requisitos tiver sido modificado
+serve para gerar o _target_ caso algum dos pré-requisitos tenha sido modificado
 desde a última geração desse _target_. Nem todas as regras precisam de
 pré-requisitos. Por exemplo, a regra para apagar todos os ficheiros gerados
 (cujo _target_ é normalmente chamado `clean`) não tem pré-requisitos. Uma
@@ -452,8 +455,8 @@ entretanto gerados.
 
 Posteriormente, se modificarmos apenas o ficheiro `example.c` e voltarmos a
 executar o `make`, apenas a segunda regra (compilação de `example.c`) e a
-primeira regra (ligação de `example`) serão executadas. O `make` sabe que não é
-necessário voltar a gerar, através de compilação, o ficheiro
+primeira regra (ligação dos ficheiros `.o`) serão executadas. O `make` sabe que
+não é necessário voltar a gerar, através de compilação, o ficheiro
 `simple_showworld.o`, uma vez que nenhum dos seus pré-requisitos foi
 modificado.
 
@@ -465,9 +468,9 @@ que elimina o ficheiro executável e os ficheiros objeto gerados.
 Esta versão da `Makefile` funciona perfeitamente, mas pode ser melhorada. Em
 primeiro lugar, estamos a repetir os argumentos de compilação em dois locais.
 Além disso, o nome do executável aparece em vários locais. Felizmente as
-`Makefiles` suportam variáveis nas quais podemos guardar estes tipo de dados
-que são utilizados várias vezes. A segunda versão da nossa `Makefile` poderia
-ter então a seguinte forma:
+`Makefiles` suportam variáveis nas quais podemos guardar opções que são
+utilizadas várias vezes. A segunda versão da nossa `Makefile` poderia ter então
+a seguinte forma:
 
 ```
 CC=gcc
@@ -490,11 +493,11 @@ clean:
 É conveniente usar comentários para um melhor entendimento do conteúdo das
 `Makefiles`. Os comentários começam com o caráter `#` (cardinal), tal como nos
 _shell scripts_. Além disso, como o _target_ `clean` não corresponde a um
-ficheiro, é boa prática indicar este facto na `Makefile` do modo a que o `make`
-não se confunda caso venha a existir um ficheiro com esse nome. Esta indicação
-é feita com o _target_ especial `.PHONY`, colocado imediatamente antes do
-_target_ em questão. Com esta informação chegamos a uma terceira versão da
-nossa `Makefile`:
+ficheiro, é boa prática indicar este facto na `Makefile`, de modo a que o
+`make` não se confunda caso venha a existir um ficheiro com esse nome. Esta
+indicação é feita com o _target_ especial `.PHONY`, colocado imediatamente
+antes do _target_ em questão. Com esta informação chegamos a uma terceira
+versão da nossa `Makefile`:
 
 
 ```
@@ -525,15 +528,16 @@ clean:
 ```
 
 A ferramenta `make` é bastante "inteligente", sobretudo quando se trata da
-construção (_build_) de projetos C/C++. Nomeadamente, o `make` pode determinar
-automaticamente as receitas para compilação e ligação (_compiling_ and
-_linking_) dos diferentes _targets_. Para o efeito é necessário definir algumas
+construção (_building_) de projetos C/C++. Nomeadamente, o `make` pode
+determinar automaticamente as receitas para compilação e ligação (_compiling_
+and _linking_) dos diferentes _targets_. Para o efeito é necessário definir
+algumas
 [variáveis especiais](https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html).
 Na `Makefile` anterior já usamos duas destas variáveis: `CC` e `CFLAGS`. A
 primeira especifica o programa a ser usado como compilador C, enquanto a
 segunda define as opções (_flags_) a usar na fase de compilação. Existem outras
 variáveis especiais importantes para compilação de projetos C, das quais duas
-serão importantes para este projeto:
+serão importantes neste projeto:
 
 * `LDFLAGS` - Opções de ligação (_linking_) para localização de bibliotecas no
 sistema de ficheiros, como por exemplo a _flag_ `-L`.
@@ -584,9 +588,10 @@ suficientes para uma boa automatização da _build_ do jogo.
 
 É de realçar que, ao contrário de linguagens imperativas como o C ou _scripts_
 de linha de comandos (_Shell_/Bash), a linguagem das `Makefiles` é declarativa.
-Ou seja, ao contrário dessas linguagens, uma `Makefile` não especifica passo
-por passo as ações a realizar. Uma `Makefile` descreve o resultado desejado,
-mas não necessariamente como o obter.
+Ou seja, ao contrário dessas linguagens, a linguagem das `Makefile` descreve o
+resultado desejado, mas não necessariamente os passos para o obter.
+
+<a name="doygen"></a>
 
 ### Documentação automática do código com Doxygen
 
@@ -607,9 +612,9 @@ escrever esta documentação em ficheiros ou documentos separados. A ferramenta
 [Doxygen]<sup>[10](#fn10)</sup> permite converter comentários especialmente
 formatados no código em documentação do projeto. A ferramenta permite exportar
 documentação em formato HTML, PDF, RTF (compativel com DOC), _man pages_ e por
-ai fora. Uma que comentários bem escritos são essenciais em qualquer programa,
-é possível juntar dois em um (comentários e documentação) bastando para isso
-seguir algumas regras de formatação de escrita de comentários.
+ai fora. Uma vez que comentários bem escritos são essenciais em qualquer
+programa, é possível juntar dois em um (comentários e documentação) bastando
+para isso seguir algumas regras de formatação de escrita de comentários.
 
 O [código exemplo](code) foi comentado com as regras de documentação do
 [Doxygen]. Para gerar a documentação basta entrar na pasta `code` e executar o
@@ -631,7 +636,7 @@ ou a biblioteca [cf4ocl](http://www.fakenmc.com/cf4ocl/docs/latest/index.html)
 para execução de programas em GPU.
 
 O manual do Doxygen está disponível
-[aqui](http://www.stack.nl/~dimitri/doxygen/manual/index.html). De especial
+[aqui](http://www.stack.nl/~dimitri/doxygen/manual/index.html). De particular
 interesse poderão ser a
 [lista de comandos especiais](http://www.stack.nl/~dimitri/doxygen/manual/commands.html)
 reconhecidos nos comentários no código, bem como o sumário de todas as
@@ -642,8 +647,8 @@ aceitáveis no ficheiro Doxyfile.
 
 ### Visualização do jogo
 
-A pasta [code](code) contém codigo auxiliar para a desenhar o mundo do jogo no
-ecrã. A organização deste código está indicada na [Figura 1](#figura1).
+A pasta [code](code) contém codigo auxiliar para desenhar o mundo do jogo A
+[Figura 1](#figura1) mostra como o código está organizado.
 
 <a name="figura1"></a>
 
@@ -980,7 +985,7 @@ deste repositório. Caso usem Git, os alunos podem inicializar um repositório
 local vazio ou com os conteúdos da pasta [code](code) e desenvolver o projeto a
 partir desse ponto. Dito isto, para um projeto desta dimensão e com grupos de 2
 a 3 alunos, o uso de Git não é apenas recomendado para uma colaboração
-eficiente. É absolutamente essencial. Caso usem um ou mais repositórios remotos
+eficiente: é absolutamente essencial. Caso usem um ou mais repositórios remotos
 para colaboração devem indicar esse facto no relatório.
 
 <sup><a name="fn8">8</a></sup> [Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface).
