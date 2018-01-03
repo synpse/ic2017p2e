@@ -647,7 +647,7 @@ aceitáveis no ficheiro Doxyfile.
 
 ### Visualização do jogo
 
-A pasta [code](code) contém codigo auxiliar para desenhar o mundo do jogo A
+A pasta [code](code) contém codigo auxiliar para desenhar o mundo do jogo. A
 [Figura 1](#figura1) mostra como o código está organizado.
 
 <a name="figura1"></a>
@@ -847,11 +847,17 @@ componentes associadas com outras funcionalidades específicas.
    [code](code). Se usarem [Git], o primeiro _commit_ do projeto pode conter
    exatamente os ficheiros que compõem este exemplo<sup>[11](#fn11)</sup>.
 2. Ler e reler o enunciado até deixarem de existir dúvidas sobre o mesmo. Se as
-   mesmas persistirem, entrem em contato com o docente.
+   mesmas persistirem, entrem em contato com o docente para esclarecimentos
+   adicionais.
 3. Fazer um plano de desenvolvimento do projeto e dividir bem o trabalho entre
    os diferentes elementos do grupo.
 4. Organizar as estruturas e funções em ficheiros separados em volta de um
-   conceito comum: coordenada, agente, grelha, etc.  Por exemplo
+   conceito comum: coordenada, agente, grelha, etc. Por exemplo, no caso das
+   coordenadas podem desenvolver um módulo (e.g. `coordenadas.c` e
+   `coordenadas.h`), onde definem o tipo `COORD` para coordenadas 2D em grelha
+   toroidal com vizinhança de Moore, e todas as funções que operam sobre
+   variáveis desse tipo (e.g. deslocamento, comparação de coordenadas,
+   distância, direção entre uma coordenada e outra, etc).
 5. As funções devem ser pequenas e com responsabilidades bem definidas. Se uma
    função começar a ficar muito grande, devem considerar dividir a função em
    várias funções.
@@ -869,19 +875,19 @@ componentes associadas com outras funcionalidades específicas.
         acesso potencial a zonas inválidas da memória. Para o código deste
         projeto, o [cppcheck] pode ser invocado na pasta do projeto da seguinte
         forma: `cppcheck --enable=all --language=c --platform=unix64
-        --std=c99 projecto.c`.
+        --std=c99 *.c`.
     * [Valgrind] para verificação dinâmica do programa.
       * Ao contrário do [cppcheck], o [Valgrind] tenta detetar _bugs_ no
         programa enquanto o mesmo está a ser executado. É especialmente útil
         para descobrir erros de acesso à memória e verificar se toda a memória
-        alocada foi devidamente libertada. Caso o excutável do projeto se chame
-        `zombies`, o [Valgrind] pode ser usado para verificar o programa da
-        seguinte forma: `valgrind --leak-check=full ./zombies`.
+        alocada foi devidamente libertada. Caso o executável do projeto se
+        chame `zombies`, o [Valgrind] pode ser usado para verificar o programa
+        da seguinte forma: `valgrind --leak-check=full ./zombies`.
     * [GDB] para execução passo a passo e _debugging_ do programa.
       * Tal como discutido na aula 4, o [GDB] permite executar programas passo
         a passo (desde que tenham sido compilados com a opção `-g`). Muitas
         vezes é a única forma de se perceber o que o código está realmente a
-        fazer e corrigir _bugs_ complicados. Caso o excutável do projeto se
+        fazer e corrigir _bugs_ complicados. Caso o executável do projeto se
         chame `zombies`, o [GDB] pode ser usado para executar o programa da
         seguinte forma: `gdb ./zombies`.
 
@@ -895,25 +901,25 @@ melhorar o jogo de várias formas. A melhor forma de o fazer é durante a
 jogo mantenha a suas premissas básicas:
 
 * Zombies vs. Humanos numa grelha 2D toroidal.
-* Implementado em C99 com bibliotecas C auxiliares. O ponto de partida deve ser
-  a entrega realizada a 21 de janeiro.
+* Implementado em C99 com bibliotecas C auxiliares.
+* O ponto de partida deve ser o código entregue a 21 de janeiro.
 
 Algumas sugestões:
 
 * Melhor IA, sobretudo da parte dos humanos.
 * Dar aos humanos alguma forma de se defenderem.
-* Agentes terem propriedades individuais como energia, capacidade de movimento,
+* Agentes com propriedades individuais como energia, capacidade de movimento,
   etc.
 * _Power-ups_.
 * Melhor integração com biblioteca preferida ([Ncurses], [Allegro5], [SDL2] ou
-  [Raylib], infelizmente [g2] não é apropriada para jogos "a sério"):
+  [Raylib] – infelizmente a [g2] não é apropriada para jogos "a sério"):
   * Possibilitar controlo com o rato.
   * Adicionar som.
-  * ...
+  * etc...
 
 Caso optem por melhorar o jogo, podem fazer nova entrega até 29 de janeiro (ou
 seja, logo após a [Global Game Jam]) para as melhorias e extensões serem tidas
-em conta na nota final do projeto.
+em conta no bónus da nota final do projeto.
 
 ## Honestidade académica
 

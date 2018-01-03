@@ -69,7 +69,8 @@ typedef unsigned int (*get_agent_info_at)(
  * @param ag_info Pointer to function of type ::get_agent_info_at().
  * */
 typedef void (*show_world)(
-    void *world, unsigned int xdim,
+    void *world,
+    unsigned int xdim,
     unsigned int ydim,
     get_agent_info_at ag_info);
 
