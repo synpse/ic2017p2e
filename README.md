@@ -297,9 +297,9 @@ prática sendo usados como bibliotecas locais de funções.
 
 Tipicamente, quando se define um tipo, por exemplo uma `struct`, todas as
 funções que acedem e/ou manipulam variáveis desse tipo são colocadas no mesmo
-par `.c` e `.h` (módulo). Numa linguagem de programação orientada a objectos,
+par `.c` e `.h` (módulo). Numa linguagem de programação orientada a objetos,
 como o Java ou C#, os tipos são chamados de _classes_, as variáveis de dado
-tipo são chamadas de _objectos_, e as funções que operam sobre dado tipo são
+tipo são chamadas de _objetos_, e as funções que operam sobre dado tipo são
 chamadas de _métodos_.
 
 De modo a que os tipos (_classes_) e funções que operam sobre esses tipos
@@ -327,9 +327,9 @@ um ficheiro executável a partir de código C, o termo mais correto seria
 _construção_. Na realidade, a construção (do inglês _build_) de um ficheiro
 executável passa por duas fases:  compilação e ligação (do inglês _compile_ e
 _link_, respetivamente). A primeira fase, compilação, consiste em processar e
-converter um ficheiro `.c` num ficheiro _objecto_ com extensão `.o` contendo
+converter um ficheiro `.c` num ficheiro _objeto_ com extensão `.o` contendo
 código máquina (zeros e uns). No entanto estes ficheiros não podem ser
-executados. Para tal, é necessário ligar (_link_) um ou mais ficheiros objecto
+executados. Para tal, é necessário ligar (_link_) um ou mais ficheiros objeto
 num ficheiro executável [\[11\]](#ref11). O processo de compilação e ligação é
 chamado de construção (_build_), e é realizado implicitamente pelo compilador
 quando invocado da forma que temos feito até agora. Por exemplo:
@@ -380,7 +380,7 @@ passadas na fase de ligação.
 No entanto esta abordagem manual para construção de um executável, com
 compilação individual de módulos e posterior ligação dos mesmos, está ainda
 longe de ser perfeita. Em primeiro lugar, seria necessário tomar nota dos
-módulos que precisam de ser recompilados (ou poderiamos recompilar todos e
+módulos que precisam de ser recompilados (ou poderíamos recompilar todos e
 voltar à estaca zero em termos de eficiência). Além disso, é sempre necessário
 executar vários comandos (um ou mais para compilação e um para fazer a
 ligação). A forma clássica de automatizar o _build_ (construção) de projetos
@@ -449,7 +449,7 @@ _targets_ com esses nomes, o `make` vai tentar executar as respetivas receitas.
 Dado que os pré-requisitos destas regras já existem (ficheiros `.c` e `.h`), as
 respetivas receitas podem ser executadas, gerando dessa forma os dois ficheiros
 objeto através de compilação dos respetivos ficheiros `.c`. Após esta fase, o
-`make` já pode então executadar a receita da primeira regra, que vai criar o
+`make` já pode então invocar a receita da primeira regra, que vai criar o
 ficheiro executável `example` ligando (_linking_) os ficheiros objeto
 entretanto gerados.
 
@@ -545,7 +545,7 @@ sistema de ficheiros, como por exemplo a _flag_ `-L`.
 usar, como por exemplo a _flag_ `-l`.
 
 No caso do exemplo apresentado não são usadas bibliotecas extra, pelo que estas
-duas variáveis podem não ter conteúdos. No entanto é útil especifica-las
+duas variáveis podem não ter conteúdos. No entanto é útil especificá-las
 explicitamente na `Makefile`, pois podemos vir a querer adicionar bibliotecas
 no futuro. Usando esta abordagem podemos omitir as receitas, pois o `make` vai
 fazê-las corretamente. Desta forma, os conteúdos da próxima versão da
@@ -611,7 +611,7 @@ programadores ou incorporada noutros projetos. No entanto não é nada prático
 escrever esta documentação em ficheiros ou documentos separados. A ferramenta
 [Doxygen]<sup>[10](#fn10)</sup> permite converter comentários especialmente
 formatados no código em documentação do projeto. A ferramenta permite exportar
-documentação em formato HTML, PDF, RTF (compativel com DOC), _man pages_ e por
+documentação em formato HTML, PDF, RTF (compatível com DOC), _man pages_ e por
 ai fora. Uma vez que comentários bem escritos são essenciais em qualquer
 programa, é possível juntar dois em um (comentários e documentação) bastando
 para isso seguir algumas regras de formatação de escrita de comentários.
@@ -681,7 +681,7 @@ O ficheiro [example.c](code/example.c) contém um exemplo de como usar a funçã
 `simple_show_world()`, obedecendo aos tipos definidos em
 [showworld.h](code/showworld.h).
 
-As próximas sub-secções descrevem em detalhe como este código auxiliar pode ser
+As próximas subsecções descrevem em detalhe como este código auxiliar pode ser
 usado nas duas partes do projeto.
 
 #### 1ª parte do projeto
@@ -960,7 +960,7 @@ esquerda, vai na realidade mover-se para a coordenada (19,10).
 composta pela célula central e pelas oito células que a rodeiam.
 
 <sup><a name="fn3">3</a></sup> Por outras palavras, a lista de agentes deve ser
-embaralhada (_shuffled_) no início de cada _turn_. O algortitmo de
+embaralhada (_shuffled_) no início de cada _turn_. O algoritmo de
 [Fisher–Yates](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 é um método de embaralhamento (_shuffling_) tipicamente utilizado para este
 fim.
@@ -982,7 +982,7 @@ vários aspetos, como por exemplo: 1) evitar código "morto", que não faz nada,
 tal como variáveis ou funções nunca usadas; 2) as soluções desenvolvidas são
 [simples][KISS] e/ou eficientes; 3) o código está devidamente organizado e
 dividido em funções e ficheiros de forma lógicas e bem estruturada; 4) o código
-não acede a zonas não alocadas da memória, como por exemplo indíces fora dos
+não acede a zonas não alocadas da memória, como por exemplo índices fora dos
 limites de um _array_; ou, 5) toda a memória alocada com as funções `malloc` e
 `calloc` é devidamente libertada com a função `free`.
 
