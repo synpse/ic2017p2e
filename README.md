@@ -165,7 +165,7 @@ de 2018. Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
   * **Nota:** o relatório deve ser simples e breve, com informação mínima e
     suficiente para que seja possível ter uma boa ideia do que foi feito.
 
-**Atenção**: Todos os ficheiros C e Markdown devem ser gravado em codificação
+**Atenção**: Todos os ficheiros C e Markdown devem ser gravados em codificação
 UTF-8<sup>[5](#fn5)</sup>.
 
 #### Critério de avaliação
@@ -218,9 +218,11 @@ A 2ª parte do projeto deve ser entregue via Moodle até às 23h de 21 de janeir
 de 2018. Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
 
 * Ficheiros `.c` e `.h`, bem como a _Makefile_.
-* Ficheiro `README.md` em formato [Markdown] gravado com codificação
-  UTF-8<sup>[5](#fn5)</sup>.
+* Ficheiro `README.md` em formato [Markdown].
 * Pasta escondida `.git` contendo o repositório Git local do projeto.
+
+**Atenção**: Todos os ficheiros C e Markdown devem ser gravados em codificação
+UTF-8<sup>[5](#fn5)</sup>.
 
 #### Critério de avaliação
 
