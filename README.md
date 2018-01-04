@@ -480,7 +480,7 @@ CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
 PROGRAM=example
 
 $(PROGRAM): $(PROGRAM).o simple_showworld.o
-	$(CC) $(PROGRAM).o simple_showworld.o -o example
+	$(CC) $(PROGRAM).o simple_showworld.o -o $(PROGRAM)
 
 $(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
 	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
@@ -513,7 +513,7 @@ PROGRAM=example
 
 # Regra para geral executavel
 $(PROGRAM): $(PROGRAM).o simple_showworld.o
-	$(CC) $(PROGRAM).o simple_showworld.o -o example
+	$(CC) $(PROGRAM).o simple_showworld.o -o $(PROGRAM)
 
 # Regra para gerar o ficheiro objeto com o mesmo nome do executavel
 $(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
