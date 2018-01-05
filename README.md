@@ -972,7 +972,8 @@ função ou biblioteca para leitura básica de ficheiros INI, existem algumas
 prontas a utilizar, como por exemplo [iniparser](https://github.com/ndevilla/iniparser),
 [inih](https://github.com/benhoyt/inih),
 [minIni](https://github.com/compuphase/minIni) ou
-[ini](https://github.com/rxi/ini).
+[ini](https://github.com/rxi/ini). A biblioteca de jogos [Allegro5] também
+oferece um módulo para processamento de ficheiros INI.
 
 <sup><a name="fn5">5</a></sup> Este pormenor é especialmente importante em
 Windows pois regra geral a codificação UTF-8 não é usada por omissão. Em todo o
