@@ -109,7 +109,10 @@ do jogo deve ser atualizada imediatamente antes de ser solicitado _input_ a um
 jogador (pelo menos). Se a dada altura deixarem de existir agentes controlados
 pelo jogador, o programa entra em modo automático.
 
-## Desenvolvimento do projeto
+## Desenvolvimento do projeto, objetivos e entrega
+
+O jogo deve ser desenvolvido em duas partes. Os alunos só devem passar para a
+segunda parte quando tiverem alcançado os objetivos da primeira parte.
 
 ### Primeira parte
 
@@ -131,44 +134,6 @@ _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
 * Visualização do jogo pode ser feita com código exemplo disponibilizado na
   secção [Visualização do jogo](#visualize).
 
-#### Entrega
-
-A 1ª parte do projeto deve ser entregue via Moodle até às 23h de 14 de janeiro
-de 2018. Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
-
-* Ficheiro(s) `.c` (e possivelmente ficheiros `.h` se os alunos decidirem
-  organizar o código em vários ficheiros logo na primeira entrega).
-* Pasta escondida `.git` contendo o repositório Git local do projeto.
-* Ficheiro `README.md` contendo o relatório do projeto em formato [Markdown]
-  organizado da seguinte forma:
-  * Título do projeto.
-  * Nome dos autores (primeiro e último) e respetivos números de aluno.
-  * Descrição da solução:
-    * Arquitetura da solução, com breve explicação de como o programa foi
-      estruturado.
-      * Um fluxograma simples ou gráficos semelhantes às Figuras [1](#figura1)
-        e [3](#figura3) são bem vindos.
-    * Estruturas de dados: grelha de simulação, agentes, outras estruturas
-      auxiliares relevantes.
-    * Algoritmos: procura de agente mais próximo, cálculo de direção na grelha,
-      _shuffling_ (embaralhamento) dos agentes antes de cada _turn_, outros
-      algoritmos relevantes.
-  * Manual de utilizador:
-    * Como compilar: qual o comando ou comandos gerar uma _build_ do jogo (ver
-      secção [Divisão do código em vários ficheiros](#orgproj)).
-    * Como jogar: que teclas pressionar e/ou onde clicar para mover agentes
-      (modo interativo); tecla e/ou botão para passar para a próxima _turn_
-      (modo automático); outras funcionalidades importantes que o utilizador
-      possa controlar.
-  * Conclusões e matéria aprendida.
-  * Referências:
-    * Incluindo trocas de ideias com colegas, código aberto reutilizado e
-      bibliotecas de terceiros utilizadas. Devem ser o mais detalhados possível.
-  * **Nota:** o relatório deve ser simples e breve, com informação mínima e
-    suficiente para que seja possível ter uma boa ideia do que foi feito.
-
-**Atenção**: Todos os ficheiros C e Markdown devem ser gravados em codificação
-UTF-8<sup>[5](#fn5)</sup>.
 
 #### Critério de avaliação
 
@@ -214,18 +179,6 @@ servir apenas para compensar avaliações piores nos critérios principais.
   * [Raylib] - Muito interessante, mas instalação no Ubuntu não é trivial (ver
     instruções no Wiki da [página no GitHub][Raylib-gh]).
 
-#### Entrega
-
-A 2ª parte do projeto deve ser entregue via Moodle até às 23h de 21 de janeiro
-de 2018. Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
-
-* Ficheiros `.c` e `.h`, bem como a _Makefile_.
-* Ficheiro `README.md` em formato [Markdown].
-* Pasta escondida `.git` contendo o repositório Git local do projeto.
-
-**Atenção**: Todos os ficheiros C e Markdown devem ser gravados em codificação
-UTF-8<sup>[5](#fn5)</sup>.
-
 #### Critério de avaliação
 
 A segunda parte do projeto, que tem um peso de 4 valores na nota final da
@@ -268,6 +221,81 @@ A nota final da 2ª parte do projeto é dada pelo total dos critérios absolutos
 multiplicado pela percentagem obtida nos critérios relativos.
 
 <a name="orgproj"></a>
+
+### Entrega
+
+O projeto deve ser entregue via Moodle até às 23h de 21 de janeiro de 2018.
+Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
+
+* Ficheiros `.c` e `.h`, ficheiro `Makefile`, ficheiro `Doxyfile` e ficheiro
+  `.gitignore`.
+* Pasta escondida `.git` contendo o repositório Git local do projeto.
+* Ficheiro `README.md` contendo o relatório do projeto em formato [Markdown]
+  organizado da seguinte forma:
+  * Título do projeto.
+  * Nome dos autores (primeiro e último) e respetivos números de aluno.
+  * Descrição da solução:
+    * Arquitetura da solução, com breve explicação de como o programa foi
+      estruturado.
+      * Um fluxograma simples ou gráficos semelhantes às Figuras [1](#figura1)
+        e [3](#figura3) são bem vindos.
+    * Estruturas de dados: grelha de simulação, agentes, outras estruturas
+      auxiliares relevantes.
+    * Algoritmos: procura de agente mais próximo, cálculo de direção na grelha,
+      _shuffling_ (embaralhamento) dos agentes antes de cada _turn_, outros
+      algoritmos relevantes.
+  * Manual de utilizador:
+    * Como compilar: qual o comando ou comandos gerar uma _build_ do jogo (ver
+      secção [Divisão do código em vários ficheiros](#orgproj)).
+    * Como jogar: que teclas pressionar e/ou onde clicar para mover agentes
+      (modo interativo); tecla e/ou botão para passar para a próxima _turn_
+      (modo automático); outras funcionalidades importantes que o utilizador
+      possa controlar.
+  * Conclusões e matéria aprendida.
+  * Referências:
+    * Incluindo trocas de ideias com colegas, código aberto reutilizado e
+      bibliotecas de terceiros utilizadas. Devem ser o mais detalhados possível.
+  * **Nota:** o relatório deve ser simples e breve, com informação mínima e
+    suficiente para que seja possível ter uma boa ideia do que foi feito.
+
+**Atenção**: Todos os ficheiros C e Markdown devem ser gravados em codificação
+UTF-8<sup>[5](#fn5)</sup>.
+
+
+<a name="gamejam"></a>
+
+### Extensões opcionais, trabalho futuro e Global Game Jam
+
+Caso os alunos atinjam todos os objetivos pretendidos, é possível estender e
+melhorar o jogo de várias formas. A melhor forma de o fazer é durante a
+[Global Game Jam]. Não existem restrições sobre melhorias a fazer, desde que o
+jogo mantenha a suas premissas básicas:
+
+* Zombies vs. Humanos numa grelha 2D toroidal.
+* Implementado em C99 com bibliotecas C auxiliares.
+* O ponto de partida deve ser o código entregue a 21 de janeiro.
+
+Algumas sugestões:
+
+* Melhor IA, sobretudo da parte dos humanos.
+* Dar aos humanos alguma forma de se defenderem.
+* Agentes com propriedades individuais como energia, capacidade de movimento,
+  etc.
+* _Power-ups_.
+* Melhor integração com biblioteca preferida ([Ncurses], [Allegro5], [SDL2] ou
+  [Raylib] – infelizmente a [g2] não é apropriada para jogos "a sério"):
+  * Possibilitar controlo com o rato.
+  * Adicionar som.
+  * etc...
+
+Caso optem por melhorar o jogo, podem fazer nova entrega até 29 de janeiro (ou
+seja, logo após a [Global Game Jam]) para as melhorias e extensões serem tidas
+em conta no bónus da nota final do projeto.
+
+## Notas adicionais e material didático para desenvolvimento do projeto
+
+Esta secção apresenta algumas notas adicionais, bem como algum material
+didático para auxiliar no desenvolvimento do projeto.
 
 ### Divisão do código em vários ficheiros
 
@@ -894,36 +922,6 @@ componentes associadas com outras funcionalidades específicas.
         fazer e corrigir _bugs_ complicados. Caso o executável do projeto se
         chame `zombies`, o [GDB] pode ser usado para executar o programa da
         seguinte forma: `gdb ./zombies`.
-
-<a name="gamejam"></a>
-
-### Extensões opcionais, trabalho futuro e Global Game Jam
-
-Caso os alunos atinjam todos os objetivos pretendidos, é possível estender e
-melhorar o jogo de várias formas. A melhor forma de o fazer é durante a
-[Global Game Jam]. Não existem restrições sobre melhorias a fazer, desde que o
-jogo mantenha a suas premissas básicas:
-
-* Zombies vs. Humanos numa grelha 2D toroidal.
-* Implementado em C99 com bibliotecas C auxiliares.
-* O ponto de partida deve ser o código entregue a 21 de janeiro.
-
-Algumas sugestões:
-
-* Melhor IA, sobretudo da parte dos humanos.
-* Dar aos humanos alguma forma de se defenderem.
-* Agentes com propriedades individuais como energia, capacidade de movimento,
-  etc.
-* _Power-ups_.
-* Melhor integração com biblioteca preferida ([Ncurses], [Allegro5], [SDL2] ou
-  [Raylib] – infelizmente a [g2] não é apropriada para jogos "a sério"):
-  * Possibilitar controlo com o rato.
-  * Adicionar som.
-  * etc...
-
-Caso optem por melhorar o jogo, podem fazer nova entrega até 29 de janeiro (ou
-seja, logo após a [Global Game Jam]) para as melhorias e extensões serem tidas
-em conta no bónus da nota final do projeto.
 
 ## Honestidade académica
 
