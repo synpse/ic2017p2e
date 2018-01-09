@@ -109,60 +109,31 @@ do jogo deve ser atualizada imediatamente antes de ser solicitado _input_ a um
 jogador (pelo menos). Se a dada altura deixarem de existir agentes controlados
 pelo jogador, o programa entra em modo automático.
 
-## Desenvolvimento do projeto, objetivos e entrega
+## Objetivos, critério de avaliação e entrega
 
 O jogo deve ser desenvolvido em duas partes. Os alunos só devem passar para a
 segunda parte quando tiverem alcançado os objetivos da primeira parte.
 
-### Primeira parte
-
-#### Objetivos a atingir
+### Objectivos a atingir na primeira parte
 
 * Jogo deve funcionar como especificado.
 * Código deve compilar sem erros no compilador [GCC] e/ou [Clang] com as opções
   `-std=c99 -Wall -Wextra -Wpedantic`.
 * Código deve estar devidamente comentado e indentado.
 
-As seguintes limitações são aceitáveis e não serão penalizadas na primeira
-entrega:
+As seguintes limitações são aceitáveis enquanto os alunos estiverem a
+desenvolver a primeira parte
 
 * Tamanho do ambiente e número de agentes fixo após compilação: _X_=20, _Y_=20,
 _n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
   * Sugestão: usar constantes e ignorar valores lidos do ficheiro de
     configuração.
-* Código pode ser entregue num único ficheiro `.c`.
 * Visualização do jogo pode ser feita com código exemplo disponibilizado na
   secção [Visualização do jogo](#visualize).
 
-
-#### Critério de avaliação
-
-A primeira parte do projeto, que tem um peso de 4 valores na nota final da
-disciplina, será avaliada segundo os critérios indicados na
-[Tabela 1](#tabela1).
-
-<a name="tabela1"></a>
-
-**Tabela 1** - Critérios absolutos da 1ª parte do projeto.
-
-| Critério                                               | Peso      |
-|--------------------------------------------------------|-----------|
-| Funcionamento segundo especificações                   | 1 val.    |
-| Qualidade do código e das soluções<sup>[6](#fn6)</sup> | 0,6 val.  |
-| Indentação  e comentários                              | 0,5 val.  |
-| Compilação sem erros e _warnings_                      | 0,4 val.  |
-| Relatório                                              | 1 val.    |
-| Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 0,5 val.  |
-| Antecipação de objetivos da 2ª parte do projeto        | Bónus!    |
-
-A nota máxima da 1ª parte do projeto é de 4 valores, sendo que o bónus poderá
-servir apenas para compensar avaliações piores nos critérios principais.
-
-### Segunda parte
-
 <a name="objetivos2parte"></a>
 
-#### Objetivos a atingir
+### Objetivos a atingir na segunda parte
 
 * Tamanho da grelha e número de agentes variável após compilação, tal como
   especificado no ficheiro de configuração.
@@ -179,48 +150,26 @@ servir apenas para compensar avaliações piores nos critérios principais.
   * [Raylib] - Muito interessante, mas instalação no Ubuntu não é trivial (ver
     instruções no Wiki da [página no GitHub][Raylib-gh]).
 
-#### Critério de avaliação
+### Critério de avaliação
 
-A segunda parte do projeto, que tem um peso de 4 valores na nota final da
-disciplina, será avaliada usando duas tabelas distintas. A [Tabela 2](#tabela2)
-indica os critérios absolutos, que totalizam 4 valores:
+O projeto, que tem um peso de 8 valores na nota final da disciplina, será
+avaliado segundo os critérios indicados na [Tabela 1](#tabela1).
 
-<a name="tabela2"></a>
+<a name="tabela1"></a>
 
-**Tabela 2** - Critérios absolutos da 2ª parte do projeto.
+**Tabela 1** - Critérios de avaliação.
 
 | Critério                                               | Peso      |
 |--------------------------------------------------------|-----------|
-| Tamanho da grelha/número de agentes variável           | 1 val.    |
-| Visualização com recurso a biblioteca externa          | 1 val.    |
-| Documentação com [Doxygen]                             | 1 val.    |
-| Organização do projecto e _Makefile_                   | 1 val.    |
+| Funcionamento segundo especificações                   | 1,5 val.  |
+| Qualidade do código e das soluções<sup>[6](#fn6)</sup> | 1,0 val.  |
+| Comentários e documentação com [Doxygen]               | 1,0 val.  |
+| Relatório                                              | 1,0 val.  |
+| Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 0,5 val.  |
+| Tamanho da grelha/número de agentes variável           | 1,0 val.  |
+| Visualização com recurso a biblioteca externa          | 1,0 val.  |
+| Organização do projecto e _Makefile_                   | 1,0 val.  |
 | [Extensões opcionais e Global Game Jam](#gamejam)      | Bónus!    |
-
-A nota máxima da 2ª parte do projeto é de 4 valores, sendo que o bónus poderá
-servir apenas para compensar avaliações piores nos critérios principais. No
-entanto, como os critérios absolutos não fazem sentido sem que os objetivos da
-1ª parte do projeto tenham sido atingidos, a nota final da 2ª parte também
-depende de uma percentagem baseada nesses objetivos, tal como indicado na
-[Tabela 3](#tabela3).
-
-<a name="tabela3"></a>
-
-**Tabela 3** - Critérios relativos da 2ª parte do projeto.
-
-| Critério                                               | Peso      |
-|--------------------------------------------------------|-----------|
-| Funcionamento segundo especificações                   | 25,0%     |
-| Qualidade do código e das soluções<sup>[6](#fn6)</sup> | 15,0%     |
-| Indentação  e comentários                              | 12,5%     |
-| Compilação sem erros e _warnings_                      | 10,0%     |
-| Relatório                                              | 25,0%     |
-| Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 12,5%     |
-
-A nota final da 2ª parte do projeto é dada pelo total dos critérios absolutos
-multiplicado pela percentagem obtida nos critérios relativos.
-
-<a name="orgproj"></a>
 
 ### Entrega
 
@@ -261,7 +210,6 @@ Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
 **Atenção**: Todos os ficheiros C e Markdown devem ser gravados em codificação
 UTF-8<sup>[5](#fn5)</sup>.
 
-
 <a name="gamejam"></a>
 
 ### Extensões opcionais, trabalho futuro e Global Game Jam
@@ -296,6 +244,8 @@ em conta no bónus da nota final do projeto.
 
 Esta secção apresenta algumas notas adicionais, bem como algum material
 didático para auxiliar no desenvolvimento do projeto.
+
+<a name="orgproj"></a>
 
 ### Divisão do código em vários ficheiros
 
@@ -693,7 +643,7 @@ O ficheiro [showworld.h](code/showworld.h) define três tipos que devem ser
 usados para o desenvolvimento da parte de visualização do projeto, nomeadamente:
 
 * [`AGENT_TYPE`](code/showworld.h#L34) - Enumeração que define os diferentes
-  tipos de agente, tal como indicado na [Tabela 5](#tabela5).
+  tipos de agente, tal como indicado na [Tabela 3](#tabela3).
 * [`get_agent_info_at`](code/showworld.h#L44) - Tipo de função que retorna
   informação sobre um agente em dado local do mundo de jogo.
 * [`show_world`](code/showworld.h#L62) - Tipo de função que mostra/atualiza a
@@ -796,11 +746,11 @@ Por outras palavras, funções do tipo `get_agent_info_at` devem devolver um
 a variável `world` (apontador genérico para o mundo do jogo), bem como as
 coordenadas `(x,y)` da posição sobre a qual se pretende obter informação. O
 `unsigned int` com informação sobre um agente está organizado internamente
-como indicado na [Tabela 4](#tabela4).
+como indicado na [Tabela 2](#tabela2).
 
-<a name="tabela4"></a>
+<a name="tabela2"></a>
 
-**Tabela 4** - Informação sobre um agente tal como devolvida por funções do
+**Tabela 2** - Informação sobre um agente tal como devolvida por funções do
 tipo `get_agent_info_at`.
 
 | Bits            | _31–19_ | _18–3_       | _2_             | _1–0_          |
@@ -816,12 +766,12 @@ uso do aluno, caso assim o entenda.
 
 Os possíveis tipos de agente (posições 0 e 1) estão definidos numa enumeração
 de nome `AGENT_TYPE` no ficheiro [showworld.h](code/showworld.h#L34), tal como
-indicado na [Tabela 5](#tabela5). O tipo `Unknown` nunca deve ocorrer. Se tal
+indicado na [Tabela 3](#tabela3). O tipo `Unknown` nunca deve ocorrer. Se tal
 acontecer, significa que o jogo tem um _bug_.
 
-<a name="tabela5"></a>
+<a name="tabela3"></a>
 
-**Tabela 5** - Tipos de agentes definidos na enumeração
+**Tabela 3** - Tipos de agentes definidos na enumeração
 [`AGENT_TYPE`](code/showworld.h).
 
 | Tipo      | Significado            | Código (dec.)  | Código (bin.)  |
@@ -981,13 +931,14 @@ caso, e dependendo do editor usado, a codificação UTF-8 pode ser selecionada n
 janela de "Save as"/"Guardar como", ou então nas preferências do editor.
 
 <sup><a name="fn6">6</a></sup> A qualidade do código e das soluções inclui
-vários aspetos, como por exemplo: 1) evitar código "morto", que não faz nada,
-tal como variáveis ou funções nunca usadas; 2) as soluções desenvolvidas são
-[simples][KISS] e/ou eficientes; 3) o código está devidamente organizado e
-dividido em funções e ficheiros de forma lógicas e bem estruturada; 4) o código
-não acede a zonas não alocadas da memória, como por exemplo índices fora dos
-limites de um _array_; ou, 5) toda a memória alocada com as funções `malloc` e
-`calloc` é devidamente libertada com a função `free`.
+vários aspetos, como por exemplo: 1) código bem indentado; 2) evitar código
+"morto", que não faz nada, tal como variáveis ou funções nunca usadas; 3) as
+soluções desenvolvidas são [simples][KISS] e/ou eficientes; 4) código compila
+sem erros e _warnings_; 5) código devidamente organizado e dividido em funções
+e ficheiros de forma lógica e bem estruturada; 6) código não acede a zonas não
+alocadas da memória, como por exemplo índices fora dos limites de um _array_;
+ou, 7) toda a memória alocada com as funções `malloc` e `calloc` é devidamente
+libertada com a função `free`.
 
 <sup><a name="fn7">7</a></sup> Neste projeto não é necessário fazer _fork_
 deste repositório. Caso usem Git, os alunos podem inicializar um repositório
