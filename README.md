@@ -111,35 +111,19 @@ pelo jogador, o programa entra em modo automático.
 
 ## Objetivos, critério de avaliação e entrega
 
-O jogo deve ser desenvolvido em duas partes. Os alunos só devem passar para a
-segunda parte quando tiverem alcançado os objetivos da primeira parte.
+<a name="objetivos"></a>
 
-### Objectivos a atingir na primeira parte
+### Objectivos
 
 * Jogo deve funcionar como especificado.
 * Código deve compilar sem erros no compilador [GCC] e/ou [Clang] com as opções
   `-std=c99 -Wall -Wextra -Wpedantic`.
 * Código deve estar devidamente comentado e indentado.
-
-As seguintes limitações são aceitáveis enquanto os alunos estiverem a
-desenvolver a primeira parte
-
-* Tamanho do ambiente e número de agentes fixo após compilação: _X_=20, _Y_=20,
-_n<sub>z</sub>_=20, _n<sub>h</sub>_=20.
-  * Sugestão: usar constantes e ignorar valores lidos do ficheiro de
-    configuração.
-* Visualização do jogo pode ser feita com código exemplo disponibilizado na
-  secção [Visualização do jogo](#visualize).
-
-<a name="objetivos2parte"></a>
-
-### Objetivos a atingir na segunda parte
-
-* Tamanho da grelha e número de agentes variável após compilação, tal como
+* Tamanho da grelha e número de agentes não deve ser fixado no código, mas sim
   especificado no ficheiro de configuração.
-* Documentação do projeto com [Doxygen] (ver secção
+* Documentação do projeto deve ser feita com [Doxygen] (ver secção
   [Documentação automática do código com Doxygen](#doxygen)).
-* Organização do programa em vários ficheiros `.c` e `.h` com uso de
+* Programa deve estar organizado em vários ficheiros `.c` e `.h` com uso de
   _Makefile_ (ver secção [Divisão do código em vários ficheiros](#orgproj)).
 * Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica ou
   de jogos. Algumas sugestões:
@@ -244,6 +228,58 @@ em conta no bónus da nota final do projeto.
 
 Esta secção apresenta algumas notas adicionais, bem como algum material
 didático para auxiliar no desenvolvimento do projeto.
+
+
+### Sugestões para o desenvolvimento do projeto
+
+1. Devem começar o projeto a partir do código disponibilizado na pasta
+   [code](code). Se usarem [Git], o primeiro _commit_ do projeto pode conter
+   exatamente os ficheiros que compõem este exemplo<sup>[11](#fn11)</sup>.
+2. Ler e reler o enunciado até deixarem de existir dúvidas sobre o mesmo. Se as
+   mesmas persistirem, entrem em contato com o docente para esclarecimentos
+   adicionais.
+3. Fazer um plano de desenvolvimento do projeto e dividir bem o trabalho entre
+   os diferentes elementos do grupo.
+4. Organizar as estruturas e funções em ficheiros separados em volta de um
+   conceito comum: coordenada, agente, grelha, etc. Por exemplo, no caso das
+   coordenadas podem desenvolver um módulo (e.g. `coordenadas.c` e
+   `coordenadas.h`), onde definem o tipo `COORD` para coordenadas 2D em grelha
+   toroidal com vizinhança de Moore, e todas as funções que operam sobre
+   variáveis desse tipo (e.g. deslocamento, comparação de coordenadas,
+   distância, direção entre uma coordenada e outra, etc).
+5. As funções devem ser pequenas e com responsabilidades bem definidas. Se uma
+   função começar a ficar muito grande, devem considerar dividir a função em
+   várias funções.
+6. Existem uma série de ferramentas úteis que podem facilitar bastante o
+   desenvolvimento do projeto, como por exemplo:
+    * [Git] para colaboração e controlo de versões do código fonte.
+      * Tendo em conta a complexidade do projeto, que requer a experimentação
+        de diferentes abordagens e uma colaboração de facto entre todos os
+        membros do grupo, o uso de [Git] pode facilitar bastante o
+        desenvolvimento do projeto<sup>[7](#fn7),[11](#fn11)</sup>.
+    * [cppcheck] para verificação estática do código fonte.
+      * O [cppcheck] (e outras ferramentas similares) fazem uma verificação
+        mais aprofundada do código, detetando possíveis problemas como
+        operações entre tipos diferentes, ficheiros não devidamente fechados ou
+        acesso potencial a zonas inválidas da memória. Para o código deste
+        projeto, o [cppcheck] pode ser invocado na pasta do projeto da seguinte
+        forma: `cppcheck --enable=all --language=c --platform=unix64
+        --std=c99 *.c`.
+    * [Valgrind] para verificação dinâmica do programa.
+      * Ao contrário do [cppcheck], o [Valgrind] tenta detetar _bugs_ no
+        programa enquanto o mesmo está a ser executado. É especialmente útil
+        para descobrir erros de acesso à memória e verificar se toda a memória
+        alocada foi devidamente libertada. Caso o executável do projeto se
+        chame `zombies`, o [Valgrind] pode ser usado para verificar o programa
+        da seguinte forma: `valgrind --leak-check=full ./zombies`.
+    * [GDB] para execução passo a passo e _debugging_ do programa.
+      * Tal como discutido na aula 4, o [GDB] permite executar programas passo
+        a passo (desde que tenham sido compilados com a opção `-g`). Muitas
+        vezes é a única forma de se perceber o que o código está realmente a
+        fazer e corrigir _bugs_ complicados. Caso o executável do projeto se
+        chame `zombies`, o [GDB] pode ser usado para executar o programa da
+        seguinte forma: `gdb ./zombies`.
+7. Sugestao de divisão em duas partes (a fazer)
 
 <a name="orgproj"></a>
 
@@ -657,7 +693,7 @@ simples no terminal, podendo ser utilizada na 1ª parte do projeto. Na 2ª parte
 do projeto os alunos devem implementar a sua própria biblioteca de visualização
 do jogo, obedecendo aos tipos definidos em [showworld.h](code/showworld.h),
 mas fazendo uso de uma biblioteca de terceiros tal como indicado
-[anteriormente](#objetivos2parte).
+[anteriormente](#objetivos).
 
 O ficheiro [example.c](code/example.c) contém um exemplo de como usar a função
 `simple_show_world()`, obedecendo aos tipos definidos em
@@ -803,7 +839,7 @@ adequadas ou suficientes para o desenvolvimento do projeto.
 
 #### 2ª parte do projeto
 
-Um dos [objetivos](#objetivos2parte) para a 2ª parte do projeto consiste em
+Um dos [objetivos](#objetivos) para a 2ª parte do projeto consiste em
 implementar a visualização do mundo do jogo usando uma biblioteca de terceiros.
 Os alunos devem implementar a visualização na forma de uma biblioteca local que
 substituirá a biblioteca simples fornecida nos ficheiros
@@ -822,56 +858,6 @@ funcionalidades não discutidas nesta secção.
 
 **Figura 3** - Possível organização de um projeto, omitindo possíveis
 componentes associadas com outras funcionalidades específicas.
-
-### Sugestões para o desenvolvimento do projeto
-
-1. Devem começar o projeto a partir do código disponibilizado na pasta
-   [code](code). Se usarem [Git], o primeiro _commit_ do projeto pode conter
-   exatamente os ficheiros que compõem este exemplo<sup>[11](#fn11)</sup>.
-2. Ler e reler o enunciado até deixarem de existir dúvidas sobre o mesmo. Se as
-   mesmas persistirem, entrem em contato com o docente para esclarecimentos
-   adicionais.
-3. Fazer um plano de desenvolvimento do projeto e dividir bem o trabalho entre
-   os diferentes elementos do grupo.
-4. Organizar as estruturas e funções em ficheiros separados em volta de um
-   conceito comum: coordenada, agente, grelha, etc. Por exemplo, no caso das
-   coordenadas podem desenvolver um módulo (e.g. `coordenadas.c` e
-   `coordenadas.h`), onde definem o tipo `COORD` para coordenadas 2D em grelha
-   toroidal com vizinhança de Moore, e todas as funções que operam sobre
-   variáveis desse tipo (e.g. deslocamento, comparação de coordenadas,
-   distância, direção entre uma coordenada e outra, etc).
-5. As funções devem ser pequenas e com responsabilidades bem definidas. Se uma
-   função começar a ficar muito grande, devem considerar dividir a função em
-   várias funções.
-6. Existem uma série de ferramentas úteis que podem facilitar bastante o
-   desenvolvimento do projeto, como por exemplo:
-    * [Git] para colaboração e controlo de versões do código fonte.
-      * Tendo em conta a complexidade do projeto, que requer a experimentação
-        de diferentes abordagens e uma colaboração de facto entre todos os
-        membros do grupo, o uso de [Git] pode facilitar bastante o
-        desenvolvimento do projeto<sup>[7](#fn7),[11](#fn11)</sup>.
-    * [cppcheck] para verificação estática do código fonte.
-      * O [cppcheck] (e outras ferramentas similares) fazem uma verificação
-        mais aprofundada do código, detetando possíveis problemas como
-        operações entre tipos diferentes, ficheiros não devidamente fechados ou
-        acesso potencial a zonas inválidas da memória. Para o código deste
-        projeto, o [cppcheck] pode ser invocado na pasta do projeto da seguinte
-        forma: `cppcheck --enable=all --language=c --platform=unix64
-        --std=c99 *.c`.
-    * [Valgrind] para verificação dinâmica do programa.
-      * Ao contrário do [cppcheck], o [Valgrind] tenta detetar _bugs_ no
-        programa enquanto o mesmo está a ser executado. É especialmente útil
-        para descobrir erros de acesso à memória e verificar se toda a memória
-        alocada foi devidamente libertada. Caso o executável do projeto se
-        chame `zombies`, o [Valgrind] pode ser usado para verificar o programa
-        da seguinte forma: `valgrind --leak-check=full ./zombies`.
-    * [GDB] para execução passo a passo e _debugging_ do programa.
-      * Tal como discutido na aula 4, o [GDB] permite executar programas passo
-        a passo (desde que tenham sido compilados com a opção `-g`). Muitas
-        vezes é a única forma de se perceber o que o código está realmente a
-        fazer e corrigir _bugs_ complicados. Caso o executável do projeto se
-        chame `zombies`, o [GDB] pode ser usado para executar o programa da
-        seguinte forma: `gdb ./zombies`.
 
 ## Honestidade académica
 
