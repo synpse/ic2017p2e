@@ -102,10 +102,12 @@ clicar num botão antes de se dar início à próxima _turn_.
 
 #### Modo interativo
 
-Neste modo, cada vez que um agente controlado pelo jogador é chamado a agir,
-o programa fica a aguardar o _input_ do jogador sobre que ação tomar. A
-visualização do jogo deve ser atualizada imediatamente antes de ser solicitado
-_input_ a um jogador (pelo menos).
+Este modo é semelhante ao automático, apenas com duas pequenas diferenças: 1)
+cada vez que um agente controlado pelo jogador é chamado a agir, o programa
+fica a aguardar o _input_ do jogador sobre que ação tomar; e, 2) a visualização
+do jogo deve ser atualizada imediatamente antes de ser solicitado _input_ a um
+jogador (pelo menos). Se a dada altura deixarem de existir agentes controlados
+pelo jogador, o programa entra em modo automático.
 
 ## Desenvolvimento do projeto
 
