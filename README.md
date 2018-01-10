@@ -856,7 +856,7 @@ obedece de igual forma à interface `showworld.h`.
 **Figura 3** - Possível organização de um projeto, omitindo possíveis
 componentes associadas com outras funcionalidades específicas.
 
-<a name="doygen"></a>
+<a name="doxygen"></a>
 
 ### Documentação automática do código com Doxygen
 
