@@ -113,7 +113,7 @@ pelo jogador, o programa entra em modo automático.
 
 <a name="objetivos"></a>
 
-### Objectivos
+### Objetivos
 
 * Jogo deve funcionar como especificado.
 * Código deve compilar sem erros no compilador [GCC] e/ou [Clang] com as opções
@@ -229,7 +229,6 @@ em conta no bónus da nota final do projeto.
 Esta secção apresenta algumas notas adicionais, bem como algum material
 didático para auxiliar no desenvolvimento do projeto.
 
-
 ### Sugestões para o desenvolvimento do projeto
 
 1. Devem começar o projeto a partir do código disponibilizado na pasta
@@ -238,19 +237,26 @@ didático para auxiliar no desenvolvimento do projeto.
 2. Ler e reler o enunciado até deixarem de existir dúvidas sobre o mesmo. Se as
    mesmas persistirem, entrem em contato com o docente para esclarecimentos
    adicionais.
-3. Fazer um plano de desenvolvimento do projeto e dividir bem o trabalho entre
-   os diferentes elementos do grupo.
-4. Organizar as estruturas e funções em ficheiros separados em volta de um
+3. Fazer um plano de desenvolvimento do projeto. As seguintes limitações são
+   aceitáveis numa primeira fase: 1) fixar no código (usando constantes) o
+   tamanho do mundo de jogo, o número de agentes, e restantes parâmetros de
+   configuração do jogo; e, 2) usar o código exemplo disponibilizado na secção [Visualização do jogo](#visualize) para visualização do mundo de jogo. Numa
+   segunda fase, quando os básicos estiverem todos a funcionar, podem então: 1)
+   implementar a leitura do ficheiro INI; 2) usar alocação/libertação de
+   memória para terem tamanhos variáveis do mundo e número de agentes; e, 3)
+   implementar visualização com uma biblioteca gráfica externa.
+4. Dividir bem o trabalho entre os diferentes elementos do grupo.
+5. Organizar as estruturas e funções em ficheiros separados em volta de um
    conceito comum: coordenada, agente, grelha, etc. Por exemplo, no caso das
    coordenadas podem desenvolver um módulo (e.g. `coordenadas.c` e
    `coordenadas.h`), onde definem o tipo `COORD` para coordenadas 2D em grelha
    toroidal com vizinhança de Moore, e todas as funções que operam sobre
    variáveis desse tipo (e.g. deslocamento, comparação de coordenadas,
    distância, direção entre uma coordenada e outra, etc).
-5. As funções devem ser pequenas e com responsabilidades bem definidas. Se uma
+6. As funções devem ser pequenas e com responsabilidades bem definidas. Se uma
    função começar a ficar muito grande, devem considerar dividir a função em
    várias funções.
-6. Existem uma série de ferramentas úteis que podem facilitar bastante o
+7. Existem uma série de ferramentas úteis que podem facilitar bastante o
    desenvolvimento do projeto, como por exemplo:
     * [Git] para colaboração e controlo de versões do código fonte.
       * Tendo em conta a complexidade do projeto, que requer a experimentação
@@ -279,7 +285,6 @@ didático para auxiliar no desenvolvimento do projeto.
         fazer e corrigir _bugs_ complicados. Caso o executável do projeto se
         chame `zombies`, o [GDB] pode ser usado para executar o programa da
         seguinte forma: `gdb ./zombies`.
-7. Sugestao de divisão em duas partes (a fazer)
 
 <a name="orgproj"></a>
 
