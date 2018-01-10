@@ -18,10 +18,10 @@
 
 /**
  * @file
- * This file is an example of: a) how to use the API defined in the showworld.h
- * header (mandatory for the project); and, b) how to use the concrete simple
- * implementation of the API (provided in the simple_showworld.h and
- * simple_showworld.c files).
+ * This file is an example of: a) how to use the API defined in the
+ * showworld.h header (mandatory for the project); and, b) how to use the
+ * concrete simple implementation of the API (provided by the
+ * showworld_simple.c file).
  *
  * @author Nuno Fachada
  * @date 2018
@@ -74,7 +74,7 @@ unsigned int example_get_ag_info(void *world, unsigned int x, unsigned int y);
  * This `main` function is only an example of: a) how to use the API defined in
  * the showworld.h header (mandatory for the project); and, b) how to use the
  * concrete simple implementation of the API (provided in the
- * simple_showworld.h and simple_showworld.c files).
+ * showworld_simple.c file).
  *
  * @return Always zero.
  * */
