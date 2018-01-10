@@ -24,51 +24,51 @@
  * simple_showworld.c files).
  *
  * @author Nuno Fachada
- * @date 2017
+ * @date 2018
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
  #include <stdio.h>
  #include <stdlib.h>
  #include <time.h>
- #include "simple_showworld.h"
+ #include "showworld.h"
 
-  /** Horizontal world size. */
- #define WORLD_X 20
+/** Horizontal world size. */
+#define WORLD_X 20
 
- /** Vertical world size. */
- #define WORLD_Y 20
+/** Vertical world size. */
+#define WORLD_Y 20
 
- /**
-  * Structure defining agent properties.
-  *
-  * @note This is an example which will probably not work in a fully functional
-  * game. Students should develop their own implementation of
-  * ::get_agent_info_at() and agent/world data structures.
-  * */
- typedef struct {
-     AGENT_TYPE type;        /**< Agent type.        */
-     unsigned char playable; /**< Is agent playable? */
-     unsigned short id;      /**< Agent ID.          */
- } AGENT;
+/**
+ * Structure defining agent properties.
+ *
+ * @note This is an example which will probably not work in a fully functional
+ * game. Students should develop their own implementation of
+ * ::get_agent_info_at() and agent/world data structures.
+ * */
+typedef struct {
+    AGENT_TYPE type;        /**< Agent type.        */
+    unsigned char playable; /**< Is agent playable? */
+    unsigned short id;      /**< Agent ID.          */
+} AGENT;
 
- /**
-  * Structure defining world properties.
-  *
-  * @note This is an example which will probably not work in a fully functional
-  * game. Students should develop their own implementation of
-  * ::get_agent_info_at() and agent/world data structures.
-  * */
- typedef struct {
-     AGENT *grid;        /**< World is a grid composed of agents. */
-     unsigned int xsize; /**< Horizontal world size.              */
-     unsigned int ysize; /**< Vertical world size.                */
- } WORLD;
+/**
+ * Structure defining world properties.
+ *
+ * @note This is an example which will probably not work in a fully functional
+ * game. Students should develop their own implementation of
+ * ::get_agent_info_at() and agent/world data structures.
+ * */
+typedef struct {
+    AGENT *grid;        /**< World is a grid composed of agents. */
+    unsigned int xsize; /**< Horizontal world size.              */
+    unsigned int ysize; /**< Vertical world size.                */
+} WORLD;
 
- /* This function is an implementation of the definition provided by the
-  * ::get_agent_info_at() function pointer. It only works for AGENT and WORLD
-  * example structures defined in this file. */
- unsigned int example_get_ag_info(void *world, unsigned int x, unsigned int y);
+/* This function is an implementation of the definition provided by the
+ * ::get_agent_info_at() function pointer. It only works for AGENT and WORLD
+ * example structures defined in this file. */
+unsigned int example_get_ag_info(void *world, unsigned int x, unsigned int y);
 
 /**
  * This `main` function is only an example of: a) how to use the API defined in
@@ -83,11 +83,17 @@ int main() {
     /* An instance of a WORLD structure. */
     WORLD my_world;
 
+    /* An instance of a SHOWWORLD world display. */
+    SHOWWORLD *sw = NULL;
+
     /* A by-dimensional array of agents, representing agents in a grid. */
     AGENT agent_grid[WORLD_X][WORLD_Y];
 
     /* Number of agents created so far. */
     unsigned int nagents = 0;
+
+    /* Initialize world display. */
+    sw = showworld_new(WORLD_X, WORLD_Y, example_get_ag_info);
 
     /* Initialize random number generator. */
     srand(time(NULL));
@@ -142,7 +148,14 @@ int main() {
     /* Show world using the simple_show_world() function. This function can  */
     /* be used in the first part of the project.                             */
     /* ********************************************************************* */
-    simple_show_world(&my_world, WORLD_X, WORLD_Y, example_get_ag_info);
+    showworld_update(sw, &my_world);
+
+    /* Before finishing, ask user to press ENTER. */
+    printf("Press ENTER to continue...");
+    getchar();
+
+    /* Destroy world display. */
+    showworld_destroy(sw);
 
     /* Bye. */
     return 0;

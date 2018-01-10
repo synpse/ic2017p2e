@@ -24,7 +24,7 @@
  * @note Students should **not** change this file.
  *
  * @author Nuno Fachada
- * @date 2017
+ * @date 2018
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
@@ -41,11 +41,13 @@ typedef enum {
     Unknown = 0x3  /**< Zombie agent present. */
 } AGENT_TYPE;
 
+typedef struct showworld SHOWWORLD;
+
 /**
  * A pointer to a function which returns information about an agent located in
  * the simulation `world` at coordinates (_x_,_y_).
  *
- * @param world Generic pointer to object representing the simulation world.
+ * @param w Generic pointer to object representing the simulation world.
  * @param x Horizontal coordinate of the simulation world from where to fetch
  * the agent information.
  * @param y Vertical coordinate of the simulation world from where to fetch
@@ -55,23 +57,17 @@ typedef enum {
  * ID). Bits 19-31 are available for student-defined agent extensions.
  * */
 typedef unsigned int (*get_agent_info_at)(
-    void *world,
+    void *w,
     unsigned int x,
     unsigned int y);
 
-/**
- * A pointer to a function which shows/updates the visualization the current
- * state of the simulation world.
- *
- * @param world Generic pointer to object representing the simulation world.
- * @param xdim Horizontal dimension of the simulation world (number of columns).
- * @param ydim Vertical dimension of the simulation world (number of rows).
- * @param ag_info Pointer to function of type ::get_agent_info_at().
- * */
-typedef void (*show_world)(
-    void *world,
+SHOWWORLD *showworld_new(
     unsigned int xdim,
     unsigned int ydim,
-    get_agent_info_at ag_info);
+    get_agent_info_at aginfo_func);
+
+void showworld_destroy(SHOWWORLD *sw);
+
+void showworld_update(SHOWWORLD *sw, void *w);
 
 #endif

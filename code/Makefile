@@ -29,16 +29,16 @@ PROGRAM=example
 # is generated when "make" is executed. Because no explicit recipe is given,
 # the "make" program will use the implicit rule for linking all object files
 # into an executable program.
-$(PROGRAM): $(PROGRAM).o simple_showworld.o
+$(PROGRAM): $(PROGRAM).o showworld_simple.o
 
 # Rule to generate program object. Again, because no explicit recipe is given,
 # "make" will use an implicit rule for properly compiling $(PROGRAM).o.
-$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
+$(PROGRAM).o: $(PROGRAM).c showworld.h
 
 # Rule to generate simple_showworld.o object. Again, because no explicit recipe
 # is given, "make" will use an implicit rule for properly compiling
 # simple_showworld.o.
-simple_showworld.o: simple_showworld.c simple_showworld.h
+showworld_simple.o: showworld_simple.c showworld.h
 
 # The following rule cleans all compiled (objects) and linked (executable
 # program) files. Because "clean" is not actually the name of a file, it is

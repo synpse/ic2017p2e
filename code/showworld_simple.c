@@ -29,37 +29,47 @@
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
-#include "simple_showworld.h"
+#include "showworld.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-/**
- * Simple function which shows/updates an ASCII-based visualization of the
- * current state of the simulation world. This function follows the type
- * definition ::show_world() specified in showworld.h.
- *
- * @param world Generic pointer to object representing the simulation world.
- * @param xdim Horizontal dimension of the simulation world (number of columns).
- * @param ydim Vertical dimension of the simulation world (number of rows).
- * @param ag_info Pointer to function which obtains the type of agent in the
- * simulation world at coordinates (_x_,_y_).
- * */
-void simple_show_world(
-    void *world,
+struct showworld {
+    unsigned int xdim;
+    unsigned int ydim;
+    get_agent_info_at aginfo_func;
+};
+
+SHOWWORLD *showworld_new(
     unsigned int xdim,
     unsigned int ydim,
-    get_agent_info_at ag_info) {
+    get_agent_info_at aginfo_func) {
+
+    SHOWWORLD *sw = NULL;
+    sw = malloc(sizeof(SHOWWORLD));
+    sw->xdim = xdim;
+    sw->ydim = ydim;
+    sw->aginfo_func = aginfo_func;
+    return sw;
+
+}
+
+void showworld_destroy(SHOWWORLD *sw) {
+    free(sw);
+}
+
+void showworld_update(SHOWWORLD *sw, void *w) {
 
     printf("\n");
 
     /* Cycle through all the rows */
-    for (unsigned int y = 0; y < ydim; ++y) {
+    for (unsigned int y = 0; y < sw->ydim; ++y) {
 
         /* Cycle through all the columns for the current row */
-        for (unsigned int x = 0; x < xdim; ++x) {
+        for (unsigned int x = 0; x < sw->xdim; ++x) {
 
             /* Get state of the world (in bit packed fashion) using the user
                supplied function. */
-            unsigned int item = ag_info(world, x, y);
+            unsigned int item = sw->aginfo_func(w, x, y);
 
             /* Extract the agent type (2 bits). */
             AGENT_TYPE ag_type = item & 0x3;
