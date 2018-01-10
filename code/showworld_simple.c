@@ -18,11 +18,11 @@
 
 /**
  * @file
- * Implementation of a simple function which shows/updates an ASCII-based
- * visualization of the current state of the simulation world.
+ * Implementation of the interface defined in showworld.h which displays an
+ * ASCII-based visualization of the current state of the simulation world.
  *
- * @note Students should change or replace this file in the second part of the
- * project.
+ * @note Students should change or replace this file with a new implementation
+ * making use of graphical or game library.
  *
  * @author Nuno Fachada
  * @date 2018
