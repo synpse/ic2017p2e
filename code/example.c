@@ -164,7 +164,7 @@ int main() {
 /**
  * This function is an implementation of the ::get_agent_info_at() function
  * definition. It only works for ::AGENT and ::WORLD structures defined in this
- * example (in file example.h).
+ * example.
  *
  * It basically receives a pointer to a ::WORLD structure, obtains the AGENT
  * structure in the given coordinates, and returns the agent information in a
@@ -174,7 +174,7 @@ int main() {
  * game. Students should develop their own implementation of
  * ::get_agent_info_at() and agent/world data structures.
  *
- * @param world Generic pointer to object representing the simulation world.
+ * @param w Generic pointer to object representing the simulation world.
  * @param x Horizontal coordinate of the simulation world from where to fetch
  * the agent information.
  * @param y Vertical coordinate of the simulation world from where to fetch
@@ -183,13 +183,13 @@ int main() {
  * follows: bits 0-1 (agent type), bit 2 (is agent playable), bits 3-18 (agent
  * ID). Bits 19-31 are available for student-defined agent extensions.
  * */
-unsigned int example_get_ag_info(void *world, unsigned int x, unsigned int y) {
+unsigned int example_get_ag_info(void *w, unsigned int x, unsigned int y) {
 
     /* The agent information to return. */
     unsigned int ag_info = 0;
 
     /* Convert generic pointer to world to a WORLD object. */
-    WORLD *my_world = (WORLD *) world;
+    WORLD *my_world = (WORLD *) w;
 
     /* Check if the given (x,y) coordinates are within bounds of the world. */
     if ((x >= my_world->xsize) || (y >= my_world->ysize)) {
