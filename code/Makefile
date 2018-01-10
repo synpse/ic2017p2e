@@ -35,9 +35,9 @@ $(PROGRAM): $(PROGRAM).o showworld_simple.o
 # "make" will use an implicit rule for properly compiling $(PROGRAM).o.
 $(PROGRAM).o: $(PROGRAM).c showworld.h
 
-# Rule to generate simple_showworld.o object. Again, because no explicit recipe
+# Rule to generate showworld_simple.o object. Again, because no explicit recipe
 # is given, "make" will use an implicit rule for properly compiling
-# simple_showworld.o.
+# showworld_simple.o.
 showworld_simple.o: showworld_simple.c showworld.h
 
 # The following rule cleans all compiled (objects) and linked (executable

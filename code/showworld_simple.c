@@ -25,7 +25,7 @@
  * project.
  *
  * @author Nuno Fachada
- * @date 2017
+ * @date 2018
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
@@ -33,12 +33,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* The implementation of `SHOWWORLD` type used in this simple text-based world
+ * visualization code. In this simple case, we only need to keep track of the
+ * world dimensions and of the function pointer which knows how to read an
+ * agent from the world data structure.
+ *
+ * For a more complex implementation, for example based on the g2 library,
+ * it would also be necessary to keep the g2 device.
+ * */
 struct showworld {
     unsigned int xdim;
     unsigned int ydim;
     get_agent_info_at aginfo_func;
 };
 
+/* Create a new display/visualization object for the simulation world.
+ *
+ * This function obeys the `showworld_new()` prototype defined in
+ * `showworld.h`. */
 SHOWWORLD *showworld_new(
     unsigned int xdim,
     unsigned int ydim,
@@ -53,10 +65,18 @@ SHOWWORLD *showworld_new(
 
 }
 
+/* Destroy a display/visualization object for the simulation world.
+ *
+ * This function obeys the `showworld_destroy()` prototype defined in
+ * `showworld.h`. */
 void showworld_destroy(SHOWWORLD *sw) {
     free(sw);
 }
 
+/* Update the simulation world display/visualization.
+ *
+ * This function obeys the `showworld_update()` prototype defined in
+ * `showworld.h`. */
 void showworld_update(SHOWWORLD *sw, void *w) {
 
     printf("\n");

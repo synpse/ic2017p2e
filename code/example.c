@@ -28,10 +28,10 @@
  * @copyright [GNU General Public License version 3 (GPLv3)](http://www.gnu.org/licenses/gpl.html)
  * */
 
- #include <stdio.h>
- #include <stdlib.h>
- #include <time.h>
- #include "showworld.h"
+#include "showworld.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 /** Horizontal world size. */
 #define WORLD_X 20

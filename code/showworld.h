@@ -18,10 +18,10 @@
 
 /**
  * @file
- * Header file for generic function to show/update the visualization of the
- * current state of the simulation world.
+ * Header file which defines the interface to create, update and destroy the
+ * visualization/display of the simulation world.
  *
- * @note Students should **not** change this file.
+ * @note Students must use this file but **cannot** change it.
  *
  * @author Nuno Fachada
  * @date 2018
@@ -32,7 +32,8 @@
 #define SHOWWORLD_H
 
 /**
- * Type of agent.
+ * Enumeration which defines a type of agent so that the visualization code
+ * knows what to display.
  * */
 typedef enum {
     None    = 0x0, /**< No agent present.     */
@@ -41,13 +42,19 @@ typedef enum {
     Unknown = 0x3  /**< Zombie agent present. */
 } AGENT_TYPE;
 
+/**
+ * The `SHOWWORLD` type is a structure, but the exact fields of that structure
+ * are defined in the .c file which implements the interface defined in this
+ * .h file. In C this is called a _forward declaration_.
+ * */
 typedef struct showworld SHOWWORLD;
 
 /**
  * A pointer to a function which returns information about an agent located in
  * the simulation `world` at coordinates (_x_,_y_).
  *
- * @param w Generic pointer to object representing the simulation world.
+ * @param w Generic pointer to object representing the simulation world. The
+ * actual object type should be defined by each project group.
  * @param x Horizontal coordinate of the simulation world from where to fetch
  * the agent information.
  * @param y Vertical coordinate of the simulation world from where to fetch
@@ -61,13 +68,32 @@ typedef unsigned int (*get_agent_info_at)(
     unsigned int x,
     unsigned int y);
 
+/**
+ * Create a new `SHOWWORLD` object for displaying the game.
+ *
+ * @param xdim Horizontal dimension of the simulation world (number of columns).
+ * @param ydim Vertical dimension of the simulation world (number of rows).
+ * @param aginfo_func Pointer to function of type ::get_agent_info_at().
+ * @return A new `SHOWWORLD` object for displaying the game.
+ * */
 SHOWWORLD *showworld_new(
     unsigned int xdim,
     unsigned int ydim,
     get_agent_info_at aginfo_func);
 
+/**
+ * Destroy a `SHOWWORLD` object.
+ *
+ * @param sw `SHOWWORLD` object to destroy.
+ * */
 void showworld_destroy(SHOWWORLD *sw);
 
+/**
+ * Updates the display of the simulation world.
+ *
+ * @param sw Display object.
+ * @param w World object (should be defined by each project group).
+ * */
 void showworld_update(SHOWWORLD *sw, void *w);
 
 #endif
