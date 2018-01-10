@@ -353,15 +353,16 @@ De modo a que os tipos (_classes_) e funções que operam sobre esses tipos
 colocar as declarações de tipos e os protótipos (cabeçalhos) das funções
 associadas no ficheiro `.h` (_header file_), e posteriormente incluir
 (`#include`) esse ficheiro no código no qual se pretende ter acesso à
-funcionalidade desenvolvida. Cada ficheiro `.h` tem um ficheiro `.c`
-correspondente, onde são colocados os corpos (definições) das funções, bem como
-tipos e variáveis que apenas tenham relevância no contexto desse ficheiro (ou
-seja, que não valha a pena tornar públicos). O ficheiro `.h` pode ser
-considerado a parte pública do módulo (que pode ser usada por outro código),
-enquanto o ficheiro `.c` contém a parte privada. A parte pública é também
-denominada de interface ou API<sup>[8](#fn8)</sup> do módulo/biblioteca.
+funcionalidade desenvolvida. Cada ficheiro `.h` tem um (ou mais) ficheiro(s)
+`.c` correspondente(s), onde são colocados os corpos (definições) das funções,
+bem como tipos e variáveis que apenas tenham relevância no contexto desse
+ficheiro (ou seja, que não valha a pena tornar públicos). O ficheiro `.h` pode
+ser considerado a parte pública do módulo (que pode ser usada por outro
+código), enquanto o ficheiro `.c` contém a parte privada. A parte pública é
+também denominada de **interface** ou API<sup>[8](#fn8)</sup> do
+módulo/biblioteca.
 
-O exemplo dado na secção [Visualização do jogo](#visualize) segue esta
+O exemplo dado na secção [Código exemplo](#examplecode) segue esta
 abordagem. As seguintes referências oferecem informação mais detalhada sobre
 este tópico: [\[4\]](#ref4), [\[5\]](#ref5), [\[6\]](#ref6), [\[7\]](#ref7),
 [\[8\]](#ref8), [\[9\]](#ref9) e [\[10\]](#ref10).
@@ -392,7 +393,7 @@ pasta [code](code), que contém dois ficheiros `.c`, o comando de construção
 (compilação e ligação) será o seguinte:
 
 ```
-$ gcc -Wall -Wextra -Wpedantic -std=c99 -o example example.c simple_showworld.c
+$ gcc -Wall -Wextra -Wpedantic -std=c99 -o example example.c showworld_simple.c
 ```
 
 Neste caso são apenas dois ficheiros, mas regra geral os projetos podem conter
@@ -402,19 +403,19 @@ aqueles que não tenham sido alterados, tornando o processo de compilação muit
 lento. Desta forma, é comum realizar as fases de compilação e ligação de forma
 separada. A opção `-c` indica ao compilador para apenas compilar o ficheiro
 `.c` especificado. No caso do exemplo disponibilizado, os seguintes comandos
-vão compilar separadamente os ficheiros `example.c` e `simple_showworld.c`,
-dando origem aos ficheiros `example.o` e `simple_showworld.o`:
+vão compilar separadamente os ficheiros `example.c` e `showworld_simple.c`,
+dando origem aos ficheiros `example.o` e `showworld_simple.o`:
 
 ```
 $ gcc -Wall -Wextra -Wpedantic -std=c99 -c example.c
-$ gcc -Wall -Wextra -Wpedantic -std=c99 -c simple_showworld.c
+$ gcc -Wall -Wextra -Wpedantic -std=c99 -c showworld_simple.c
 ```
 
 Agora podemos ligar os dois ficheiros objeto, de modo a criar o ficheiro
 executável:
 
 ```
-$ gcc example.o simple_showworld.o -o example
+$ gcc example.o showworld_simple.o -o example
 ```
 
 É de realçar que as opções típicas de compilação, `-Wall -Wextra -Wpedantic
@@ -471,14 +472,14 @@ possível `Makefile` para o exemplo disponibilizado na pasta [code](code) terá 
 seguinte conteúdo:
 
 ```
-example: example.o simple_showworld.o
-	gcc example.o simple_showworld.o -o example
+example: example.o showworld_simple.o
+	gcc example.o showworld_simple.o -o example
 
-example.o: example.c simple_showworld.h showworld.h
+example.o: example.c showworld.h
 	gcc -Wall -Wextra -Wpedantic -std=c99 -g -c -o example.o example.c
 
-simple_showworld.o: simple_showworld.c simple_showworld.h
-	gcc -Wall -Wextra -Wpedantic -std=c99 -g -c -o simple_showworld.o simple_showworld.c
+showworld_simple.o: showworld_simple.c
+	gcc -Wall -Wextra -Wpedantic -std=c99 -g -c -o showworld_simple.o showworld_simple.c
 
 clean:
 	rm -f example *.o
@@ -486,7 +487,7 @@ clean:
 
 A primeira regra é invocada por omissão quando o `make` é executado sem
 argumentos. O _target_ desta regra é o ficheiro executável `example`, que
-depende dos ficheiros `example.o` e `simple_showworld.o` para ser gerado (neste
+depende dos ficheiros `example.o` e `showworld_simple.o` para ser gerado (neste
 caso através de ligação/_linking_). Uma vez que inicialmente nenhum dos
 ficheiros objeto existe, a receita dessa regra não pode ser imediatamente
 executada. O `make` vai então procurar outras regras cujo _target_ tem o nome
@@ -503,7 +504,7 @@ Posteriormente, se modificarmos apenas o ficheiro `example.c` e voltarmos a
 executar o `make`, apenas a segunda regra (compilação de `example.c`) e a
 primeira regra (ligação dos ficheiros `.o`) serão executadas. O `make` sabe que
 não é necessário voltar a gerar, através de compilação, o ficheiro
-`simple_showworld.o`, uma vez que nenhum dos seus pré-requisitos foi
+`showworld_simple.o`, uma vez que nenhum dos seus pré-requisitos foi
 modificado.
 
 O comando `make` pode aceitar como argumentos o nome dos _targets_. Ou seja, se
@@ -523,14 +524,14 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
 PROGRAM=example
 
-$(PROGRAM): $(PROGRAM).o simple_showworld.o
-	$(CC) $(PROGRAM).o simple_showworld.o -o $(PROGRAM)
+$(PROGRAM): $(PROGRAM).o showworld_simple.o
+	$(CC) $(PROGRAM).o showworld_simple.o -o $(PROGRAM)
 
-$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
+$(PROGRAM).o: $(PROGRAM).c showworld.h
 	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
 
-simple_showworld.o: simple_showworld.c simple_showworld.h
-	$(CC) $(CFLAGS) -c -o simple_showworld.o simple_showworld.c
+showworld_simple.o: showworld_simple.c
+	$(CC) $(CFLAGS) -c -o showworld_simple.o showworld_simple.c
 
 clean:
 	rm -f $(PROGRAM) *.o
@@ -556,16 +557,16 @@ CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
 PROGRAM=example
 
 # Regra para geral executavel
-$(PROGRAM): $(PROGRAM).o simple_showworld.o
-	$(CC) $(PROGRAM).o simple_showworld.o -o $(PROGRAM)
+$(PROGRAM): $(PROGRAM).o showworld_simple.o
+	$(CC) $(PROGRAM).o showworld_simple.o -o $(PROGRAM)
 
 # Regra para gerar o ficheiro objeto com o mesmo nome do executavel
-$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
+$(PROGRAM).o: $(PROGRAM).c showworld.h
 	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
 
-# Regra para gerar o ficheiro objeto simple_showworld.o
-simple_showworld.o: simple_showworld.c simple_showworld.h
-	$(CC) $(CFLAGS) -c -o simple_showworld.o simple_showworld.c
+# Regra para gerar o ficheiro objeto showworld_simple.o
+showworld_simple.o: showworld_simple.c
+	$(CC) $(CFLAGS) -c -o showworld_simple.o showworld_simple.c
 
 # Regra para limpar todos os ficheiros gerados (executavel e objetos)
 .PHONY: clean
@@ -611,15 +612,15 @@ LDLIBS=
 PROGRAM=example
 
 # Regra para geral executavel (deixar make fazer a receita)
-$(PROGRAM): $(PROGRAM).o simple_showworld.o
+$(PROGRAM): $(PROGRAM).o showworld_simple.o
 
 # Regra para gerar o ficheiro objeto com o mesmo nome do executavel (deixar
 # make fazer a receita)
-$(PROGRAM).o: $(PROGRAM).c simple_showworld.h showworld.h
+$(PROGRAM).o: $(PROGRAM).c showworld.h
 
-# Regra para gerar o ficheiro objeto simple_showworld.o (deixar make fazer a
+# Regra para gerar o ficheiro objeto showworld_simple.o (deixar make fazer a
 # receita)
-simple_showworld.o: simple_showworld.c simple_showworld.h
+showworld_simple.o: showworld_simple.c
 
 # Regra para limpar todos os ficheiros gerados (executavel e objetos)
 .PHONY: clean
@@ -636,6 +637,224 @@ suficientes para uma boa automatização da _build_ do jogo.
 de linha de comandos (_Shell_/Bash), a linguagem das `Makefiles` é declarativa.
 Ou seja, ao contrário dessas linguagens, a linguagem das `Makefile` descreve o
 resultado desejado, mas não necessariamente os passos para o obter.
+
+<a name="examplecode"></a>
+
+### Código exemplo
+
+A pasta [code](code) contém codigo auxiliar para desenhar o mundo do jogo. A
+[Figura 1](#figura1) mostra como o código está organizado.
+
+<a name="figura1"></a>
+
+![arquitectura](https://user-images.githubusercontent.com/3018963/34787896-c2f7e734-f630-11e7-8947-2ac796bad33d.png)
+
+**Figura 1** - Organização do código auxiliar para desenhar o mundo do jogo no
+ecrã.
+
+O ficheiro [showworld.h](code/showworld.h) declara seis tipos e/ou funções que
+devem ser usados para o desenvolvimento da parte de visualização do projeto,
+nomeadamente:
+
+* [`AGENT_TYPE`](code/showworld.h#L34) - Enumeração que define os diferentes
+  tipos de agente, tal como indicado na [Tabela 3](#tabela3).
+* [`SHOWWORLD`](code/showworld.h#L45) - Tipo abstrato que representa o
+  _display_ ou visualização do mundo de simulação.
+* [`get_agent_info_at`](code/showworld.h#L52) - Tipo de função que retorna
+  informação sobre um agente em dado local do mundo de jogo.
+* [`showworld_new`](code/showworld.h#L71) - Função para criar um _display_ ou
+  visualização do mundo de jogo (objeto do tipo `SHOWWORLD`).
+* [`showworld_destroy`](code/showworld.h#L84) - Função para libertar memória
+  associada a um _display_ ou visualização do mundo de jogo (objeto do tipo
+  `SHOWWORLD`).
+* [`showworld_update`](code/showworld.h#L91) - Função que atualiza o _display_
+  / visualização do mundo de jogo.
+
+O ficheiro [showworld_simple.c](code/showworld_simple.c) define uma
+implementação concreta dos tipos e/ou funções declaradas de forma abstrata na
+interface [showworld.h](code/showworld.h), podendo ser utilizado numa primeira
+fase de desenvolvimento do projeto. Quando o projeto estiver a funcionar
+adequadamente, os alunos devem criar uma implementação concreta da visualização
+do jogo que faça uso de uma biblioteca gráfica, tal como indicado
+[anteriormente](#objetivos). Para o efeito devem substituir o ficheiro
+[showworld_simple.c](code/showworld_simple.c) por outra implementação, mas que
+continue a obedecer à interface definida em [showworld.h](code/showworld.h).
+
+Por sua vez, o ficheiro [example.c](code/example.c) contém um exemplo de como
+usar a interface definida em [showworld.h](code/showworld.h).
+
+As próximas subsecções descrevem em detalhe a implementação
+[showworld_simple.c](code/showworld_simple.c), e como os alunos podem criar a
+sua própria implementação da visualização.
+
+#### Exemplo de implementação: showworld_simple.c
+
+A implementação de visualização definida no ficheiro
+[showworld_simple.c](code/showworld_simple.c) mostra o mundo do jogo no
+terminal, indicando se o agente é zombie (`z`) ou humano (`h`), o ID do agente
+em hexadecimal (por exemplo, `z0A`), e diferenciando com `Z` ou `H` maiúsculo
+caso o agente em questão seja controlado por um jogador (por exemplo, `H19`).
+Caso não exista um agente na célula em questão, é impresso um ponto (`.`). Para
+um mundo 5x5 com 4 zombies e 1 humano, com um dos zombies controlado por um
+jogador, a implementação mostra algo parecido com a [Figura 2](#figura2).
+
+<a name="figura2"></a>
+
+```
+.   .  Z02  .   .
+
+.  z00  .   .   .
+
+.   .   .   .   .
+
+.   .  z03  .   .
+
+.  z01  .  h04  .
+```
+
+**Figura 2** - Exemplo do mundo de jogo com dimensões 5x5, tal como mostrado
+na implementação de visualização definida em
+[showworld_simple.c](code/showworld_simple.c).
+
+##### Implementação do objeto SHOWWORLD para visualização do mundo de simulação
+
+O tipo concreto `SHOWWORLD` está definido como uma [estrutura com três
+campos](code/showworld_simple.c#L36): `xdim`, `ydim` e `aginfo_func`. Os dois
+primeiros campos representam o tamanho horizontal e vertical do mundo de jogo,
+respetivamente. O terceito campo é do tipo
+[`get_agent_info_at`](code/showworld.h#L52), ou seja, representa um apontador
+para uma função que retorna informação sobre um agente em dado local do mundo
+de jogo.
+
+Não é preciso nada de mais, uma vez que este tipo de visualização é muito
+simples.
+
+##### Implementação da função showworld_new()
+
+A [implementação](code/showworld_simple.c#L50) desta função aloca memória para
+um objeto do tipo [`SHOWWORLD`](code/showworld_simple.c#L36), guardando nos
+campos dessa estrutura o tamanho do mundo e o apontador para a função que
+retorna informação sobre um agente em dado local do mundo de jogo, do tipo
+[`get_agent_info_at`](code/showworld.h#L52).
+
+##### Implementação da função showworld_destroy()
+
+Uma vez que apenas foi efetuada uma
+[alocação de memória](code/showworld_simple.c#L60) para criação do objeto
+`SHOWWORLD`, a função [showworld_destroy()](code/showworld_simple.c#L68)
+simplesmente liberta essa memória usando a função `free()`.
+
+##### Implementação da função showworld_update()
+
+Esta função vai mostrar o mundo de jogo tal como aparece na
+[Figura 2](#figura2)  A função não devolve nada (`void`), mas aceita dois
+argumentos. O primeiro, de nome `sw`, é um objeto do tipo `SHOWWORLD` que
+contém informação sobre o _display_ / visualização do jogo. O segundo, de nome
+`w`, é do tipo `void *` (apontador genérico), e aponta para a estrutura de
+dados que contém o mundo do jogo.
+
+Como é possível observar no [código](code/showworld_simple.c#L76), esta
+implementação da função `showworld_update()` percorre todas as células da
+grelha de simulação, por linha e por coluna, obtém informação sobre o agente em
+cada posição (usando o apontador para função guardado na variável `sw`), e
+imprime no ecrã, de forma formatada, a informação obtida. Esta função não
+precisa de saber nada sobre o mundo de simulação, apontado pela variável `w`,
+pois este é passado como argumento e interpretado pela função apontada por
+`sw->aginfo_func`.
+
+#### Apontador para função do tipo get_agent_info_at()
+
+No entanto, após a descrição anterior, existe ainda uma questão crucial e não
+esclarecida. Onde está definida a estrutura de dados que contém o mundo de
+simulação, bem como a função que a sabe interpretar? A reposta é a seguinte:
+tanto a estrutura de dados, bem como a função que a interpreta, devem ser
+desenvolvidas no código do projeto. Uma vez que o mundo de simulação vai ser
+definido de forma específica por cada grupo, faz então sentido que a função que
+obtém informação sobre um agente em determinada localização no mundo seja
+também definida pelo grupo. Esta função deve obedecer ao tipo
+`get_agent_info_at`, definido na interface [showworld.h](code/showworld.h#L52).
+No caso do código exemplo, a função está definida no ficheiro
+[example.c](code/example.c).
+
+##### Como funcionam as funções do tipo get_agent_info_at()?
+
+As funções do tipo `get_agent_info_at` devem devolver um `unsigned int`
+contendo informação sobre um agente, recebendo como argumentos a variável `w`
+(apontador genérico para o mundo do jogo), bem como as coordenadas `(x,y)` da
+posição sobre a qual se pretende obter informação. O `unsigned int` com
+informação sobre um agente está organizado internamente como indicado na
+[Tabela 2](#tabela2).
+
+<a name="tabela2"></a>
+
+**Tabela 2** - Informação sobre um agente tal como devolvida por funções do
+tipo `get_agent_info_at`.
+
+| Bits            | _31–19_ | _18–3_       | _2_             | _1–0_          |
+|-----------------|---------|--------------|-----------------|----------------|
+| **Significado** | Livre   | ID do agente | Agente jogável? | Tipo de agente |
+
+
+Os dois bits menos significativos, nas posições 0 e 1, representam o tipo de
+agente. O bit na posição 2 indica se o agente é controlado por um jogador (`1`)
+ou pela IA (`0`). Os bits entre as posições 3 e 18 contêm o ID do agente.
+Finalmente, os bits mais significativos (posições 19 a 31) estão livres para
+uso do aluno, caso assim o entenda.
+
+Os possíveis tipos de agente (posições 0 e 1) estão definidos numa enumeração
+de nome `AGENT_TYPE` no ficheiro [showworld.h](code/showworld.h#L34), tal como
+indicado na [Tabela 3](#tabela3). O tipo `Unknown` nunca deve ocorrer. Se tal
+acontecer, significa que o jogo tem um _bug_.
+
+<a name="tabela3"></a>
+
+**Tabela 3** - Tipos de agentes definidos na enumeração
+[`AGENT_TYPE`](code/showworld.h).
+
+| Tipo      | Significado            | Código (dec.)  | Código (bin.)  |
+|-----------|------------------------|----------------|----------------|
+| `None`    | Nenhum agente presente | 0              | 00             |
+| `Human`   | Agente humano          | 1              | 01             |
+| `Zombie`  | Agente zombie          | 2              | 10             |
+| `Unknown` | Agente desconhecido    | 3              | 11             |
+
+
+#### Exemplo de uso
+
+Um exemplo desta abordagem está disponível no ficheiro
+[example.c](code/example.c). Este programa cria uma grelha de simulação de
+dimensões 20x20, na qual os agentes são colocados em cada célula com uma
+probabilidade de 10%, invocando depois a função `showworld_update()` para
+mostrar o mundo aleatoriamente gerado. A grelha de simulação (mundo do jogo) é
+definida como um _array_ bidimensional de agentes, onde cada posição `[i][j]`
+do _array_, correspondente a uma coordenada `(x,y)` no mundo do jogo, contém
+um agente. Por sua vez, os agentes são definidos como uma [estrutura de nome
+`AGENT` com três campos](code/example.c#L42): tipo de agente (`AGENT_TYPE`),
+agente jogável (`unsigned char`, 0 ou 1), e ID do agente (`unsigned short`). A
+função [`example_get_ag_info()`](code/example.c#L164), que obedece ao tipo
+`get_agent_info_at`, sabe interpretar a variável `w` como _array_ de agentes,
+sabendo também como obter informação sobre um agente em determinada posição do
+_array_. Esta função é dada a conhecer ao código de visualização durante a
+criação do objeto `SHOWWORLD`, sendo passada como [último argumento da função
+`showworld_new()`](code/example.c#L96).
+
+Convém referir que as estruturas de dados usadas neste exemplo poderão não ser
+adequadas ou suficientes para o desenvolvimento do projeto.
+
+### Sugestão de organização do projeto
+
+A [Figura 3](#figura3) mostra uma possível organização de um projeto com
+visualização baseada em [SDL2], omitindo possíveis ficheiros associados a
+funcionalidades não discutidas nesta secção. É de notar a substituição da
+implementação `showworld_simple.c` por uma implementação em [SDL2], que
+obedece de igual forma à interface `showworld.h`.
+
+<a name="figura3"></a>
+
+![orgproj](https://user-images.githubusercontent.com/3018963/34793928-f3762f42-f644-11e7-96e7-f8efd73ba0de.png)
+
+**Figura 3** - Possível organização de um projeto, omitindo possíveis
+componentes associadas com outras funcionalidades específicas.
 
 <a name="doygen"></a>
 
@@ -688,204 +907,6 @@ interesse poderão ser a
 reconhecidos nos comentários no código, bem como o sumário de todas as
 [etiquetas de configuração](http://www.stack.nl/~dimitri/doxygen/manual/config.html)
 aceitáveis no ficheiro Doxyfile.
-
-<a name="examplecode"></a>
-
-### Código exemplo
-
-A pasta [code](code) contém codigo auxiliar para desenhar o mundo do jogo. A
-[Figura 1](#figura1) mostra como o código está organizado.
-
-<a name="figura1"></a>
-
-![arquitectura](https://user-images.githubusercontent.com/3018963/34446014-d09091f8-eccf-11e7-8378-90221db5fc9a.png)
-
-**Figura 1** - Organização do código auxiliar para desenhar o mundo do jogo no
-ecrã.
-
-O ficheiro [showworld.h](code/showworld.h) define três tipos que devem ser
-usados para o desenvolvimento da parte de visualização do projeto, nomeadamente:
-
-* [`AGENT_TYPE`](code/showworld.h#L34) - Enumeração que define os diferentes
-  tipos de agente, tal como indicado na [Tabela 3](#tabela3).
-* [`get_agent_info_at`](code/showworld.h#L44) - Tipo de função que retorna
-  informação sobre um agente em dado local do mundo de jogo.
-* [`show_world`](code/showworld.h#L62) - Tipo de função que mostra/atualiza a
-  visualização do mundo de jogo.
-
-A biblioteca definida nos ficheiros [simple_showworld.h](code/simple_showworld.h)
-e [simple_showworld.c](code/simple_showworld.c) fornece uma função de nome
-[`simple_show_world()`](code/simple_showworld.c#L35). Esta função obedece ao
-tipo [`show_world`](code/showworld.h#L62), e mostra o mundo de jogo de forma
-simples no terminal, podendo ser utilizada na 1ª parte do projeto. Na 2ª parte
-do projeto os alunos devem implementar a sua própria biblioteca de visualização
-do jogo, obedecendo aos tipos definidos em [showworld.h](code/showworld.h),
-mas fazendo uso de uma biblioteca de terceiros tal como indicado
-[anteriormente](#objetivos).
-
-O ficheiro [example.c](code/example.c) contém um exemplo de como usar a função
-`simple_show_world()`, obedecendo aos tipos definidos em
-[showworld.h](code/showworld.h).
-
-As próximas subsecções descrevem em detalhe como este código auxiliar pode ser
-usado nas duas partes do projeto.
-
-#### 1ª parte do projeto
-
-Para a primeira parte do projeto, os alunos podem simplesmente usar a função
-`simple_show_world()` cujo protótipo (cabeçalho) se encontra no ficheiro
-[simple_showworld.h](code/simple_showworld.h), e cujo corpo está definido no
-ficheiro [simple_showworld.c](code/simple_showworld.c). Esta função mostra o
-mundo do jogo no terminal, indicando se o agente é zombie (`z`) ou humano (`h`),
-o ID do agente em hexadecimal (por exemplo, `z0A`), e diferenciando com `Z` ou
-`H` maiúsculo caso o agente em questão seja controlado por um jogador (por
-exemplo, `H19`). Caso não exista um agente na célula em questão, a função
-imprime um ponto (`.`). Para um mundo 5x5 com 4 zombies e 1 humano, com um dos
-zombies controlado por um jogador, a função mostra algo parecido com a
-[Figura 2](#figura2).
-
-<a name="figura2"></a>
-
-```
-.   .  Z02  .   .
-
-.  z00  .   .   .
-
-.   .   .   .   .
-
-.   .  z03  .   .
-
-.  z01  .  h04  .
-```
-
-**Figura 2** - Exemplo do mundo de jogo com dimensões 5x5, tal como mostrado
-pela função `simple_show_world()`.
-
-A função `simple_show_world()` obedece ao tipo [`show_world`](code/showworld.h#L62)
-e tem o seguinte protótipo:
-
-```c
-void simple_show_world(
-    void *world,
-    unsigned int xdim,
-    unsigned int ydim,
-    get_agent_info_at ag_info);
-```
-
-A função não devolve nada (`void`), mas aceita quatro argumentos. O primeiro
-argumento, `world`, é do tipo `void *` (apontador genérico), e aponta para a
-estrutura de dados que contém o mundo do jogo. O segundo e terceiro argumentos,
-`xdim` e `ydim`, são as dimensões horizontal e vertical do mundo,
-respetivamente. O quarto e último argumento, `ag_info`, é um apontador para uma
-função que obtém informação sobre um agente localizado numa dada posição no
-mundo do jogo, obedecendo ao tipo [`get_agent_info_at`](code/showworld.h#L44).
-Como é possível observar no [código](code/simple_showworld.c#L35), a função
-`simple_show_world()` percorre todas as células da grelha de simulação, por
-linha e por coluna, obtém informação sobre o agente em cada posição (usando a
-função apontada por `ag_info`), e imprime no ecrã, de forma formatada, a
-informação obtida. A função `simple_show_world()` não precisa de saber nada
-sobre o mundo de simulação, apontado pela variável `world`, pois este é passado
-como argumento e interpretado pela função apontada por `ag_info`.
-
-No entanto, após esta descrição existe ainda uma questão crucial e não
-esclarecida. Onde está definida a estrutura de dados que contém o mundo de
-simulação, bem como a função que a sabe interpretar? A reposta é a seguinte:
-tanto a estrutura de dados, bem como a função que a interpreta, devem ser
-desenvolvidas no código do projeto. Uma vez que o mundo de simulação vai ser
-definido de forma específica por cada grupo, faz então sentido que a função que
-obtém informação sobre um agente em determinada localização no mundo seja
-também definida pelo grupo. Esta função deve obedecer ao tipo
-`get_agent_info_at`, definido no ficheiro [showworld.h](code/showworld.h), da
-seguinte forma:
-
-```c
-typedef unsigned int (*get_agent_info_at)(
-    void *world,
-    unsigned int x,
-    unsigned int y);
-```
-
-Por outras palavras, funções do tipo `get_agent_info_at` devem devolver um
-`unsigned int` contendo informação sobre um agente, recebendo como argumentos
-a variável `world` (apontador genérico para o mundo do jogo), bem como as
-coordenadas `(x,y)` da posição sobre a qual se pretende obter informação. O
-`unsigned int` com informação sobre um agente está organizado internamente
-como indicado na [Tabela 2](#tabela2).
-
-<a name="tabela2"></a>
-
-**Tabela 2** - Informação sobre um agente tal como devolvida por funções do
-tipo `get_agent_info_at`.
-
-| Bits            | _31–19_ | _18–3_       | _2_             | _1–0_          |
-|-----------------|---------|--------------|-----------------|----------------|
-| **Significado** | Livre   | ID do agente | Agente jogável? | Tipo de agente |
-
-
-Os dois bits menos significativos, nas posições 0 e 1, representam o tipo de
-agente. O bit na posição 2 indica se o agente é controlado por um jogador (`1`)
-ou pela IA (`0`). Os bits entre as posições 3 e 18 contêm o ID do agente.
-Finalmente, os bits mais significativos (posições 19 a 31) estão livres para
-uso do aluno, caso assim o entenda.
-
-Os possíveis tipos de agente (posições 0 e 1) estão definidos numa enumeração
-de nome `AGENT_TYPE` no ficheiro [showworld.h](code/showworld.h#L34), tal como
-indicado na [Tabela 3](#tabela3). O tipo `Unknown` nunca deve ocorrer. Se tal
-acontecer, significa que o jogo tem um _bug_.
-
-<a name="tabela3"></a>
-
-**Tabela 3** - Tipos de agentes definidos na enumeração
-[`AGENT_TYPE`](code/showworld.h).
-
-| Tipo      | Significado            | Código (dec.)  | Código (bin.)  |
-|-----------|------------------------|----------------|----------------|
-| `None`    | Nenhum agente presente | 0              | 00             |
-| `Human`   | Agente humano          | 1              | 01             |
-| `Zombie`  | Agente zombie          | 2              | 10             |
-| `Unknown` | Agente desconhecido    | 3              | 11             |
-
-Um exemplo desta abordagem está disponível no ficheiro
-[example.c](code/example.c). Este programa cria uma grelha de simulação de
-dimensões 20x20, na qual os agentes são colocados em cada célula com uma
-probabilidade de 10%, invocando depois a função `simple_show_world()` para
-mostrar o mundo aleatoriamente gerado. A grelha de simulação (mundo do jogo) é
-definida como um _array_ bidimensional de agentes, onde cada posição `[i][j]`
-do _array_, correspondente a uma coordenada `(x,y)` no mundo do jogo, contém
-um agente. Por sua vez, os agentes são definidos como uma [estrutura de nome
-`AGENT` com três campos](code/example.c#L42): tipo de agente (`AGENT_TYPE`),
-agente jogável (`unsigned char`, 0 ou 1), e ID do agente (`unsigned short`). A
-função [`example_get_ag_info()`](code/example.c#L151), que obedece ao tipo
-`get_agent_info_at`, sabe interpretar a variável `world` como _array_ de
-agentes, sabendo também como obter informação sobre um agente em determinada
-posição do _array_. Esta função é passada como último argumento da função
-`simple_show_world()` quando a mesma é
-[invocada no exemplo](code/example.c#L141).
-
-Convém referir que as estruturas de dados usadas neste exemplo poderão não ser
-adequadas ou suficientes para o desenvolvimento do projeto.
-
-#### 2ª parte do projeto
-
-Um dos [objetivos](#objetivos) para a 2ª parte do projeto consiste em
-implementar a visualização do mundo do jogo usando uma biblioteca de terceiros.
-Os alunos devem implementar a visualização na forma de uma biblioteca local que
-substituirá a biblioteca simples fornecida nos ficheiros
-[simple_showworld.c](code/simple_showworld.c) e
-[simple_showworld.h](code/simple_showworld.h). Tal como esta última, a
-biblioteca desenvolvida pelos alunos deve obedecer aos tipos definidos em
-[showworld.h](code/showworld.h), de forma a que o código de visualização
-desenvolvido por um grupo funcione no projeto de qualquer outro grupo. A
-[Figura 3](#figura3) mostra uma possível organização de um projeto com
-visualização baseada em [SDL2], omitindo possíveis ficheiros associados a
-funcionalidades não discutidas nesta secção.
-
-<a name="figura3"></a>
-
-![orgproj](https://user-images.githubusercontent.com/3018963/34391685-44e7f88a-eb3f-11e7-9e26-636233178e16.png)
-
-**Figura 3** - Possível organização de um projeto, omitindo possíveis
-componentes associadas com outras funcionalidades específicas.
 
 ## Honestidade académica
 
