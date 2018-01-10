@@ -676,7 +676,7 @@ interface [showworld.h](code/showworld.h), podendo ser utilizado numa primeira
 fase de desenvolvimento do projeto. Quando o projeto estiver a funcionar
 adequadamente, os alunos devem criar uma implementação concreta da visualização
 do jogo que faça uso de uma biblioteca gráfica, tal como indicado
-[anteriormente](#objetivos). Para o efeito devem substituir o ficheiro
+[anteriormente](#visualize). Para o efeito devem substituir o ficheiro
 [showworld_simple.c](code/showworld_simple.c) por outra implementação, mas que
 continue a obedecer à interface definida em [showworld.h](code/showworld.h).
 
@@ -809,7 +809,7 @@ acontecer, significa que o jogo tem um _bug_.
 <a name="tabela3"></a>
 
 **Tabela 3** - Tipos de agentes definidos na enumeração
-[`AGENT_TYPE`](code/showworld.h).
+[`AGENT_TYPE`](code/showworld.h#L34).
 
 | Tipo      | Significado            | Código (dec.)  | Código (bin.)  |
 |-----------|------------------------|----------------|----------------|
