@@ -109,6 +109,32 @@ do jogo deve ser atualizada imediatamente antes de ser solicitado _input_ a um
 jogador (pelo menos). Se a dada altura deixarem de existir agentes controlados
 pelo jogador, o programa entra em modo automático.
 
+<a name="visualize"></a>
+
+## Visualização do jogo
+
+A visualização do jogo deve ser feita com recurso a uma biblioteca gráfica ou
+de jogos, e deve obedecer à interface fornecida no ficheiro
+[showworld.h](code/showworld.h). Relativamente à biblioteca, algumas sugestões:
+
+* [g2] - Simples mas limitada.
+* [Ncurses] - ASCII art (texto), ver referência [\[2\]](#ref2).
+* [Allegro5] - Bom meio termo, com bons exemplos em C.
+* [SDL2] - Muito versátil e abrangente, mas poucos exemplos em C.
+* [Raylib] - Muito interessante, mas instalação no Ubuntu não é trivial (ver
+  instruções no Wiki da [página no GitHub][Raylib-gh]).
+
+Relativamente à interface fornecida no ficheiro
+[showworld.h](code/showworld.h), a mesma declara uma série de tipos e funções
+que devem ser respeitados na parte de visualização do jogo. Os alunos devem ler
+com atenção os comentários no código deste ficheiro para perceberem como devem
+implementar o corpo das funções de visualização. O ficheiro
+[showworld_simple.c](code/showworld_simple.c) oferece uma implementação
+simples desta interface, com visualização em modo de texto, e que pode ser
+usada numa primeira fase de desenvolvimento do projeto. A secção
+[Código exemplo](#examplecode) contém mais informações sobre a visualização do
+jogo.
+
 ## Objetivos, critério de avaliação e entrega
 
 <a name="objetivos"></a>
@@ -126,13 +152,8 @@ pelo jogador, o programa entra em modo automático.
 * Programa deve estar organizado em vários ficheiros `.c` e `.h` com uso de
   _Makefile_ (ver secção [Divisão do código em vários ficheiros](#orgproj)).
 * Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica ou
-  de jogos. Algumas sugestões:
-  * [g2] - Simples mas limitada.
-  * [Ncurses] - ASCII art (texto), ver referência [\[2\]](#ref2).
-  * [Allegro5] - Bom meio termo, com bons exemplos em C.
-  * [SDL2] - Muito versátil e abrangente, mas poucos exemplos em C.
-  * [Raylib] - Muito interessante, mas instalação no Ubuntu não é trivial (ver
-    instruções no Wiki da [página no GitHub][Raylib-gh]).
+  de jogos (ver secções [Visualização do jogo](#visualize) e
+  [Código exemplo](#examplecode)).
 
 ### Critério de avaliação
 
@@ -240,7 +261,9 @@ didático para auxiliar no desenvolvimento do projeto.
 3. Fazer um plano de desenvolvimento do projeto. As seguintes limitações são
    aceitáveis numa primeira fase: 1) fixar no código (usando constantes) o
    tamanho do mundo de jogo, o número de agentes, e restantes parâmetros de
-   configuração do jogo; e, 2) usar o código exemplo disponibilizado na secção [Visualização do jogo](#visualize) para visualização do mundo de jogo. Numa
+   configuração do jogo; e, 2) usar as funções no ficheiro
+   [showworld_simple.c](code/showworld_simple.c) (ver secção
+   [Visualização do jogo](#visualize)) para visualização do mundo de jogo. Numa
    segunda fase, quando os básicos estiverem todos a funcionar, podem então: 1)
    implementar a leitura do ficheiro INI; 2) usar alocação/libertação de
    memória para terem tamanhos variáveis do mundo e número de agentes; e, 3)
@@ -666,9 +689,9 @@ reconhecidos nos comentários no código, bem como o sumário de todas as
 [etiquetas de configuração](http://www.stack.nl/~dimitri/doxygen/manual/config.html)
 aceitáveis no ficheiro Doxyfile.
 
-<a name="visualize"></a>
+<a name="examplecode"></a>
 
-### Visualização do jogo
+### Código exemplo
 
 A pasta [code](code) contém codigo auxiliar para desenhar o mundo do jogo. A
 [Figura 1](#figura1) mostra como o código está organizado.
