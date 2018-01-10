@@ -11,7 +11,7 @@ work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 # 2º Projeto de Introdução à Computação 2017/2018
 
 O projeto deve ser realizado em grupos de 2 a 3 alunos. A constituição dos
-grupos deve ser comunicada ao docente até 4 de janeiro, data a partir da qual
+grupos deve ser comunicada ao docente até 11 de janeiro, data a partir da qual
 se assume que os alunos não pretendem realizar o projeto na 1ª época.
 
 ## Descrição do problema
@@ -178,7 +178,7 @@ avaliado segundo os critérios indicados na [Tabela 1](#tabela1).
 
 ### Entrega
 
-O projeto deve ser entregue via Moodle até às 23h de 21 de janeiro de 2018.
+O projeto deve ser entregue via Moodle até às 23h de 24 de janeiro de 2018.
 Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
 
 * Ficheiros `.c` e `.h`, ficheiro `Makefile`, ficheiro `Doxyfile` e ficheiro
