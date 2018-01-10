@@ -746,8 +746,8 @@ simplesmente liberta essa memória usando a função `free()`.
 
 ##### Implementação da função showworld_update()
 
-Esta função vai mostrar o mundo de jogo tal como aparece na
-[Figura 2](#figura2)  A função não devolve nada (`void`), mas aceita dois
+Esta função vai mostrar o mundo do jogo tal como aparece na
+[Figura 2](#figura2). A função não devolve nada (`void`), mas aceita dois
 argumentos. O primeiro, de nome `sw`, é um objeto do tipo `SHOWWORLD` que
 contém informação sobre o _display_ / visualização do jogo. O segundo, de nome
 `w`, é do tipo `void *` (apontador genérico), e aponta para a estrutura de
@@ -756,27 +756,25 @@ dados que contém o mundo do jogo.
 Como é possível observar no [código](code/showworld_simple.c#L76), esta
 implementação da função `showworld_update()` percorre todas as células da
 grelha de simulação, por linha e por coluna, obtém informação sobre o agente em
-cada posição (usando o apontador para função guardado na variável `sw`), e
-imprime no ecrã, de forma formatada, a informação obtida. Esta função não
-precisa de saber nada sobre o mundo de simulação, apontado pela variável `w`,
-pois este é passado como argumento e interpretado pela função apontada por
-`sw->aginfo_func`.
+cada posição (usando o apontador para função guardado num dos campos da
+variável `sw`), e imprime no ecrã, de forma formatada, a informação obtida.
+Esta função não precisa de saber nada sobre o mundo de simulação, apontado pela
+variável `w`, pois este é passado como argumento e interpretado pela função
+apontada por `sw->aginfo_func`.
 
-#### Apontador para função do tipo get_agent_info_at()
+#### Apontador para função do tipo get_agent_info_at
 
-No entanto, após a descrição anterior, existe ainda uma questão crucial e não
-esclarecida. Onde está definida a estrutura de dados que contém o mundo de
-simulação, bem como a função que a sabe interpretar? A reposta é a seguinte:
-tanto a estrutura de dados, bem como a função que a interpreta, devem ser
-desenvolvidas no código do projeto. Uma vez que o mundo de simulação vai ser
-definido de forma específica por cada grupo, faz então sentido que a função que
-obtém informação sobre um agente em determinada localização no mundo seja
-também definida pelo grupo. Esta função deve obedecer ao tipo
-`get_agent_info_at`, definido na interface [showworld.h](code/showworld.h#L52).
-No caso do código exemplo, a função está definida no ficheiro
-[example.c](code/example.c).
+Existe ainda uma questão crucial e não esclarecida. Onde está definida a
+estrutura de dados que contém o mundo de simulação, bem como a função que a
+sabe interpretar? A reposta é a seguinte: tanto a estrutura de dados, bem como
+a função que a interpreta, devem ser desenvolvidas no código do projeto. Uma
+vez que o mundo de simulação vai ser definido de forma específica por cada
+grupo, faz então sentido que a função que obtém informação sobre um agente em
+determinada localização no mundo seja também definida pelo grupo. Esta função
+deve obedecer ao tipo `get_agent_info_at`, definido na interface [showworld.h](code/showworld.h#L52). No caso do código exemplo, a função está
+definida no ficheiro [example.c](code/example.c#L164).
 
-##### Como funcionam as funções do tipo get_agent_info_at()?
+##### Como funcionam as funções do tipo get_agent_info_at?
 
 As funções do tipo `get_agent_info_at` devem devolver um `unsigned int`
 contendo informação sobre um agente, recebendo como argumentos a variável `w`
