@@ -851,7 +851,7 @@ obedece de igual forma à interface `showworld.h`.
 
 <a name="figura3"></a>
 
-![orgproj](https://user-images.githubusercontent.com/3018963/34793928-f3762f42-f644-11e7-96e7-f8efd73ba0de.png)
+![orgproj](https://user-images.githubusercontent.com/3018963/34800472-c2c0ccba-f65b-11e7-8c34-9340d1d2aa04.png)
 
 **Figura 3** - Possível organização de um projeto, omitindo possíveis
 componentes associadas com outras funcionalidades específicas.
