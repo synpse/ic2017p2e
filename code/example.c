@@ -205,7 +205,7 @@ unsigned int example_get_ag_info(void *w, unsigned int x, unsigned int y) {
            agent information. */
 
         /* Obtain agent at specified coordinates. */
-        AGENT ag = my_world->grid[x * my_world->xsize + y];
+        AGENT ag = my_world->grid[x * my_world->ysize + y];
 
         /* Is there an agent at (x,y)? */
         if (ag.type == None) {
