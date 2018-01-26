@@ -75,7 +75,7 @@ Um exemplo de execução:
 ```
 
 As opções indicadas são obrigatórias e podem ser dadas em qualquer ordem, desde
-que o valor numérico suceda à opção propriamente dita. Se alguma delas for
+que o valor numérico suceda à opção propriamente dita. Se alguma das opções for
 omitida o programa deve terminar com uma mensagem de erro para `stderr`,
 indicando o modo de uso.
 
@@ -406,7 +406,7 @@ grupo, faz então sentido que a função que obtém informação sobre um agente
 determinada localização no mundo seja também definida pelo grupo. Esta função
 deve obedecer ao tipo `get_agent_info_at`, definido na interface
 [showworld.h](code/showworld.h#L52). No caso do código exemplo, a função está
-definida no ficheiro [example.c](code/example.c#L164).
+definida no ficheiro [example.c](code/example.c#L207).
 
 ##### Como funcionam as funções do tipo get_agent_info_at?
 
@@ -455,20 +455,20 @@ acontecer, significa que o jogo tem um _bug_.
 
 Um exemplo desta abordagem está disponível no ficheiro
 [example.c](code/example.c). Este programa cria uma grelha de simulação de
-dimensões 20x20, na qual os agentes são colocados em cada célula com uma
-probabilidade de 10%, invocando depois a função `showworld_update()` para
-mostrar o mundo aleatoriamente gerado. A grelha de simulação (mundo do jogo) é
-definida como um _array_ bidimensional de agentes, onde cada posição `[i][j]`
-do _array_, correspondente a uma coordenada `(x,y)` no mundo do jogo, contém
-um agente. Por sua vez, os agentes são definidos como uma [estrutura de nome
-`AGENT` com três campos](code/example.c#L42): tipo de agente (`AGENT_TYPE`),
-agente jogável (`unsigned char`, 0 ou 1), e ID do agente (`unsigned short`). A
-função [`example_get_ag_info()`](code/example.c#L164), que obedece ao tipo
-`get_agent_info_at`, sabe interpretar a variável `w` como _array_ de agentes,
-sabendo também como obter informação sobre um agente em determinada posição do
-_array_. Esta função é dada a conhecer ao código de visualização durante a
-criação do objeto `SHOWWORLD`, sendo passada como [último argumento da função
-`showworld_new()`](code/example.c#L96).
+dimensões 20x20, na qual os agentes são colocados aleatoriamente, invocando
+depois a função `showworld_update()` para mostrar o mundo aleatoriamente
+gerado. A grelha de simulação (mundo do jogo) é definida como um _array_
+bidimensional de apontadores para agente, onde cada posição `[i][j]` do
+_array_, correspondente a uma coordenada `(x,y)` no mundo do jogo, contém
+um apontador para agente. Por sua vez, os agentes são definidos como uma
+[estrutura de nome `AGENT` com três campos](code/example.c#L54): tipo de agente
+(`AGENT_TYPE`), agente jogável (`unsigned char`, 0 ou 1), e ID do agente
+(`unsigned short`). A função [`example_get_ag_info()`](code/example.c#L207),
+que obedece ao tipo `get_agent_info_at`, sabe interpretar a variável `w` como
+_array_ de apontadores para agente, sabendo também como obter informação sobre
+um agente em determinada posição do _array_. Esta função é dada a conhecer ao
+código de visualização durante a criação do objeto `SHOWWORLD`, sendo passada
+como [último argumento da função `showworld_new()`](code/example.c#L94).
 
 Convém referir que as estruturas de dados usadas neste exemplo poderão não ser
 adequadas ou suficientes para o desenvolvimento do projeto.
