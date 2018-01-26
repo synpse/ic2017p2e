@@ -13,22 +13,22 @@ work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 ## Descrição do problema
 
 Pretende-se que os alunos desenvolvam um jogo/simulador no qual zombies
-perseguem e infetam humanos. O jogo desenrola-se numa grelha 2D
-toroidal<sup>[1](#fn1)</sup> com dimensões _X_ e _Y_ e vizinhança de
-Moore<sup>[2](#fn2)</sup>. Em cada célula da grelha pode estar no máximo um
-agente, que pode ser um **zombie** ou um **humano**. No início da simulação
-existem _n<sub>z</sub>_ zombies e _n<sub>h</sub>_ humanos, num total de _n =
-n<sub>z</sub>_ + _n<sub>h</sub>_ agentes. Os agentes devem ser espalhados
-aleatoriamente pela grelha no início de cada jogo.
+perseguem e infetam humanos. O jogo desenrola-se numa grelha 2D limitada nos
+lados (não toroidal<sup>[1](#fn1)</sup>) com dimensões _X_ e _Y_ e vizinhança
+de Von Neumman<sup>[2](#fn2)</sup>. Em cada célula da grelha pode estar no
+máximo um agente, que pode ser um **zombie** ou um **humano**. No início da
+simulação existem _n<sub>z</sub>_ zombies e _n<sub>h</sub>_ humanos, num total
+de _n = n<sub>z</sub>_ + _n<sub>h</sub>_ agentes. Os agentes devem ser
+espalhados aleatoriamente pela grelha no início de cada jogo.
 
 O jogo é _turn-based_, e em cada _turn_ (iteração) cada agente pode realizar
 uma ação. Os humanos podem apenas realizar um tipo de ação: movimento. Os
 zombies podem realizar dois diferentes tipos de ação: 1) movimento; e, 2)
 infeção de humanos. O movimento dos agentes pode ser realizado para uma célula
-vazia numa vizinhança de Moore de raio 1. A infeção de humanos pode ser
+vazia numa vizinhança de Von Neumman de raio 1. A infeção de humanos pode ser
 realizada por zombies quando o humano está numa célula adjacente na vizinhança
-de Moore. A ordem em que os agentes executam as suas ações em cada _turn_ é
-aleatória<sup>[3](#fn3)</sup>, de modo a que nenhum agente em específico
+de Von Neumman. A ordem em que os agentes executam as suas ações em cada _turn_
+é aleatória<sup>[3](#fn3)</sup>, de modo a que nenhum agente em específico
 obtenha a vantagem de agir cedo durante todo o jogo.
 
 Os agentes podem ser controlados pelo computador através de uma Inteligência
@@ -58,32 +58,26 @@ existirem mais humanos na simulação.
 
 ### Invocação do programa
 
-O programa deve aceitar como único parâmetro um ficheiro de configuração em
-formato [INI]<sup>[4](#fn4)</sup>, de acordo com o seguinte exemplo:
+O programa deve aceitar sete opções na linha de comando<sup>[4](#fn4)</sup>:
 
-```INI
-; Dimensao da grelha de jogo
-xdim=20
-ydim=20
-; Numero inicial de zombies e humanos
-nzombies=20
-nhumans=20
-; Numero de zombies e humanos controlados por jogadores
-nzplayers=0
-nhplayers=1
-; Numero de turns maximo
-maxturns=1000
+* `-x` - Dimensão horizontal da grelha de jogo.
+* `-y` - Dimensão vertical da grelha de jogo.
+* `-z` - Número total de zombies.
+* `-h` - Número total de humanos.
+* `-Z` - Número de zombies controlados por jogadores.
+* `-H` - Número de humanos controlados por jogadores.
+* `-t` - Número máximo de _turns_.
+
+Um exemplo de execução:
+
+```
+./jogo -x 20 -y 20 -z 10 -h 30 -Z 1 -H 2 -t 1000
 ```
 
-Os campos indicados no exemplo anterior são obrigatórios e o programa deve
-saber interpretá-los corretamente. O programa deve ainda ignorar campos que
-não conheça. Os alunos podem acrescentar campos que considerem úteis para o
-desenvolvimento do projeto, mas estes devem ser opcionais. Por outras palavras,
-o programa deve assumir valores por omissão para campos opcionais extra. Um
-ficheiro INI usado para um projeto deve funcionar sem erros noutro projeto.
-
-Senão for indicado o ficheiro de configuração, o programa deve terminar com uma
-mensagem de erro para `stderr`, indicando o modo de uso.
+As opções indicadas são obrigatórias e podem ser dadas em qualquer ordem, desde
+que o valor numérico suceda à opção propriamente dita. Se alguma delas for
+omitida o programa deve terminar com uma mensagem de erro para `stderr`,
+indicando o modo de uso.
 
 ### Modos de jogo
 
@@ -232,15 +226,16 @@ didático para auxiliar no desenvolvimento do projeto.
    [showworld_simple.c](code/showworld_simple.c) (ver secção
    [Visualização do jogo](#visualize)) para visualização do mundo de jogo. Numa
    segunda fase, quando os básicos estiverem todos a funcionar, podem então: 1)
-   implementar a leitura do ficheiro INI; 2) usar alocação/libertação de
-   memória para terem tamanhos variáveis do mundo e número de agentes; e, 3)
-   implementar visualização com uma biblioteca gráfica externa.
+   implementar o tratamento das opções de linha de comandos; 2) usar
+   alocação/libertação de memória para terem tamanhos variáveis do mundo e
+   número de agentes; e, 3) implementar visualização com uma biblioteca gráfica
+   externa.
 4. Dividir bem o trabalho entre os diferentes elementos do grupo.
 5. Organizar as estruturas e funções em ficheiros separados em volta de um
    conceito comum: coordenada, agente, grelha, etc. Por exemplo, no caso das
    coordenadas podem desenvolver um módulo (e.g. `coordenadas.c` e
    `coordenadas.h`), onde definem o tipo `COORD` para coordenadas 2D em grelha
-   toroidal com vizinhança de Moore, e todas as funções que operam sobre
+   toroidal com vizinhança de Von Neumman, e todas as funções que operam sobre
    variáveis desse tipo (e.g. deslocamento, comparação de coordenadas,
    distância, direção entre uma coordenada e outra, etc).
 6. As funções devem ser pequenas e com responsabilidades bem definidas. Se uma
@@ -409,7 +404,8 @@ a função que a interpreta, devem ser desenvolvidas no código do projeto. Uma
 vez que o mundo de simulação vai ser definido de forma específica por cada
 grupo, faz então sentido que a função que obtém informação sobre um agente em
 determinada localização no mundo seja também definida pelo grupo. Esta função
-deve obedecer ao tipo `get_agent_info_at`, definido na interface [showworld.h](code/showworld.h#L52). No caso do código exemplo, a função está
+deve obedecer ao tipo `get_agent_info_at`, definido na interface
+[showworld.h](code/showworld.h#L52). No caso do código exemplo, a função está
 definida no ficheiro [example.c](code/example.c#L164).
 
 ##### Como funcionam as funções do tipo get_agent_info_at?
@@ -507,13 +503,13 @@ suspensão temporária ou definitiva da ULHT<sup>[12](#fn12)</sup>.
 ## Notas
 
 <sup><a name="fn1">1</a></sup> Num mapa toroidal 2D, a grelha "dá a volta" na
-vertical e na horizontal. Por exemplo, num mapa 20x20, se um agente localizado
-na coordenada (0,10), margem esquerda da grelha, decidir mover-se para a
-esquerda, vai na realidade mover-se para a coordenada (19,10).
+vertical e na horizontal. Neste caso o mapa não é toroidal, sendo limitado
+pelos lados, pelo que os agentes não podem "dar a volta" nesse sentido.
 
 <sup><a name="fn2">2</a></sup> Numa grelha 2D, a
-[vizinhança de Moore](https://en.wikipedia.org/wiki/Moore_neighborhood) é
-composta pela célula central e pelas oito células que a rodeiam.
+[vizinhança de Von Neumman](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood)
+é composta pela célula central, pelas células do lado direito e esquerdo e
+pelas células em cima e em baixo.
 
 <sup><a name="fn3">3</a></sup> Por outras palavras, a lista de agentes deve ser
 embaralhada (_shuffled_) no início de cada _turn_. O algoritmo de
@@ -521,13 +517,13 @@ embaralhada (_shuffled_) no início de cada _turn_. O algoritmo de
 é um método de embaralhamento (_shuffling_) tipicamente utilizado para este
 fim.
 
-<sup><a name="fn4">4</a></sup> Embora seja relativamente simples criar uma
-função ou biblioteca para leitura básica de ficheiros INI, existem algumas
-prontas a utilizar, como por exemplo [iniparser](https://github.com/ndevilla/iniparser),
-[inih](https://github.com/benhoyt/inih),
-[minIni](https://github.com/compuphase/minIni) ou
-[ini](https://github.com/rxi/ini). A biblioteca de jogos [Allegro5] também
-oferece um módulo para processamento de ficheiros INI.
+<sup><a name="fn4">4</a></sup> É relativamente simples tratar os argumentos da
+linha de comandos, sobretudo no caso deste projeto. No entanto existem algumas
+bibliotecas para o efeito, como por exemplo o
+[Commandline option parser](https://developer.gnome.org/glib/2.54/glib-Commandline-option-parser.html)
+da [GLib](https://developer.gnome.org/glib/2.54/), ou o
+[Option parser](http://www.ucw.cz/libucw/doc/ucw/opt.html) da
+[LibUCW](http://www.ucw.cz/libucw/).
 
 <sup><a name="fn5">5</a></sup> Este pormenor é especialmente importante em
 Windows pois regra geral a codificação UTF-8 não é usada por omissão. Em todo o
@@ -552,7 +548,8 @@ a 3 alunos, o uso de Git não é apenas recomendado para uma colaboração
 eficiente: é absolutamente essencial. Caso usem um ou mais repositórios remotos
 para colaboração devem indicar esse facto no relatório.
 
-<sup><a name="fn8">8</a></sup> [Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface).
+<sup><a name="fn8">8</a></sup>
+[Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface).
 
 <sup><a name="fn9">9</a></sup> Mais especificamente a ferramenta
 [GNU Make][`make`], uma vez que existem várias variantes desta [abordagem de
@@ -648,7 +645,6 @@ O enunciado e restante documentação são disponibilizados através da licença
 [SDL2]:https://www.libsdl.org/
 [raylib]:http://www.raylib.com/
 [raylib-gh]:https://github.com/raysan5/raylib
-[INI]:https://en.wikipedia.org/wiki/INI_file
 [GDB]:https://www.gnu.org/software/gdb/
 [cppcheck]:http://cppcheck.sourceforge.net/
 [Valgrind]:http://valgrind.org/
