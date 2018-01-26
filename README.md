@@ -137,10 +137,9 @@ jogo.
 * Código deve estar devidamente comentado e indentado.
 * Tamanho da grelha e número de agentes não deve ser fixado no código, mas sim
   especificado no ficheiro de configuração.
-* Documentação do projeto deve ser feita com [Doxygen] (ver secção
-  [Documentação automática do código com Doxygen](#doxygen)).
+* Documentação do projeto deve ser feita com [Doxygen].
 * Programa deve estar organizado em vários ficheiros `.c` e `.h` com uso de
-  _Makefile_ (ver secção [Divisão do código em vários ficheiros](#orgproj)).
+  _Makefile_.
 * Visualização do jogo deve ser feita com recurso a uma biblioteca gráfica ou
   de jogos (ver secções [Visualização do jogo](#visualize) e
   [Código exemplo](#examplecode)).
@@ -180,16 +179,15 @@ Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
   * Descrição da solução:
     * Arquitetura da solução, com breve explicação de como o programa foi
       estruturado.
-      * Um fluxograma simples ou gráficos semelhantes às Figuras [1](#figura1)
-        e [3](#figura3) são bem vindos.
+      * Um fluxograma simples ou gráficos semelhantes à Figura [1](#figura1)
+        são bem vindos.
     * Estruturas de dados: grelha de simulação, agentes, outras estruturas
       auxiliares relevantes.
     * Algoritmos: procura de agente mais próximo, cálculo de direção na grelha,
       _shuffling_ (embaralhamento) dos agentes antes de cada _turn_, outros
       algoritmos relevantes.
   * Manual de utilizador:
-    * Como compilar: qual o comando ou comandos gerar uma _build_ do jogo (ver
-      secção [Divisão do código em vários ficheiros](#orgproj)).
+    * Como compilar: qual o comando ou comandos gerar uma _build_ do jogo.
     * Como jogar: que teclas pressionar e/ou onde clicar para mover agentes
       (modo interativo); tecla e/ou botão para passar para a próxima _turn_
       (modo automático); outras funcionalidades importantes que o utilizador
@@ -271,7 +269,7 @@ didático para auxiliar no desenvolvimento do projeto.
         chame `zombies`, o [GDB] pode ser usado para executar o programa da
         seguinte forma: `gdb ./zombies`.
 
-<a name="orgproj"></a>
+<a name="examplecode"></a>
 
 ### Código exemplo
 
@@ -543,8 +541,8 @@ libertada com a função `free`.
 <sup><a name="fn7">7</a></sup> Neste projeto não é necessário fazer _fork_
 deste repositório. Caso usem Git, os alunos podem inicializar um repositório
 local vazio ou com os conteúdos da pasta [code](code) e desenvolver o projeto a
-partir desse ponto. Dito isto, para um projeto desta dimensão e com grupos de 2
-a 3 alunos, o uso de Git não é apenas recomendado para uma colaboração
+partir desse ponto. Dito isto, para um projeto desta dimensão e com grupos de
+até 3 alunos, o uso de Git não é apenas recomendado para uma colaboração
 eficiente: é absolutamente essencial. Caso usem um ou mais repositórios remotos
 para colaboração devem indicar esse facto no relatório.
 
