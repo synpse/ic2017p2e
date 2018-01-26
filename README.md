@@ -147,7 +147,7 @@ jogo.
 
 ### Critério de avaliação
 
-O projeto, que tem um peso de 8 valores na nota final da disciplina, será
+O projeto, que tem um peso de 10 valores na nota final da disciplina, será
 avaliado segundo os critérios indicados na [Tabela 1](#tabela1).
 
 <a name="tabela1"></a>
@@ -156,14 +156,14 @@ avaliado segundo os critérios indicados na [Tabela 1](#tabela1).
 
 | Critério                                               | Peso      |
 |--------------------------------------------------------|-----------|
-| Funcionamento segundo especificações                   | 1,5 val.  |
-| Qualidade do código e das soluções<sup>[6](#fn6)</sup> | 1,0 val.  |
+| Funcionamento segundo especificações                   | 2,0 val.  |
+| Qualidade do código e das soluções<sup>[6](#fn6)</sup> | 1,5 val.  |
 | Comentários e documentação com [Doxygen]               | 1,0 val.  |
 | Relatório                                              | 1,0 val.  |
-| Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 0,5 val.  |
+| Desenvolvimento do projeto com Git<sup>[7](#fn7)</sup> | 1,0 val.  |
 | Tamanho da grelha/número de agentes variável           | 1,0 val.  |
 | Visualização com recurso a biblioteca externa          | 1,0 val.  |
-| Organização do projecto e _Makefile_                   | 1,0 val.  |
+| Organização do projecto e _Makefile_                   | 1,5 val.  |
 
 ### Entrega
 
