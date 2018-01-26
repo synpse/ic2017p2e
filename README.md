@@ -1,14 +1,14 @@
 <!--
-2º Projeto de Introdução à Computação 2017/2018 (c) by Nuno Fachada
+Projeto de Introdução à Computação 2ª época 2017/2018 (c) by Nuno Fachada
 
-2º Projeto de Introdução à Computação 2017/2018 is licensed under a
+Projeto de Introdução à Computação 2ª época 2017/2018 is licensed under a
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 You should have received a copy of the license along with this
 work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 -->
 
-# 2º Projeto de Introdução à Computação 2017/2018
+# Projeto de Introdução à Computação 2ª época 2017/2018
 
 ## Descrição do problema
 
@@ -170,11 +170,10 @@ avaliado segundo os critérios indicados na [Tabela 1](#tabela1).
 | Tamanho da grelha/número de agentes variável           | 1,0 val.  |
 | Visualização com recurso a biblioteca externa          | 1,0 val.  |
 | Organização do projecto e _Makefile_                   | 1,0 val.  |
-| [Extensões opcionais e Global Game Jam](#gamejam)      | Bónus!    |
 
 ### Entrega
 
-O projeto deve ser entregue via Moodle até às 23h de 28 de janeiro de 2018.
+O projeto deve ser entregue via Moodle até às 23h de 14 de fevereiro de 2018.
 Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
 
 * Ficheiros `.c` e `.h`, ficheiro `Makefile`, ficheiro `Doxyfile` e ficheiro
@@ -211,35 +210,7 @@ Deve ser submetido um ficheiro `zip` com os seguintes conteúdos:
 **Atenção**: Todos os ficheiros C e Markdown devem ser gravados em codificação
 UTF-8<sup>[5](#fn5)</sup>.
 
-<a name="gamejam"></a>
-
-### Extensões opcionais, trabalho futuro e Global Game Jam
-
-Caso os alunos atinjam todos os objetivos pretendidos, é possível estender e
-melhorar o jogo de várias formas. A melhor forma de o fazer é durante a
-[Global Game Jam]. Não existem restrições sobre melhorias a fazer, desde que o
-jogo mantenha a suas premissas básicas:
-
-* Zombies vs. Humanos numa grelha 2D toroidal.
-* Implementado em C99 com bibliotecas C auxiliares.
-* O ponto de partida deve ser o código entregue a 21 de janeiro.
-
-Algumas sugestões:
-
-* Melhor IA, sobretudo da parte dos humanos.
-* Dar aos humanos alguma forma de se defenderem.
-* Agentes com propriedades individuais como energia, capacidade de movimento,
-  etc.
-* _Power-ups_.
-* Melhor integração com biblioteca preferida ([Ncurses], [Allegro5], [SDL2] ou
-  [Raylib] – infelizmente a [g2] não é apropriada para jogos "a sério"):
-  * Possibilitar controlo com o rato.
-  * Adicionar som.
-  * etc...
-
-Caso optem por melhorar o jogo, podem fazer nova entrega até 29 de janeiro (ou
-seja, logo após a [Global Game Jam]) para as melhorias e extensões serem tidas
-em conta no bónus da nota final do projeto.
+<a name="extensoesop"></a>
 
 ## Notas adicionais e material didático para desenvolvimento do projeto
 
@@ -306,335 +277,6 @@ didático para auxiliar no desenvolvimento do projeto.
         seguinte forma: `gdb ./zombies`.
 
 <a name="orgproj"></a>
-
-### Divisão do código em vários ficheiros
-
-#### Vantagens
-
-Existem várias vantagens em dividir um programa por vários ficheiros, como por
-exemplo [\[3\]](#ref3),[\[4\]](#ref4):
-
-* Facilita cooperação entre vários programadores, uma vez que cada programador
-  pode trabalhar num ficheiro ou grupo de ficheiros diferente sem receio de
-  conflitos.
-* Permite uma abordagem orientada a objetos. Por outras palavras, cada módulo
-  (par de ficheiros `.c` e `.h`) pode definir um tipo (ou vários tipos
-  relacionados), bem como, bem como operações (funções) sobre esse tipo ou
-  tipo(s), e até possíveis constantes associadas. Isto leva a que os programas
-  fiquem muito bem estruturados.
-* Na sequência do ponto anterior, o código fica organizado em forma de módulos
-  ou bibliotecas, sendo facilmente reutilizável noutros projetos e programas,
-  reduzindo o tempo de desenvolvimento.
-* Quando um ficheiro é modificado, apenas esse ficheiro precisa de ser
-  recompilado para o programa ser reconstruído. O programa [`make`] automatiza
-  este processo.
-
-#### Como dividir um programa em vários ficheiros
-
-Regra geral, existe um ficheiro `.c` principal que contém a função `main` e
-eventualmente outras funções, variáveis ou definições diretamente relevantes
-para o programa a ser desenvolvido. Os restantes ficheiros devem ser agrupados
-em pares `.c` e `.h` (módulos) e disponibilizam funcionalidades específicas, na
-prática sendo usados como bibliotecas locais de funções.
-
-Tipicamente, quando se define um tipo, por exemplo uma `struct`, todas as
-funções que acedem e/ou manipulam variáveis desse tipo são colocadas no mesmo
-par `.c` e `.h` (módulo). Numa linguagem de programação orientada a objetos,
-como o Java ou C#, os tipos são chamados de _classes_, as variáveis de dado
-tipo são chamadas de _objetos_, e as funções que operam sobre dado tipo são
-chamadas de _métodos_.
-
-De modo a que os tipos (_classes_) e funções que operam sobre esses tipos
-(_métodos_) possam ser utilizados por outros programas e funções, é necessário
-colocar as declarações de tipos e os protótipos (cabeçalhos) das funções
-associadas no ficheiro `.h` (_header file_), e posteriormente incluir
-(`#include`) esse ficheiro no código no qual se pretende ter acesso à
-funcionalidade desenvolvida. Cada ficheiro `.h` tem um (ou mais) ficheiro(s)
-`.c` correspondente(s), onde são colocados os corpos (definições) das funções,
-bem como tipos e variáveis que apenas tenham relevância no contexto desse
-ficheiro (ou seja, que não valha a pena tornar públicos). O ficheiro `.h` pode
-ser considerado a parte pública do módulo (que pode ser usada por outro
-código), enquanto o ficheiro `.c` contém a parte privada. A parte pública é
-também denominada de **interface** ou API<sup>[8](#fn8)</sup> do
-módulo/biblioteca.
-
-O exemplo dado na secção [Código exemplo](#examplecode) segue esta
-abordagem. As seguintes referências oferecem informação mais detalhada sobre
-este tópico: [\[4\]](#ref4), [\[5\]](#ref5), [\[6\]](#ref6), [\[7\]](#ref7),
-[\[8\]](#ref8), [\[9\]](#ref9) e [\[10\]](#ref10).
-
-#### Como compilar e ligar (construir) um programa dividido em vários ficheiros
-
-Embora seja normal usar o termo _compilação_ para nos referirmos à criação de
-um ficheiro executável a partir de código C, o termo mais correto seria
-_construção_. Na realidade, a construção (do inglês _build_) de um ficheiro
-executável passa por duas fases:  compilação e ligação (do inglês _compile_ e
-_link_, respetivamente). A primeira fase, compilação, consiste em processar e
-converter um ficheiro `.c` num ficheiro _objeto_ com extensão `.o` contendo
-código máquina (zeros e uns). No entanto estes ficheiros não podem ser
-executados. Para tal, é necessário ligar (_link_) um ou mais ficheiros objeto
-num ficheiro executável [\[11\]](#ref11). O processo de compilação e ligação é
-chamado de construção (_build_), e é realizado implicitamente pelo compilador
-quando invocado da forma que temos feito até agora. Por exemplo:
-
-```
-$ gcc -Wall -Wextra -Wpedantic -std=c99 -o meuprograma meuprograma.c
-```
-
-É possível construir (compilar e ligar) um programa dividido em vários
-ficheiros numa só invocação do compilador, bastando para isso indicar todos os
-ficheiros `.c` a serem incluídos. Nesse caso, a função `main` terá de existir
-num e apenas num dos ficheiros `.c`. No caso do exemplo disponibilizado na
-pasta [code](code), que contém dois ficheiros `.c`, o comando de construção
-(compilação e ligação) será o seguinte:
-
-```
-$ gcc -Wall -Wextra -Wpedantic -std=c99 -o example example.c showworld_simple.c
-```
-
-Neste caso são apenas dois ficheiros, mas regra geral os projetos podem conter
-muitos ficheiros, caso no qual o comando anterior fica bastante comprido. Além
-disso, esta abordagem obriga a recompilar todos os ficheiros `.c`, mesmo
-aqueles que não tenham sido alterados, tornando o processo de compilação muito
-lento. Desta forma, é comum realizar as fases de compilação e ligação de forma
-separada. A opção `-c` indica ao compilador para apenas compilar o ficheiro
-`.c` especificado. No caso do exemplo disponibilizado, os seguintes comandos
-vão compilar separadamente os ficheiros `example.c` e `showworld_simple.c`,
-dando origem aos ficheiros `example.o` e `showworld_simple.o`:
-
-```
-$ gcc -Wall -Wextra -Wpedantic -std=c99 -c example.c
-$ gcc -Wall -Wextra -Wpedantic -std=c99 -c showworld_simple.c
-```
-
-Agora podemos ligar os dois ficheiros objeto, de modo a criar o ficheiro
-executável:
-
-```
-$ gcc example.o showworld_simple.o -o example
-```
-
-É de realçar que as opções típicas de compilação, `-Wall -Wextra -Wpedantic
--std=c99`, só são relevantes para a fase de compilação, não sendo necessárias
-na fase de ligação. No entanto, se o programa a construir usar bibliotecas de
-terceiros, as opções para especificar tais bibliotecas (`-l` e `-L`) são
-passadas na fase de ligação.
-
-No entanto esta abordagem manual para construção de um executável, com
-compilação individual de módulos e posterior ligação dos mesmos, está ainda
-longe de ser perfeita. Em primeiro lugar, seria necessário tomar nota dos
-módulos que precisam de ser recompilados (ou poderíamos recompilar todos e
-voltar à estaca zero em termos de eficiência). Além disso, é sempre necessário
-executar vários comandos (um ou mais para compilação e um para fazer a
-ligação). A forma clássica de automatizar o _build_ (construção) de projetos
-C/C++ é através da ferramenta [`make`]<sup>[9](#fn9)</sup>, discutida na
-próxima secção.
-
-#### _Builds_ automáticas com a ferramenta Make
-
-A ferramenta [`make`] automatiza todo o processo de construção (_building_),
-nomeadamente as fases de compilação (_compiling_) e ligação (_linking_), de
-projetos C/C++. Basta executar o comando `make` e o projeto é automaticamente
-construído de forma eficiente, sendo recompilados apenas os módulos que foram
-modificados. Experimenta fazê-lo com o código disponibilizado na pasta
-[code](code) (`cd code` seguido de `make`).
-
-A configuração de um projeto a ser construído com a ferramenta `make` é
-realizada com recurso a um ficheiro de nome `Makefile`, que indica ao `make`
-como compilar e ligar um programa. Uma `Makefile` simples consiste num conjunto
-de "regras", cada uma com a seguinte forma:
-
-```
-target ... : prerequisites ...
-	recipe
-	...
-	...
-```
-
-O _target_ (alvo) é geralmente o nome de um ficheiro a ser gerado, como por
-exemplo ficheiros executáveis ou ficheiros objeto. Um _target_ também pode ser
-o nome de uma ação a realizar, como por exemplo `clean`. Neste último caso
-diz-se que o _target_ é "Phony" (falso). Um _prerequisite_ (pré-requisito) é um
-ficheiro usado como _input_ para geração do _target_. Geralmente um _target_
-depende de vários ficheiros. Uma _recipe_ (receita) é uma ação a ser executada
-pelo `make`, e pode ser composta por um ou mais comandos. É necessário colocar
-um TAB no início de cada linha da receita, caso contrário o `make` não funciona
-como pretendido. Tipicamente uma _recipe_ está numa regra com pré-requisitos e
-serve para gerar o _target_ caso algum dos pré-requisitos tenha sido modificado
-desde a última geração desse _target_. Nem todas as regras precisam de
-pré-requisitos. Por exemplo, a regra para apagar todos os ficheiros gerados
-(cujo _target_ é normalmente chamado `clean`) não tem pré-requisitos. Uma
-possível `Makefile` para o exemplo disponibilizado na pasta [code](code) terá o
-seguinte conteúdo:
-
-```
-example: example.o showworld_simple.o
-	gcc example.o showworld_simple.o -o example
-
-example.o: example.c showworld.h
-	gcc -Wall -Wextra -Wpedantic -std=c99 -g -c -o example.o example.c
-
-showworld_simple.o: showworld_simple.c
-	gcc -Wall -Wextra -Wpedantic -std=c99 -g -c -o showworld_simple.o showworld_simple.c
-
-clean:
-	rm -f example *.o
-```
-
-A primeira regra é invocada por omissão quando o `make` é executado sem
-argumentos. O _target_ desta regra é o ficheiro executável `example`, que
-depende dos ficheiros `example.o` e `showworld_simple.o` para ser gerado (neste
-caso através de ligação/_linking_). Uma vez que inicialmente nenhum dos
-ficheiros objeto existe, a receita dessa regra não pode ser imediatamente
-executada. O `make` vai então procurar outras regras cujo _target_ tem o nome
-de cada um desses pré-requisitos. Uma vez que a segunda e terceira regras têm
-_targets_ com esses nomes, o `make` vai tentar executar as respetivas receitas.
-Dado que os pré-requisitos destas regras já existem (ficheiros `.c` e `.h`), as
-respetivas receitas podem ser executadas, gerando dessa forma os dois ficheiros
-objeto através de compilação dos respetivos ficheiros `.c`. Após esta fase, o
-`make` já pode então invocar a receita da primeira regra, que vai criar o
-ficheiro executável `example` ligando (_linking_) os ficheiros objeto
-entretanto gerados.
-
-Posteriormente, se modificarmos apenas o ficheiro `example.c` e voltarmos a
-executar o `make`, apenas a segunda regra (compilação de `example.c`) e a
-primeira regra (ligação dos ficheiros `.o`) serão executadas. O `make` sabe que
-não é necessário voltar a gerar, através de compilação, o ficheiro
-`showworld_simple.o`, uma vez que nenhum dos seus pré-requisitos foi
-modificado.
-
-O comando `make` pode aceitar como argumentos o nome dos _targets_. Ou seja, se
-executarmos o comando `make clean`, a receita cujo _target_ tem esse nome vai
-ser executada. Neste caso, esta receita corre o comando `rm -f example *.o`,
-que elimina o ficheiro executável e os ficheiros objeto gerados.
-
-Esta versão da `Makefile` funciona perfeitamente, mas pode ser melhorada. Em
-primeiro lugar, estamos a repetir os argumentos de compilação em dois locais.
-Além disso, o nome do executável aparece em vários locais. Felizmente as
-`Makefiles` suportam variáveis nas quais podemos guardar opções que são
-utilizadas várias vezes. A segunda versão da nossa `Makefile` poderia ter então
-a seguinte forma:
-
-```
-CC=gcc
-CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
-PROGRAM=example
-
-$(PROGRAM): $(PROGRAM).o showworld_simple.o
-	$(CC) $(PROGRAM).o showworld_simple.o -o $(PROGRAM)
-
-$(PROGRAM).o: $(PROGRAM).c showworld.h
-	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
-
-showworld_simple.o: showworld_simple.c
-	$(CC) $(CFLAGS) -c -o showworld_simple.o showworld_simple.c
-
-clean:
-	rm -f $(PROGRAM) *.o
-```
-
-É conveniente usar comentários para um melhor entendimento do conteúdo das
-`Makefiles`. Os comentários começam com o caráter `#` (cardinal), tal como nos
-_shell scripts_. Além disso, como o _target_ `clean` não corresponde a um
-ficheiro, é boa prática indicar este facto na `Makefile`, de modo a que o
-`make` não se confunda caso venha a existir um ficheiro com esse nome. Esta
-indicação é feita com o _target_ especial `.PHONY`, colocado imediatamente
-antes do _target_ em questão. Com esta informação chegamos a uma terceira
-versão da nossa `Makefile`:
-
-
-```
-# Compilador C
-CC=gcc
-# Argumentos (flags) de compilacao
-CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
-
-# Nome do programa
-PROGRAM=example
-
-# Regra para geral executavel
-$(PROGRAM): $(PROGRAM).o showworld_simple.o
-	$(CC) $(PROGRAM).o showworld_simple.o -o $(PROGRAM)
-
-# Regra para gerar o ficheiro objeto com o mesmo nome do executavel
-$(PROGRAM).o: $(PROGRAM).c showworld.h
-	$(CC) $(CFLAGS) -c -o $(PROGRAM).o $(PROGRAM).c
-
-# Regra para gerar o ficheiro objeto showworld_simple.o
-showworld_simple.o: showworld_simple.c
-	$(CC) $(CFLAGS) -c -o showworld_simple.o showworld_simple.c
-
-# Regra para limpar todos os ficheiros gerados (executavel e objetos)
-.PHONY: clean
-clean:
-	rm -f $(PROGRAM) *.o
-```
-
-A ferramenta `make` é bastante "inteligente", sobretudo quando se trata da
-construção (_building_) de projetos C/C++. Nomeadamente, o `make` pode
-determinar automaticamente as receitas para compilação e ligação (_compiling_
-and _linking_) dos diferentes _targets_. Para o efeito é necessário definir
-algumas
-[variáveis especiais](https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html).
-Na `Makefile` anterior já usamos duas destas variáveis: `CC` e `CFLAGS`. A
-primeira especifica o programa a ser usado como compilador C, enquanto a
-segunda define as opções (_flags_) a usar na fase de compilação. Existem outras
-variáveis especiais importantes para compilação de projetos C, das quais duas
-serão importantes neste projeto:
-
-* `LDFLAGS` - Opções de ligação (_linking_) para localização de bibliotecas no
-sistema de ficheiros, como por exemplo a _flag_ `-L`.
-* `LDLIBS` - Opções de ligação (_linking_) para especificação de bibliotecas a
-usar, como por exemplo a _flag_ `-l`.
-
-No caso do exemplo apresentado não são usadas bibliotecas extra, pelo que estas
-duas variáveis podem não ter conteúdos. No entanto é útil especificá-las
-explicitamente na `Makefile`, pois podemos vir a querer adicionar bibliotecas
-no futuro. Usando esta abordagem podemos omitir as receitas, pois o `make` vai
-fazê-las corretamente. Desta forma, os conteúdos da próxima versão da
-nossa `Makefile` são os seguintes:
-
-```
-# Compilador C
-CC=gcc
-# Argumentos (flags) de compilacao
-CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -g
-# Opções de ligação para localização de bibliotecas (e.g. -L)
-LDFLAGS=
-# Opções de ligação, como por exemplo especificação de bibliotecas (e.g. -l)
-LDLIBS=
-
-# Nome do programa
-PROGRAM=example
-
-# Regra para geral executavel (deixar make fazer a receita)
-$(PROGRAM): $(PROGRAM).o showworld_simple.o
-
-# Regra para gerar o ficheiro objeto com o mesmo nome do executavel (deixar
-# make fazer a receita)
-$(PROGRAM).o: $(PROGRAM).c showworld.h
-
-# Regra para gerar o ficheiro objeto showworld_simple.o (deixar make fazer a
-# receita)
-showworld_simple.o: showworld_simple.c
-
-# Regra para limpar todos os ficheiros gerados (executavel e objetos)
-.PHONY: clean
-clean:
-	rm -f $(PROGRAM) *.o
-```
-
-A linguagem das `Makefiles` oferece bastante possibilidades, como é possível
-concluir olhando para o respetivo [manual][`make`]. Na prática, e nomeadamente
-para o projeto em questão, as possibilidades aqui descritas são mais do que
-suficientes para uma boa automatização da _build_ do jogo.
-
-É de realçar que, ao contrário de linguagens imperativas como o C ou _scripts_
-de linha de comandos (_Shell_/Bash), a linguagem das `Makefiles` é declarativa.
-Ou seja, ao contrário dessas linguagens, a linguagem das `Makefile` descreve o
-resultado desejado, mas não necessariamente os passos para o obter.
-
-<a name="examplecode"></a>
 
 ### Código exemplo
 
@@ -835,73 +477,6 @@ criação do objeto `SHOWWORLD`, sendo passada como [último argumento da funç�
 Convém referir que as estruturas de dados usadas neste exemplo poderão não ser
 adequadas ou suficientes para o desenvolvimento do projeto.
 
-### Sugestão de organização do projeto
-
-A [Figura 3](#figura3) mostra uma possível organização de um projeto com
-visualização baseada em [SDL2], omitindo possíveis ficheiros associados a
-funcionalidades não discutidas nesta secção. É de notar a substituição da
-implementação `showworld_simple.c` por uma implementação em [SDL2], que
-obedece de igual forma à interface `showworld.h`.
-
-<a name="figura3"></a>
-
-![orgproj](https://user-images.githubusercontent.com/3018963/34800472-c2c0ccba-f65b-11e7-8c34-9340d1d2aa04.png)
-
-**Figura 3** - Possível organização de um projeto, omitindo possíveis
-componentes associadas com outras funcionalidades específicas.
-
-<a name="doxygen"></a>
-
-### Documentação automática do código com Doxygen
-
-O código de um projeto deve estar devidamente documentado, sendo boa prática
-escrever documentação específica sobre:
-
-* Ficheiros e módulos: descrição e objetivos.
-* Funções: descrição, entradas (argumentos) e saídas (valor retornado).
-* Tipos: descrição geral e descrição específica para cada campo ou valor no
-  caso de estruturas e enumerações, respetivamente.
-* Variáveis globais: descrição.
-* Constantes: descrição.
-
-Esta documentação é especialmente importante para a parte pública (interface)
-de um projeto, uma vez que a mesma pode vir a ser utilizada por outros
-programadores ou incorporada noutros projetos. No entanto não é nada prático
-escrever esta documentação em ficheiros ou documentos separados. A ferramenta
-[Doxygen]<sup>[10](#fn10)</sup> permite converter comentários especialmente
-formatados no código em documentação do projeto. A ferramenta permite exportar
-documentação em formato HTML, PDF, RTF (compatível com DOC), _man pages_ e por
-ai fora. Uma vez que comentários bem escritos são essenciais em qualquer
-programa, é possível juntar dois em um (comentários e documentação) bastando
-para isso seguir algumas regras de formatação de escrita de comentários.
-
-O [código exemplo](code) foi comentado com as regras de documentação do
-[Doxygen]. Para gerar a documentação basta entrar na pasta `code` e executar o
-comando `doxygen`. A documentação é gerada em formato HTML e é colocada na
-pasta `doc` dentro da pasta `code` (podem ver a documentação online em
-https://videojogoslusofona.github.io/ic2017p2/). As definições do Doxygen para
-cada projeto são especificadas num ficheiro chamado `Doxyfile`, como é o caso
-do [ficheiro `Doxyfile` incluido no exemplo](code/Doxyfile).
-
-O Doxygen suporta formatação Markdown dentro dos comentários, bem com a
-inclusão de ficheiros Markdown na documentação (como é caso no exemplo
-disponibilizado). Além das linguagens C e C++, o Doxygen suporta outras
-linguagens comuns tais como Java, C#, Python ou PHP. Um
-[grande número de projetos](https://www.stack.nl/~dimitri/doxygen/projects.html)
-usa Doxygen para gerar a respetiva documentação, como por exemplo a biblioteca
-[g2](http://www.ncbr.muni.cz/~martinp/g2/index.html) para gráficos, a
-biblioteca de funções C [Apache Portable Runtime](http://apr.apache.org/docs/apr/1.6/index.html),
-ou a biblioteca [cf4ocl](http://www.fakenmc.com/cf4ocl/docs/latest/index.html)
-para execução de programas em GPU.
-
-O manual do Doxygen está disponível
-[aqui](http://www.stack.nl/~dimitri/doxygen/manual/index.html). De particular
-interesse poderão ser a
-[lista de comandos especiais](http://www.stack.nl/~dimitri/doxygen/manual/commands.html)
-reconhecidos nos comentários no código, bem como o sumário de todas as
-[etiquetas de configuração](http://www.stack.nl/~dimitri/doxygen/manual/config.html)
-aceitáveis no ficheiro Doxyfile.
-
 ## Honestidade académica
 
 Nesta disciplina, espera-se que cada aluno siga os mais altos padrões de
@@ -1081,4 +656,3 @@ O enunciado e restante documentação são disponibilizados através da licença
 [Make]:https://en.wikipedia.org/wiki/Make_(software)
 [NMake]:https://docs.microsoft.com/pt-pt/cpp/build/nmake-reference
 [KISS]:https://en.wikipedia.org/wiki/KISS_principle
-[Global Game Jam]:https://globalgamejam.org/2018/jam-sites/misplay
