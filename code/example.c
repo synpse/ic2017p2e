@@ -177,8 +177,8 @@ int main() {
     }
 
     /* ********************************************************************* */
-    /* Show world using the simple_show_world() function. This function can  */
-    /* be used in the first part of the project.                             */
+    /* Update display using the showworld_update() function, as declared in  */
+    /* the showworld.h file.                                                 */
     /* ********************************************************************* */
     showworld_update(sw, grid);
 
