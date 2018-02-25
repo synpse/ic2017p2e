@@ -1,0 +1,108 @@
+\subsubsection*{2nd Project (2nd Period) 2017/2018}
+
+\subsection*{Index}
+
+{\bfseries 1.} Introduction {\bfseries 2.} Project´s Files {\bfseries 3.} Solution {\bfseries 4.} User´s Manual {\bfseries 5.} Conclusions {\bfseries 6.} Appendix
+
+\subsection*{Introduction}
+
+In this project I was asked to make a turn-\/based game in C that simulated a scenario where humans were stalked by zombies. This was to be achieved using the following mechanics\+:
+
+
+\begin{DoxyItemize}
+\item 2D Grid (Regular grid)
+\item von Neumann´s neighborhood
+\item Agents (Zombies + Humans)
+\item Movement
+\item Infection (For Zombies)
+\end{DoxyItemize}
+
+\subsection*{Files}
+
+
+\begin{DoxyItemize}
+\item coordinates.\+c
+\item \mbox{\hyperlink{coordinates_8h_source}{coordinates.\+h}}
+\item Doxyfile
+\item jogo.\+c
+\item \mbox{\hyperlink{jogo_8h}{jogo.\+h}}
+\item Makefile
+\item R\+E\+A\+D\+M\+E.\+md
+\item \mbox{\hyperlink{showworld_8h}{showworld.\+h}}
+\item \mbox{\hyperlink{showworld__simple_8c}{showworld\+\_\+simple.\+c}}
+\item shuffle.\+c
+\item \mbox{\hyperlink{shuffle_8h_source}{shuffle.\+h}}
+\item movement.\+c
+\item \mbox{\hyperlink{movement_8h_source}{movement.\+h}}
+\item sprite\+\_\+human.\+png
+\item sprite\+\_\+zombie.\+png
+\item sprite\+\_\+tile.\+png
+\end{DoxyItemize}
+
+\subsection*{Solution}
+
+For my game I used mainly a grid and agents. These were achieved with structs and arrays. Also, I used von Neumann´s neighborhood.
+
+\subsection*{User´s Manual}
+
+{\bfseries 1.} To generate a game build you have to write the following command on the {\bfseries terminal}\+:
+
+\$ make
+
+{\bfseries 2.} How to start\+:
+
+\$ ./jogo $<$\+X\+D\+I\+M$>$ $<$\+Y\+D\+I\+M$>$ $<$\+N\+Z\+O\+M\+B\+I\+E\+S$>$ $<$\+N\+H\+U\+M\+A\+N\+S$>$ $<$\+N\+Z\+O\+M\+B\+I\+E\+S\+P\+L\+A\+Y\+A\+B\+L\+E$>$ $<$\+N\+H\+U\+M\+A\+N\+S\+P\+L\+A\+Y\+A\+B\+L\+E$>$ $<$\+T\+U\+R\+N\+S$>$
+
+{\bfseries 3.} How to Play\+:
+
+
+\begin{DoxyItemize}
+\item Start the game (refer to step 2)
+\item Wait for your turn
+\item Move the playable agent
+\item Watch as the C\+PU plays
+\begin{DoxyItemize}
+\item Zombies should stalk humans and infect them
+\item Humans should run away from zombies
+\end{DoxyItemize}
+\item Gamewin or Gameover
+\begin{DoxyItemize}
+\item Zombies win if there are no humans left
+\item Humans win if the target turn was reached
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Conclusions}
+
+The project was quite hard and labor-\/intensive but was ultimately worth it. I learned a {\bfseries lot} with this project and now that I´ve finished it I think that all the time spent was worth it.
+
+\subsection*{Appendix}
+
+\subsubsection*{External pages and files used\+:}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/rui-martins/p2/}{\tt https\+://github.\+com/rui-\/martins/p2/}
+\item \href{http://www.learn-c.org/en/Arrays}{\tt http\+://www.\+learn-\/c.\+org/en/\+Arrays}
+\item \href{http://www.learn-c.org/en/Multidimensional_Arrays}{\tt http\+://www.\+learn-\/c.\+org/en/\+Multidimensional\+\_\+\+Arrays}
+\item \href{http://www.learn-c.org/en/Strings}{\tt http\+://www.\+learn-\/c.\+org/en/\+Strings}
+\item \href{http://www.learn-c.org/en/Pointers}{\tt http\+://www.\+learn-\/c.\+org/en/\+Pointers}
+\item \href{https://stackoverflow.com/questions/42321370/fisher-yates-shuffling-algorithm-in-c}{\tt https\+://stackoverflow.\+com/questions/42321370/fisher-\/yates-\/shuffling-\/algorithm-\/in-\/c}
+\item \href{http://www.sanfoundry.com/c-program-implement-fisher-yates-algorithm-array-shuffling/}{\tt http\+://www.\+sanfoundry.\+com/c-\/program-\/implement-\/fisher-\/yates-\/algorithm-\/array-\/shuffling/}
+\item \href{https://github.com/VideojogosLusofona/ic2017aulas}{\tt https\+://github.\+com/\+Videojogos\+Lusofona/ic2017aulas}
+\item \href{https://github.com/VideojogosLusofona/ic_exercicios}{\tt https\+://github.\+com/\+Videojogos\+Lusofona/ic\+\_\+exercicios}
+\item \href{https://mathoverflow.net/questions/152107/proof-of-von-neumanns-debiasing-algorithm}{\tt https\+://mathoverflow.\+net/questions/152107/proof-\/of-\/von-\/neumanns-\/debiasing-\/algorithm}
+\end{DoxyItemize}
+
+\subsubsection*{Books used\+:}
+
+
+\begin{DoxyItemize}
+\item \href{https://www.wook.pt/livro/c-e-algoritmos-alexandre-pereira/19072517}{\tt https\+://www.\+wook.\+pt/livro/c-\/e-\/algoritmos-\/alexandre-\/pereira/19072517}
+\end{DoxyItemize}
+
+\subsection*{Meta\+:}
+
+{\bfseries Professor\+:} Nuno Fachada {\bfseries Student\+:} Tiago Alves (A21701031)
+
+{\bfseries Course\+:} Licenciatura em Aplicações Multimédia e Videojogos {\bfseries Institution\+:} Universidade Lusófona de Humanidades e Tecnologias 

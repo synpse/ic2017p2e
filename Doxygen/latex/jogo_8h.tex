@@ -1,0 +1,82 @@
+\hypertarget{jogo_8h}{}\section{jogo.\+h File Reference}
+\label{jogo_8h}\index{jogo.\+h@{jogo.\+h}}
+{\ttfamily \#include \char`\"{}showworld.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_a_g_e_n_t}{A\+G\+E\+NT}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{jogo_8h_a2c2bde7b7ee036456c079b97d1a904b8}\label{jogo_8h_a2c2bde7b7ee036456c079b97d1a904b8}} 
+\#define {\bfseries W\+O\+R\+L\+D\+\_\+X}~20
+\item 
+\mbox{\Hypertarget{jogo_8h_a64e8c993f3050d1eb6f4371ce2506996}\label{jogo_8h_a64e8c993f3050d1eb6f4371ce2506996}} 
+\#define {\bfseries W\+O\+R\+L\+D\+\_\+Y}~20
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{jogo_8h_a8fc8348057055f92b997e34c63645911}{example\+\_\+get\+\_\+ag\+\_\+info}} (void $\ast$world, unsigned int x, unsigned int y)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{jogo_8h_a2f8c7c1f71dab4842a51d184b28816f3}\label{jogo_8h_a2f8c7c1f71dab4842a51d184b28816f3}} 
+int {\bfseries N\+Z\+O\+M\+B\+I\+ES}
+\item 
+\mbox{\Hypertarget{jogo_8h_a37e1f7267ae44e773cee4ae52c30e990}\label{jogo_8h_a37e1f7267ae44e773cee4ae52c30e990}} 
+int {\bfseries N\+H\+U\+M\+A\+NS}
+\item 
+\mbox{\Hypertarget{jogo_8h_aad179988dae969104cb17234f4698045}\label{jogo_8h_aad179988dae969104cb17234f4698045}} 
+int {\bfseries N\+Z\+O\+M\+B\+I\+E\+S\+\_\+\+P\+L\+AY}
+\item 
+\mbox{\Hypertarget{jogo_8h_acac7a01123759bb981fdad994721e60d}\label{jogo_8h_acac7a01123759bb981fdad994721e60d}} 
+int {\bfseries N\+H\+U\+M\+A\+N\+S\+\_\+\+P\+L\+AY}
+\item 
+\mbox{\Hypertarget{jogo_8h_a048e107971a6ef404c1474f23adb1a6d}\label{jogo_8h_a048e107971a6ef404c1474f23adb1a6d}} 
+int {\bfseries T\+U\+R\+NS}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file is an example of\+: a) how to use the A\+PI defined in the \mbox{\hyperlink{showworld_8h}{showworld.\+h}} header (mandatory for the project); and, b) how to use the concrete simple implementation of the A\+PI (provided by the \mbox{\hyperlink{showworld__simple_8c}{showworld\+\_\+simple.\+c}} file).
+
+\begin{DoxyAuthor}{Author}
+Nuno Fachada 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+\href{http://www.gnu.org/licenses/gpl.html}{\tt G\+NU General Public License version 3 (G\+P\+Lv3)} 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{jogo_8h_a8fc8348057055f92b997e34c63645911}\label{jogo_8h_a8fc8348057055f92b997e34c63645911}} 
+\index{jogo.\+h@{jogo.\+h}!example\+\_\+get\+\_\+ag\+\_\+info@{example\+\_\+get\+\_\+ag\+\_\+info}}
+\index{example\+\_\+get\+\_\+ag\+\_\+info@{example\+\_\+get\+\_\+ag\+\_\+info}!jogo.\+h@{jogo.\+h}}
+\subsubsection{\texorpdfstring{example\+\_\+get\+\_\+ag\+\_\+info()}{example\_get\_ag\_info()}}
+{\footnotesize\ttfamily unsigned int example\+\_\+get\+\_\+ag\+\_\+info (\begin{DoxyParamCaption}\item[{void $\ast$}]{w,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y }\end{DoxyParamCaption})}
+
+This function is an implementation of the \mbox{\hyperlink{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}{get\+\_\+agent\+\_\+info\+\_\+at()}} function definition. It only works for the \mbox{\hyperlink{struct_a_g_e_n_t}{A\+G\+E\+NT}} structure defined in this example, and considers the agent world as a 2D grid of agent pointers (as defined in main).
+
+It basically receives a pointer to a 2D grid of agent pointers, obtains the \mbox{\hyperlink{struct_a_g_e_n_t}{A\+G\+E\+NT}} pointer in the given coordinates, and returns the agent information in a bit-\/packed {\ttfamily unsigned int}.
+
+\begin{DoxyNote}{Note}
+This is an example which will probably not work in a fully functional game. Students should develop their own implementation of \mbox{\hyperlink{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}{get\+\_\+agent\+\_\+info\+\_\+at()}} and agent/world data structures.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em w} & Generic pointer to object representing the simulation world. \\
+\hline
+{\em x} & Horizontal coordinate of the simulation world from where to fetch the agent information. \\
+\hline
+{\em y} & Vertical coordinate of the simulation world from where to fetch the agent information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer containing bit-\/packed information about an agent, as follows\+: bits 0-\/1 (agent type), bit 2 (is agent playable), bits 3-\/18 (agent ID). Bits 19-\/31 are available for student-\/defined agent extensions. 
+\end{DoxyReturn}

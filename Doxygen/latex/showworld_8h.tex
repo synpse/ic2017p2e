@@ -1,0 +1,151 @@
+\hypertarget{showworld_8h}{}\section{showworld.\+h File Reference}
+\label{showworld_8h}\index{showworld.\+h@{showworld.\+h}}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structshowworld}{showworld}} \mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}}
+\item 
+typedef unsigned int($\ast$ \mbox{\hyperlink{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}{get\+\_\+agent\+\_\+info\+\_\+at}}) (void $\ast$w, unsigned int x, unsigned int y)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361ae}{A\+G\+E\+N\+T\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aeac9d3e887722f2bc482bcca9d41c512af}{None}} = 0x0, 
+\mbox{\hyperlink{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aeaba91918fa7a38c6f2306462587ed9566}{Human}} = 0x1, 
+\mbox{\hyperlink{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aea821578dfd99a075b39a13aa8e5355953}{Zombie}} = 0x2, 
+\mbox{\hyperlink{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aea4e81c184ac3ad48a389cd4454c4a05bb}{Unknown}} = 0x3
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}} $\ast$ \mbox{\hyperlink{showworld_8h_a71f9a2e7f79deed43a74f063f5155b06}{showworld\+\_\+new}} (unsigned int xdim, unsigned int ydim, \mbox{\hyperlink{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}{get\+\_\+agent\+\_\+info\+\_\+at}} aginfo\+\_\+func)
+\item 
+void \mbox{\hyperlink{showworld_8h_a48e4153aa1a0764ce7f398907dbbb0c7}{showworld\+\_\+destroy}} (\mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}} $\ast$sw)
+\item 
+void \mbox{\hyperlink{showworld_8h_ad9bc238640777169863f4f1555a3f1f1}{showworld\+\_\+update}} (\mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}} $\ast$sw, void $\ast$w)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file which defines the interface to create, update and destroy the visualization/display of the simulation world.
+
+\begin{DoxyNote}{Note}
+Students must use this file but {\bfseries cannot} change it.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Nuno Fachada 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+\href{http://www.gnu.org/licenses/gpl.html}{\tt G\+NU General Public License version 3 (G\+P\+Lv3)} 
+\end{DoxyCopyright}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}\label{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}} 
+\index{showworld.\+h@{showworld.\+h}!get\+\_\+agent\+\_\+info\+\_\+at@{get\+\_\+agent\+\_\+info\+\_\+at}}
+\index{get\+\_\+agent\+\_\+info\+\_\+at@{get\+\_\+agent\+\_\+info\+\_\+at}!showworld.\+h@{showworld.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+agent\+\_\+info\+\_\+at}{get\_agent\_info\_at}}
+{\footnotesize\ttfamily typedef unsigned int($\ast$ get\+\_\+agent\+\_\+info\+\_\+at) (void $\ast$w, unsigned int x, unsigned int y)}
+
+A pointer to a function which returns information about an agent located in the simulation {\ttfamily world} at coordinates ({\itshape x},{\itshape y}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & Generic pointer to object representing the simulation world. The actual object type should be defined by each project group. \\
+\hline
+{\em x} & Horizontal coordinate of the simulation world from where to fetch the agent information. \\
+\hline
+{\em y} & Vertical coordinate of the simulation world from where to fetch the agent information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer containing bit-\/packed information about an agent, as follows\+: bits 0-\/1 (agent type), bit 2 (is agent playable), bits 3-\/18 (agent ID). Bits 19-\/31 are available for student-\/defined agent extensions. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}\label{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}} 
+\index{showworld.\+h@{showworld.\+h}!S\+H\+O\+W\+W\+O\+R\+LD@{S\+H\+O\+W\+W\+O\+R\+LD}}
+\index{S\+H\+O\+W\+W\+O\+R\+LD@{S\+H\+O\+W\+W\+O\+R\+LD}!showworld.\+h@{showworld.\+h}}
+\subsubsection{\texorpdfstring{S\+H\+O\+W\+W\+O\+R\+LD}{SHOWWORLD}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structshowworld}{showworld}} \mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}}}
+
+The {\ttfamily S\+H\+O\+W\+W\+O\+R\+LD} type is a structure, but the exact fields of that structure are defined in the .c file which implements the interface defined in this .h file. In C this is called a {\itshape forward declaration}. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361ae}\label{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361ae}} 
+\index{showworld.\+h@{showworld.\+h}!A\+G\+E\+N\+T\+\_\+\+T\+Y\+PE@{A\+G\+E\+N\+T\+\_\+\+T\+Y\+PE}}
+\index{A\+G\+E\+N\+T\+\_\+\+T\+Y\+PE@{A\+G\+E\+N\+T\+\_\+\+T\+Y\+PE}!showworld.\+h@{showworld.\+h}}
+\subsubsection{\texorpdfstring{A\+G\+E\+N\+T\+\_\+\+T\+Y\+PE}{AGENT\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361ae}{A\+G\+E\+N\+T\+\_\+\+T\+Y\+PE}}}
+
+Enumeration which defines a type of agent so that the visualization code knows what to display. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!showworld.\+h@{showworld.\+h}}\index{showworld.\+h@{showworld.\+h}!None@{None}}}\mbox{\Hypertarget{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aeac9d3e887722f2bc482bcca9d41c512af}\label{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aeac9d3e887722f2bc482bcca9d41c512af}} 
+None&No agent present. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Human@{Human}!showworld.\+h@{showworld.\+h}}\index{showworld.\+h@{showworld.\+h}!Human@{Human}}}\mbox{\Hypertarget{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aeaba91918fa7a38c6f2306462587ed9566}\label{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aeaba91918fa7a38c6f2306462587ed9566}} 
+Human&Human agent present. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Zombie@{Zombie}!showworld.\+h@{showworld.\+h}}\index{showworld.\+h@{showworld.\+h}!Zombie@{Zombie}}}\mbox{\Hypertarget{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aea821578dfd99a075b39a13aa8e5355953}\label{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aea821578dfd99a075b39a13aa8e5355953}} 
+Zombie&Zombie agent present. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Unknown@{Unknown}!showworld.\+h@{showworld.\+h}}\index{showworld.\+h@{showworld.\+h}!Unknown@{Unknown}}}\mbox{\Hypertarget{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aea4e81c184ac3ad48a389cd4454c4a05bb}\label{showworld_8h_a24d5ee52bdf31f4727c9b550d6e361aea4e81c184ac3ad48a389cd4454c4a05bb}} 
+Unknown&Unknown agent, should never happen. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{showworld_8h_a48e4153aa1a0764ce7f398907dbbb0c7}\label{showworld_8h_a48e4153aa1a0764ce7f398907dbbb0c7}} 
+\index{showworld.\+h@{showworld.\+h}!showworld\+\_\+destroy@{showworld\+\_\+destroy}}
+\index{showworld\+\_\+destroy@{showworld\+\_\+destroy}!showworld.\+h@{showworld.\+h}}
+\subsubsection{\texorpdfstring{showworld\+\_\+destroy()}{showworld\_destroy()}}
+{\footnotesize\ttfamily void showworld\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}} $\ast$}]{sw }\end{DoxyParamCaption})}
+
+Destroy a {\ttfamily S\+H\+O\+W\+W\+O\+R\+LD} object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sw} & {\ttfamily S\+H\+O\+W\+W\+O\+R\+LD} object to destroy. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{showworld_8h_a71f9a2e7f79deed43a74f063f5155b06}\label{showworld_8h_a71f9a2e7f79deed43a74f063f5155b06}} 
+\index{showworld.\+h@{showworld.\+h}!showworld\+\_\+new@{showworld\+\_\+new}}
+\index{showworld\+\_\+new@{showworld\+\_\+new}!showworld.\+h@{showworld.\+h}}
+\subsubsection{\texorpdfstring{showworld\+\_\+new()}{showworld\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}}$\ast$ showworld\+\_\+new (\begin{DoxyParamCaption}\item[{unsigned int}]{xdim,  }\item[{unsigned int}]{ydim,  }\item[{\mbox{\hyperlink{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}{get\+\_\+agent\+\_\+info\+\_\+at}}}]{aginfo\+\_\+func }\end{DoxyParamCaption})}
+
+Create a new {\ttfamily S\+H\+O\+W\+W\+O\+R\+LD} object for displaying the game.
+
+
+\begin{DoxyParams}{Parameters}
+{\em xdim} & Horizontal dimension of the simulation world (number of columns). \\
+\hline
+{\em ydim} & Vertical dimension of the simulation world (number of rows). \\
+\hline
+{\em aginfo\+\_\+func} & Pointer to function of type \mbox{\hyperlink{showworld_8h_aa7881dde0e99af6e6576a7401f3c4586}{get\+\_\+agent\+\_\+info\+\_\+at()}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new {\ttfamily S\+H\+O\+W\+W\+O\+R\+LD} object for displaying the game. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{showworld_8h_ad9bc238640777169863f4f1555a3f1f1}\label{showworld_8h_ad9bc238640777169863f4f1555a3f1f1}} 
+\index{showworld.\+h@{showworld.\+h}!showworld\+\_\+update@{showworld\+\_\+update}}
+\index{showworld\+\_\+update@{showworld\+\_\+update}!showworld.\+h@{showworld.\+h}}
+\subsubsection{\texorpdfstring{showworld\+\_\+update()}{showworld\_update()}}
+{\footnotesize\ttfamily void showworld\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{showworld_8h_abcd156bf2f362f10c63906cfc1c2a7cb}{S\+H\+O\+W\+W\+O\+R\+LD}} $\ast$}]{sw,  }\item[{void $\ast$}]{w }\end{DoxyParamCaption})}
+
+Updates the display of the simulation world.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sw} & Display object. \\
+\hline
+{\em w} & World object (should be defined by each project group). \\
+\hline
+\end{DoxyParams}
